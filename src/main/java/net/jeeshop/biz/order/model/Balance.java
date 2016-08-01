@@ -35,6 +35,14 @@ public class Balance extends BaseModel implements Serializable {
 
     private Date endTime;
 
+    private String khid;
+
+    public String getKhid() {
+        return khid;
+    }
+    public void setKhid(String khid) {
+        this.khid = khid;
+    }
     private static final long serialVersionUID = 1L;
 
     public Long getId() {

@@ -32,7 +32,10 @@ public class ShopManagerController extends ManageBaseController {
 
     @Autowired
     ShopManagerService shopManagerService;
-
+    @Autowired
+    ShopInfoService shopInfoService;
+    @Autowired
+    UserService userService;
 
 
     @Override
@@ -166,5 +169,36 @@ public class ShopManagerController extends ManageBaseController {
         return "成功";
     }
 
-
+    @RequestMapping("toCreateShop")
+    public String toCreateShop(HttpServletRequest request,String username){
+        request.setAttribute("username",username);
+        return "/manage/shop/shopManager/toCreateShop";
+    }
+    @RequestMapping("createShop")
+    @ResponseBody
+    public String createShop(ShopInfo shopInfo,String username){
+        try {
+            logger.debug("用户名："+username);
+            SysUser sysUser = userService.selectByUsername(username);
+            String khidStr = "NO"+ DateUtils.getTime();
+            if(sysUser!=null){
+                sysUser.setKhid(khidStr);
+                userService.update(sysUser);
+                shopInfo.setCreateTime(new Date());
+                shopInfo.setUpdateaccount(username);
+                shopInfo.setKhid(khidStr);
+                shopInfo.setUpdatetime(new Date());
+                long i = shopInfoService.insert(shopInfo);
+                LoginUserHolder.getLoginUser().setKhid(khidStr);
+                return "ok";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
+    @RequestMapping("toSuccess")
+    public String toSuccess(HttpServletRequest request){
+        return "/manage/shop/shopManager/toSuccess";
+    }
 }

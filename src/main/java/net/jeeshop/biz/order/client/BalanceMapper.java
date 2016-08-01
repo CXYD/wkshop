@@ -22,4 +22,6 @@ public interface BalanceMapper extends BaseMapper<Balance, BalanceExample> {
     int updateByPrimaryKeySelective(Balance record);
 
     int updateByPrimaryKey(Balance record);
+
+    int addsettleRecordsBatch(List<Balance> list);
 }

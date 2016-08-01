@@ -134,21 +134,34 @@ public class UserController extends ManageBaseController<SysUser, SysUserExample
         LoginUserHolder.setLoginUserMenus(menuService.loadMenus(u));
         try {
             systemLogService.newLog("login", "login", LogType.login);
+            //判断是不是超级管理员
+            if (LoginUserHolder.getLoginUser() == null) {
+                return "redirect:/manage/user/login";
+            }
+            /*if (LoginUserHolder.getLoginUser().getKhid() == null || LoginUserHolder.getLoginUser().getKhid().equals("")) {
+                    accountflag="1";
+            }
+            request.setAttribute("username",u.getUsername());
+            request.setAttribute("accountflag",accountflag);*/
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
         return "redirect:/manage/user/home";
     }
 
     @RequestMapping("home")
     public String home() {
+        String accountflag = "0";
         if (LoginUserHolder.getLoginUser() == null) {
             return "redirect:/manage/user/login";
         }
+        logger.debug("客户编号："+LoginUserHolder.getLoginUser().getKhid());
         if (LoginUserHolder.getLoginUser().getKhid() == null || LoginUserHolder.getLoginUser().getKhid().equals("")) {
-            return "/manage/shop/shopInfo/addShop";
+            accountflag="1";
         }
+        request.setAttribute("username",LoginUserHolder.getLoginUser().getUsername());
+        request.setAttribute("accountflag",accountflag);
         return page_home;
     }
 

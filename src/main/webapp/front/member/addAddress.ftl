@@ -30,7 +30,7 @@
                    <div class="col-xs-3 ia"><span class="color-red">*</span>手机号码：</div>
                    <div class="col-xs-9 ia">
                      <div class="col-xs-12 ia"> 
-                       <input type="text" id="phone"  name="phone" class="dxld-log" maxlength="11" placeholder="请输入您的手机号码">
+                       <input type="tel" id="phone"  name="phone" class="dxld-log" maxlength="11" placeholder="请输入您的手机号码">
                      </div>
                    </div>
                 </div>
@@ -48,7 +48,7 @@
                    </div>
                 </div>                
     		</div>
-            <p class="register-content "><button  type="button"  class="btn btn-block  size-13">保存</button></p>
+            <p class="register-content "><button  type="button"  class="btn btn-block fillet size-13">保存</button></p>
             </li>
         </ul>
         </form>
@@ -99,7 +99,7 @@
         })
     })
     $('textarea[name="address"]').keyup(function(){
-        $("button").addClass("syiaq");
+        $("button").removeClass("fillet").addClass("syiaq");
     })
 
 </script>

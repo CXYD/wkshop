@@ -11,15 +11,15 @@
 <div class="register">
 	<ul>
         <li class="register-content">
-        	<input type="text" class="form-control" maxlength="11" id="contractmobile"  name="contractmobile" placeholder="请输入收货人的手机号码">
+        	<input type="tel" class="form-control" maxlength="11" id="contractmobile"  name="contractmobile" placeholder="请输入收货人的手机号码">
       </li>
         <li style="margin-top:1em; width:100%; float:left;">
-        <div class="input-group col-sm-12">
-         <input type="text"  style="width: 65%" class="form-control" maxlength="4" id="code" name="code" placeholder="请输入您的短信验证码">
+        <div class="input-group col-sm-12" style="width: 100%;">
+         <input type="tel"  style="width: 65%" class="form-control" maxlength="4" id="code" name="code" placeholder="请输入您的短信验证码">
          <input id="spsms"   style="width: 35%"  type="button" class="btn form-control" onclick="sendSMS(this)" value="发送验证码"></input>
         </div>
         </li>
-        <li class="register-content" style="background-color: #eeeeee"><lable   id="search"  class="btn btn-block  size-13">立即查询</lable></li>
+        <li class="register-content" style="background-color: #eeeeee"><lable   id="search"  class="btn btn-block fillet size-13">立即查询</lable></li>
     </ul>
 </div>
 </form>
@@ -65,24 +65,28 @@
             weui.Loading.error('手机号码错误！');
             return false;
         }
-        var url="${basepath}/manage/user/sendUserNum";
-        var data={phone:phone,tpl:"43699",code1:"46963",code2:"",code3:""};
-        $.post(url,data,function(result){
-            //alert(result.statusCode);
-            if(result.statusCode=="000000"){
-                time(obj);
-                weui.Loading.info("短信发送成功!");
-            }else if(result.statusCode=="160040"){
-                weui.Loading.error("验证码超出当天发送上限!");
-            }else{
-                weui.Loading.error("短信发送失败!");
+        $.ajax({
+            type:"POST",
+            async:"true",
+            url:"${basepath}/manage/user/sendUserNum",
+            data:{phone:phone,tpl:"43699"},
+            success:function(result){
+                //alert(result.statusCode);
+                if(result.statusCode=="000000"){
+                    time(obj);
+                    weui.Loading.info("短信发送成功!");
+                }else if(result.statusCode=="160040"){
+                    weui.Loading.error("验证码超出当天发送上限!");
+                }else{
+                    weui.Loading.error("短信发送失败!");
+                }
             }
-        });
+        })
     }
     $("input[name='contractmobile']").keyup(function(){
         $("#spsms").addClass("syiaq");
     });
     $("input[name='code']").keyup(function(){
-        $("#search").addClass("syiaq");
+        $("#search").removeClass("fillet").addClass("syiaq");
     });
 </script>

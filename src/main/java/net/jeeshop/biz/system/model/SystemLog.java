@@ -26,6 +26,15 @@ public class SystemLog extends BaseModel implements Serializable {
 
     /** æ—¥å¿—è®°å½•æ—¶é—´ */
     private Date logTime;
+    private Date endTime;
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
     private static final long serialVersionUID = 1L;
 

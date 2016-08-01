@@ -50,7 +50,7 @@ public class OrderIndexController extends ManageBaseController {
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andCreateTimeBetween(c.getTime(),ca.getTime());
-        List<OrderBean> createNumList = orderService.selectByExample(orderExample);
+        List<OrderBean> createNumList = orderService.queryOrderDetail(orderExample);
         request.setAttribute("createNumList",createNumList);
         int payNum=0;
         Double totalprice=0.00;

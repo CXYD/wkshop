@@ -11,12 +11,12 @@
 <div class="register">
 	<ul>
         <li class="register-content">
-        	<input type="text" class="form-control" id="username" name="username" maxlength="11"  placeholder="请输入注册手机号码">
+        	<input type="tel" class="form-control" id="username" name="username" maxlength="11"  placeholder="请输入注册手机号码">
       </li>
         
         <li class="register-content">
-        <div class="input-group col-sm-12">
-         <input type="text" class="form-control" style="width: 65%"  id="code" name="code" maxlength="4" placeholder="请输入您的短信验证码">
+        <div class="input-group col-sm-12" style="width: 100%;">
+         <input type="tel" class="form-control" style="width: 65%"  id="code" name="code" maxlength="4" placeholder="请输入您的短信验证码">
             <input class="btn form-control" id="btncode" style="width: 35%;" type="button"  onclick="sendSMS(this)" value="获取验证码" ></input></td>
         </div>
         </li>
@@ -26,7 +26,7 @@
         <li class="register-content">
         	<input type="text" class="form-control" id="confirmPassword" name="confirmPassword" maxlength="18" placeholder="确认密码">
       </li>
-        <li class="register-content"><button name="submit"  type="button" class="btn btn-block size-13">提交</button></li>
+        <li class="register-content"><button name="submit"  type="button" class="btn btn-block fillet size-13">提交</button></li>
     </ul>
     
 </div>
@@ -106,7 +106,7 @@
                 })
             }
         });
-        weui.Loading.show();
+        weui.Loading.hide();
     })
 
     function sendSMS(obj){
@@ -121,16 +121,28 @@
             weui.Loading.error('手机号码错误!');
             return false;
         }
-        var url="${basepath}/manage/user/sendUserNum";
-        var data={phone:phone,tpl:"43699",code1:"46963",code2:"",code3:""};
-        $.post(url,data,function(result){
-            if(result.statusCode=="000000"){
-                time(obj);
-                weui.Loading.info("短信发送成功!");
-            }else if(result.statusCode=="160040"){
-                weui.Loading.error("验证码超出当天发送上限!");
+
+        var url="${basepath}/register/checkUserByName?username="+phone;
+        $.post(url,null,function(result){
+            if(result==false){
+                weui.Loading.error("用户不存在!");
+                return false;
             }else{
-                weui.Loading.error("短信发送失败!");
+                var url="${basepath}/manage/user/sendUserNum";
+                var data={phone:phone,tpl:"43699",code1:"46963",code2:"",code3:""};
+                weui.Loading.show();
+                $.post(url,data,function(result){
+                    //var json = eval("(" + jsonData + ")");
+                    if(result.statusCode=="000000"){
+                        time(obj);
+                        weui.Loading.info("短信发送成功!");
+                    }else if(result.statusCode="160040"){
+                        weui.Loading.error("验证码超出当天发送上限!");
+                    }else{
+                        weui.Loading.error("短信发送失败!");
+                    }
+                    weui.Loading.hide();
+                });
             }
         });
     }
@@ -144,7 +156,7 @@
         var password = $.trim($("#password").val());
         var confirmPassword = $.trim($("#confirmpassword").val());
         if(phone!="" || checkcode!="" || password!="" || confirmPassword!=""){
-            $('button[name="submit"]').addClass("syiaq");
+            $('button[name="submit"]').removeClass("fillet").addClass("syiaq");
         }
     });
 </script>

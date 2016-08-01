@@ -93,38 +93,46 @@ public class OrderManageController  extends ManageBaseController<OrderBean,Order
     @ResponseBody
     public PageBean<OrderBean> loadData(@ModelAttribute("queryParams")OrderBean queryParams, PageQueryBean pageQueryBean) {
         logger.debug("订单号："+queryParams.getOrderNum());
-        OrderExample orderExample = new OrderExample();
-        OrderExample.Criteria criteria = orderExample.createCriteria();
-        if(StringUtils.isNotBlank(queryParams.getOrderNum())){
-            criteria.andOrderNumLike("%"+queryParams.getOrderNum()+"%");
-        }
-        if(StringUtils.isNotBlank(queryParams.getLinkman())){
-            criteria.andLinkmanLike("%"+queryParams.getLinkman()+"%");
-        }
-        logger.debug("手机号："+queryParams.getContractmobile());
-        if(StringUtils.isNotBlank(queryParams.getContractmobile()) ){
-            criteria.andContractmobileEqualTo(queryParams.getContractmobile());
-        }
-        if(StringUtils.isNotBlank(queryParams.getPaytype())){
-            criteria.andPaytypeEqualTo(queryParams.getPaytype());
-        }
-        if(StringUtils.isNotBlank(queryParams.getOrderstatus())){
-            criteria.andOrderstatusEqualTo(queryParams.getOrderstatus());
-        }
-        Date startTime = queryParams.getCreateTime();
-        Date endTime = queryParams.getEndTime();
-        if(startTime!=null && endTime!=null){
-            try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String startd = simpleDateFormat.format(startTime);
-                String endd = simpleDateFormat.format(endTime);
-                criteria.andCreateTimeBetween(simpleDateFormat.parse(startd),simpleDateFormat.parse(endd));
-            } catch (ParseException e) {
-                e.printStackTrace();
+        PageBean  pager  = null;
+        try {
+            OrderExample orderExample = new OrderExample();
+            OrderExample.Criteria criteria = orderExample.createCriteria();
+            if(LoginUserHolder.getLoginUser()!=null && StringUtils.isNotBlank(LoginUserHolder.getLoginUser().getKhid())){
+                criteria.andKhidEqualTo(LoginUserHolder.getLoginUser().getKhid());
+                if(StringUtils.isNotBlank(queryParams.getOrderNum())){
+                    criteria.andOrderNumLike("%"+queryParams.getOrderNum()+"%");
+                }
+                if(StringUtils.isNotBlank(queryParams.getLinkman())){
+                    criteria.andLinkmanLike("%"+queryParams.getLinkman()+"%");
+                }
+                logger.debug("手机号："+queryParams.getContractmobile());
+                if(StringUtils.isNotBlank(queryParams.getContractmobile()) ){
+                    criteria.andContractmobileEqualTo(queryParams.getContractmobile());
+                }
+                if(StringUtils.isNotBlank(queryParams.getPaytype())){
+                    criteria.andPaytypeEqualTo(queryParams.getPaytype());
+                }
+                if(StringUtils.isNotBlank(queryParams.getOrderstatus())){
+                    criteria.andOrderstatusEqualTo(queryParams.getOrderstatus());
+                }
+                Date startTime = queryParams.getCreateTime();
+                Date endTime = queryParams.getEndTime();
+                if(startTime!=null && endTime!=null){
+                    try {
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String startd = simpleDateFormat.format(startTime);
+                        String endd = simpleDateFormat.format(endTime);
+                        criteria.andCreateTimeGreaterThanOrEqualTo(simpleDateFormat.parse(startd));
+                        criteria.andCreateTimeLessThanOrEqualTo(simpleDateFormat.parse(endd));            } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                orderExample.setOrderByClause(getOrderColumnName(request));
+                pager  = orderService.queryOrder(orderExample, pageQueryBean);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        orderExample.setOrderByClause(getOrderColumnName(request));
-        PageBean  pager  = orderService.queryOrder(orderExample, pageQueryBean);
         return pager;
     }
    @RequestMapping("updateOrderStatus")
@@ -191,82 +199,86 @@ public class OrderManageController  extends ManageBaseController<OrderBean,Order
         OrderExample example = new OrderExample();
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
-        if(StringUtils.isNotBlank(queryParams.getOrderNum())){
-            criteria.andOrderNumLike("%"+queryParams.getOrderNum()+"%");
-        }
-        if(StringUtils.isNotBlank(queryParams.getLinkman())){
-            criteria.andLinkmanLike("%"+queryParams.getLinkman()+"%");
-        }
-        logger.debug("手机号："+String.valueOf(queryParams.getContractmobile()));
-        if(StringUtils.isNotBlank(queryParams.getContractmobile())){
-            criteria.andContractmobileEqualTo(queryParams.getContractmobile());
-        }
-        if(StringUtils.isNotBlank(queryParams.getPaytype())){
-            criteria.andPaytypeEqualTo(queryParams.getPaytype());
-        }
-        if(StringUtils.isNotBlank(queryParams.getOrderstatus())){
-            criteria.andOrderstatusEqualTo(queryParams.getOrderstatus());
-        }
-        Date startTime = queryParams.getCreateTime();
-        Date endTime = queryParams.getEndTime();
-        if(startTime!=null && endTime!=null){
-            try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String startd = simpleDateFormat.format(startTime);
-                String endd = simpleDateFormat.format(endTime);
-                criteria.andCreateTimeBetween(simpleDateFormat.parse(startd),simpleDateFormat.parse(endd));
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if(LoginUserHolder.getLoginUser()!=null && StringUtils.isNotBlank(LoginUserHolder.getLoginUser().getKhid())){
+            criteria.andKhidEqualTo(LoginUserHolder.getLoginUser().getKhid());
+            if(StringUtils.isNotBlank(queryParams.getOrderNum())){
+                criteria.andOrderNumLike("%"+queryParams.getOrderNum()+"%");
             }
-        }
-        orderExample.setOrderByClause("o.order_num DESC");
-
-        PageBean  pager  = orderService.queryOrder(orderExample, pageQueryBean);
-
-        List<Map<String, Object>> list = createExcelRecord(pager.getList());
-
-        String columnNames[] = {"订单号", "下单时间", "商品名称","单价","数量","联系人","联系电话","支付方式","实付金额","订单状态"};//列名
-        String keys[] = {"order_num", "create_time", "productName","price","quantity","linkman","contractmobile","paytype","amount","orderstatus"};//map中的key
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        try {
-            ExcelUtil.createWorkBook(list, keys, columnNames).write(os);
-        } catch (IOException e) {
-            e.printStackTrace();
-            request.setAttribute("message", "导出失败!");
-            return page_toList;
-        }
-        byte[] content = os.toByteArray();
-        InputStream is = new ByteArrayInputStream(content);
-        // 设置response参数，可以打开下载页面
-        response.reset();
-        response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        ServletOutputStream out = null;
-        BufferedInputStream bis = null;
-        BufferedOutputStream bos = null;
-        try {
-            response.setHeader("Content-Disposition", "attachment;filename=" + new String((filename + ".xls").getBytes(), "iso-8859-1"));
-            out = response.getOutputStream();
-            bis = new BufferedInputStream(is);
-            bos = new BufferedOutputStream(out);
-            byte[] buff = new byte[2048];
-            int bytesRead;
-            // Simple read/write loop.
-            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
-                bos.write(buff, 0, bytesRead);
+            if(StringUtils.isNotBlank(queryParams.getLinkman())){
+                criteria.andLinkmanLike("%"+queryParams.getLinkman()+"%");
             }
-        } catch (final IOException e) {
-            e.printStackTrace();
-            request.setAttribute("message", "导出失败!");
-        } finally {
-            try {
+            logger.debug("手机号："+String.valueOf(queryParams.getContractmobile()));
+            if(StringUtils.isNotBlank(queryParams.getContractmobile())){
+                criteria.andContractmobileEqualTo(queryParams.getContractmobile());
+            }
+            if(StringUtils.isNotBlank(queryParams.getPaytype())){
+                criteria.andPaytypeEqualTo(queryParams.getPaytype());
+            }
+            if(StringUtils.isNotBlank(queryParams.getOrderstatus())){
+                criteria.andOrderstatusEqualTo(queryParams.getOrderstatus());
+            }
+            Date startTime = queryParams.getCreateTime();
+            Date endTime = queryParams.getEndTime();
+            if(startTime!=null && endTime!=null){
+                try {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String startd = simpleDateFormat.format(startTime);
+                    String endd = simpleDateFormat.format(endTime);
+                    criteria.andCreateTimeGreaterThanOrEqualTo(simpleDateFormat.parse(startd));
+                    criteria.andCreateTimeLessThanOrEqualTo(simpleDateFormat.parse(endd));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            orderExample.setOrderByClause("o.order_num DESC");
 
-                if (bis != null)
-                    bis.close();
-                if (bos != null)
-                    bos.close();
+            PageBean  pager  = orderService.queryOrder(orderExample, pageQueryBean);
+
+            List<Map<String, Object>> list = createExcelRecord(pager.getList());
+
+            String columnNames[] = {"订单号", "下单时间", "商品名称","单价","数量","联系人","联系电话","支付方式","实付金额","订单状态"};//列名
+            String keys[] = {"order_num", "create_time", "productName","price","quantity","linkman","contractmobile","paytype","amount","orderstatus"};//map中的key
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            try {
+                ExcelUtil.createWorkBook(list, keys, columnNames).write(os);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
+                request.setAttribute("message", "导出失败!");
+                return page_toList;
+            }
+            byte[] content = os.toByteArray();
+            InputStream is = new ByteArrayInputStream(content);
+            // 设置response参数，可以打开下载页面
+            response.reset();
+            response.setContentType("application/vnd.ms-excel;charset=utf-8");
+            ServletOutputStream out = null;
+            BufferedInputStream bis = null;
+            BufferedOutputStream bos = null;
+            try {
+                response.setHeader("Content-Disposition", "attachment;filename=" + new String((filename + ".xls").getBytes(), "iso-8859-1"));
+                out = response.getOutputStream();
+                bis = new BufferedInputStream(is);
+                bos = new BufferedOutputStream(out);
+                byte[] buff = new byte[2048];
+                int bytesRead;
+                // Simple read/write loop.
+                while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                    bos.write(buff, 0, bytesRead);
+                }
+            } catch (final IOException e) {
+                e.printStackTrace();
+                request.setAttribute("message", "导出失败!");
+            } finally {
+                try {
+
+                    if (bis != null)
+                        bis.close();
+                    if (bos != null)
+                        bos.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
         return null;

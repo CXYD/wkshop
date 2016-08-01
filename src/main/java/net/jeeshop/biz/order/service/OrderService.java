@@ -221,4 +221,9 @@ public class OrderService extends BaseService<OrderBean, OrderExample> {
         }
         return true;
     }
+
+    public List<OrderBean> querySettleRecords(OrderExample orderExample) {
+        return orderMapper.querySettleRecords(orderExample);
+    }
+
 }

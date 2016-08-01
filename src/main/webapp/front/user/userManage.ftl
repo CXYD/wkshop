@@ -32,7 +32,7 @@
                     <div class="col-xs-3 ia">出生日期</div>
                     <div class="col-xs-9 ia iqaa">
                           <#if (member.birthDate)??>
-                        <input type="date"  name="user_age" id="user_age"  class="col-xs-11 padding-Ten text-right"  value="${member.birthDate?string("yyyy-MM-dd")}"/>
+                          <input type="date"  name="user_age" id="user_age"  class="col-xs-11 padding-Ten text-right"  value="${member.birthDate?string("yyyy-MM-dd")}"/>
                           </#if>
                     </div>
                 </div>
@@ -81,7 +81,6 @@
             }
         });
     })
-    if('${member.birthDate!''}'!=""){
         var $date1 = $("#user_age");
         var instance1 = pikadayResponsive($date1);
         $date1.on("change", function() {
@@ -93,6 +92,5 @@
                 }
             })
         });
-    }
 
 </script>

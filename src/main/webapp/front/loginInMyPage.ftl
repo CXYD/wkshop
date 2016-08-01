@@ -32,25 +32,25 @@
                 </div>
                 <div class="element-end">
                     <div class="row">
-                        <div class="col-xs-4 color-666 text-center" onclick="serachOrder('03');">
-                            <img src="${basepath}/static/img/front/wscqt6-8-7.jpg" width="40"></div>
-                        <div class="col-xs-4 ia color-666 text-center" onclick="serachOrder('04');">
-                            <img src="${basepath}/static/img/front/wscqt6-8-8.jpg" width="40"></div>
-                        <div class="col-xs-4 color-666 text-center" onclick="serachOrder('07');">
-                            <img src="${basepath}/static/img/front/wscqt6-8-9.jpg" width="40">
+                        <div class="col-xs-4 color-666 text-center" >
+                            <img src="${basepath}/static/img/front/wscqt6-8-7.jpg" width="40" onclick="serachOrder('03');"></div>
+                        <div class="col-xs-4 ia color-666 text-center">
+                            <img src="${basepath}/static/img/front/wscqt6-8-8.jpg" width="40" onclick="serachOrder('04');"></div>
+                        <div class="col-xs-4 color-666 text-center" >
+                            <img src="${basepath}/static/img/front/wscqt6-8-9.jpg" width="40" onclick="serachOrder('07');">
                         </div>
                     </div>
                 </div>
                 <div class="element-end">
                     <div class="row">
-                        <div class="col-xs-4 color-666 text-center" onclick="serachOrder('03');">
-                            待付款<span style="color: red">(${noPaySum!''})</span>
+                        <div class="col-xs-4 color-666 text-center">
+                            <span onclick="serachOrder('03');">待付款<span style="color: red">(${noPaySum!''})</span></span>
                         </div>
-                        <div class="col-xs-4 color-666 text-center" onclick="serachOrder('04');">
-                            待办理<span style="color: red">(${nohandledSum!''})</span>
+                        <div class="col-xs-4 color-666 text-center" >
+                            <span onclick="serachOrder('04');">待办理<span style="color: red">(${nohandledSum!''})</span></span>
                         </div>
-                        <div class="col-xs-4 color-666 text-center" onclick="serachOrder('07');">
-                            已退款<span style="color: red">(${refundedSum!''})</span>
+                        <div class="col-xs-4 color-666 text-center" >
+                            <span onclick="serachOrder('07');">已退款<span style="color: red">(${refundedSum!''})</span></span>
                         </div>
                     </div>
                 </div>
@@ -72,10 +72,10 @@
     </div>
 
     <div class="quick-nav" name="footer">
-        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/homePage?khid=${khid}"><img data-name="home" src="${basepath}/static/img/front/wscqt6-8-46.png" width="25"></a> </div>
-        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/classPage?khid=${khid}"><img  data-name="classPage" src="${basepath}/static/img/front/wscqt6-8-47.png" width="25"></a> </div>
-        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/findPage?khid=${khid}"><img data-name="findPage" src="${basepath}/static/img/front/wscqt6-8-48.png" width="25"></a> </div>
-        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/myPage?khid=${khid}"><img  data-name="myPage"  src="${basepath}/static/img/front/wscqt6-8-49.png" width="25"></a> </div>
+        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/homePage?khid=${khid}"><img src="${basepath}/static/img/front/wscqt6-8-46.png" width="25"></a> </div>
+        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/classPage?khid=${khid}"><img src="${basepath}/static/img/front/wscqt6-8-47.png" width="25"></a> </div>
+        <div class="col-xs-3 text-center"><a href="${basepath}/webapp/findPage?khid=${khid}"><img src="${basepath}/static/img/front/wscqt6-8-48.png" width="25"></a> </div>
+        <div class="col-xs-3 text-center"><a href="${basepath}/myPage?khid=${khid}"><img src="${basepath}/static/img/front/wscqt6-8-51.png" width="25"></a> </div>
     </div>
 
 </body>

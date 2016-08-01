@@ -78,7 +78,7 @@
     });
 
     $("#back_bt").click(function(){
-        window.location.href="edit";
+        $('.wraper').load("${basepath}//manage/payManage/edit");
     });
 </script>
 

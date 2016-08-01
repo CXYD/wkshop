@@ -3,7 +3,7 @@
 <head lang="en">
 <#include "/front/header.ftl">
     <meta charset="UTF-8">
-    <title>手机商城</title>
+    <title>发现</title>
 </head>
 <body>
 

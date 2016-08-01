@@ -490,7 +490,10 @@ public class BalanceExample {
             addCriterion("balstatus is not null");
             return (Criteria) this;
         }
-
+        public Criteria andKhidEqualTo(String value) {
+            addCriterion("khid =", value, "khid");
+            return (Criteria) this;
+        }
         public Criteria andBalstatusEqualTo(String value) {
             addCriterion("balstatus =", value, "balstatus");
             return (Criteria) this;

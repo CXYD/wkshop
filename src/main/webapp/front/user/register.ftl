@@ -11,20 +11,20 @@
     <form>
     <ul>
         <li class="register-content">
-            <input id="username" name="username" maxlength="11" type="text" class="form-control" placeholder="请输入注册手机号码">
+            <input id="username" name="username" maxlength="11" type="tel" class="form-control" placeholder="请输入注册手机号码">
         </li>
 
         <li class="register-content">
-            <div id="div_num" class="input-group col-sm-12" >
+            <div id="div_num" class="input-group col-sm-12" style="width: 100%;" >
                 <input id="khid" type="hidden" value="">
-                <input id="code" type="text" style="width: 65%" maxlength="4" class="form-control" placeholder="请输入您短信收到的验证码">
+                <input id="code" type="tel" style="width: 65%" maxlength="4" class="form-control" placeholder="请输入您短信收到的验证码">
                 <input class="btn form-control" style="width: 35%;" id="btncode" type="button"  onclick="sendSMS(this)" value="获取验证码" ></input>
             </div>
         </li>
         <li class="register-content">
             <input id="password" name="password" type="text" maxlength="18" class="form-control" placeholder="请输入密码" minlength="6">
         </li>
-        <li class="register-content "><button id="register" type="button" class="btn btn-block  size-13">立即注册</button></li>
+        <li class="register-content "><button id="register" type="button" class="btn btn-block fillet size-13">立即注册</button></li>
     </ul>
     </form>
 </div>
@@ -135,7 +135,7 @@
         var checkcode = $.trim($("#code").val());
         var password = $.trim($("#password").val());
         if(username!="" || checkcode!="" || password!=""){
-            $('#register').addClass("syiaq");
+            $('#register').removeClass("fillet").addClass("syiaq");
         }
     });
 </script>

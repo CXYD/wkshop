@@ -33,4 +33,9 @@ public class BalanceService extends BaseService<Balance, BalanceExample> {
             }
         }, pageQueryBean);
     }
+
+    public int addsettleRecordsBatch(List<Balance> list) {
+
+        return balanceMapper.addsettleRecordsBatch(list);
+    }
 }

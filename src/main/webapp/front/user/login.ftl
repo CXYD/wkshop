@@ -17,7 +17,7 @@
                         <div class="col-xs-3 padding-Ten">账号</div>
                         <div class="col-xs-9 ia">
                             <div class="col-xs-9 ia">
-                                <input type="text" id="username" name="username" class="dxld-log" maxlength="11" placeholder="请输入注册手机号码" >
+                                <input type="tel" id="username" name="username" class="dxld-log" maxlength="11" placeholder="请输入注册手机号码" >
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </li>
-            <li class="register-content "><button type="button" name="login" class="btn btn-block  size-13">立即登录</button></li>
+            <li class="register-content "><button type="button" name="login" class="btn btn-block fillet  size-13">立即登录</button></li>
             <li class="register-content">
 
                 <div class="row">
@@ -57,7 +57,7 @@
 <#include "/front/footer.ftl">
 <script>
     $("input[name='password']").keyup(function(){
-        $('button[name="login"]').addClass("syiaq");
+        $('button[name="login"]').removeClass("fillet").addClass("syiaq");
     });
     $('button[name="login"]').click(function(){
         var username =$.trim($('#username').val());

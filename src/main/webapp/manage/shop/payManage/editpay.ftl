@@ -125,7 +125,7 @@
         });
     });
     $(".btn.btn-warning.w-lg.m-b-5").click(function(){
-        window.location.href="accountAdd";
+        $('.wraper').load("${basepath}/manage/payManage/accountAdd");
     });
 
 </script>

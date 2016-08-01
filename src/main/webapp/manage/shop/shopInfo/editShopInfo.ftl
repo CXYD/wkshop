@@ -29,7 +29,7 @@
                         <label class="col-md-2 control-label">商城名称</label>
                         <div class="col-md-8">
                         <input type="hidden" id="khid" name="khid" value="${shopInfo.khid}">
-                            <input name="shopname" value="${shopInfo.shopname}" type="text" class="form-control"  placeholder="请输入商城名称">
+                            <input name="shopname" value="${shopInfo.shopname}" maxlength="30" type="text" class="form-control"  placeholder="请输入商城名称">
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">商城简介</label>
                         <div class="col-md-8">
-                            <textarea name="shopdesc" class="form-control" rows="5" placeholder="请输入商城简介信息，可用于微信分享">${shopInfo.shopdesc}</textarea>
+                            <textarea name="shopdesc" class="form-control" rows="5" maxlength="200"   placeholder="请输入商城简介信息，可用于微信分享">${shopInfo.shopdesc}</textarea>
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">联系人地址</label>
                         <div class="col-md-8">
-                            <textarea name="address" class="form-control" rows="5" placeholder="200字以内" maxlength="200">${shopInfo.address}</textarea>
+                            <textarea name="address" class="form-control" rows="5"  maxlength="200" placeholder="200字以内" maxlength="200">${shopInfo.address}</textarea>
                         </div>
                     </div>
 

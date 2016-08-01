@@ -55,7 +55,7 @@
 </div> <!-- End row -->
 <script>
     $("#bt_back").click(function(){
-        window.location.href="listShopManager";
+        $('.wraper').load("${basepath}/manage/shopManage/listShopManager");
     });
     var check_name=true;
     var check_pass=true;
@@ -88,9 +88,6 @@
                 async: false,
                 success: function (msg) {
                     swal("", msg, "success");
-                    $("button[class='confirm']").click(function () {
-                        window.location.href="listShopManager";
-                    });
                 },
                 error: function () {
                     swal("", "添加失败", "error");

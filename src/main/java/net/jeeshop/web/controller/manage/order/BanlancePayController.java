@@ -79,7 +79,9 @@ public class BanlancePayController extends ManageBaseController<OrderBean,OrderE
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String startd = simpleDateFormat.format(finishTime);
                 String endd = simpleDateFormat.format(endfinishTime);
-                criteria.andFinishtimeBetween(simpleDateFormat.parse(startd), simpleDateFormat.parse(endd));
+                criteria.andFinishtimeGreaterThanOrEqualTo(simpleDateFormat.parse(startd));
+                criteria.andFinishtimeLessThanOrEqualTo(simpleDateFormat.parse(endd));
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -135,7 +137,8 @@ public class BanlancePayController extends ManageBaseController<OrderBean,OrderE
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String startd = simpleDateFormat.format(finishTime);
                 String endd = simpleDateFormat.format(endfinishTime);
-                criteria.andFinishtimeBetween(simpleDateFormat.parse(startd), simpleDateFormat.parse(endd));
+                criteria.andFinishtimeGreaterThanOrEqualTo(simpleDateFormat.parse(startd));
+                criteria.andFinishtimeLessThanOrEqualTo(simpleDateFormat.parse(endd));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

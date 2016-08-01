@@ -27,4 +27,6 @@ public interface OrderMapper extends BaseMapper<OrderBean, OrderExample> {
     List<OrderBean> selectBalPay(OrderExample example);
 
     List<OrderBean> queryOrder(OrderExample orderExample);
+
+    List<OrderBean> querySettleRecords(OrderExample orderExample);
 }

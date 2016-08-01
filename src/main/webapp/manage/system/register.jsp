@@ -1,207 +1,182 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mac
-  Date: 16/5/11
-  Time: 14:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="shortcut icon" href="img/favicon_1.ico">
-
-    <title>Velonic - Responsive Admin Dashboard Template</title>
-
-    <!-- Bootstrap core CSS -->
+<c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
+    <link href="${ctxStatic}/assets/register/styles/demo_style.css" rel="stylesheet" type="text/css">
+    <link href="${ctxStatic}/assets/register/styles/smart_wizard.css" rel="stylesheet" type="text/css">
     <link href="${ctxStatic}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${ctxStatic}/css/bootstrap-reset.css" rel="stylesheet">
-
-    <!--Animation css-->
-    <link href="${ctxStatic}/css/animate.css" rel="stylesheet">
-
-    <!--Icon-fonts css-->
-    <link href="${ctxStatic}/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="${ctxStatic}/assets/ionicon/css/ionicons.min.css" rel="stylesheet" />
-
-    <!--Form Wizard-->
-    <link rel="stylesheet" type="text/css" href="${ctxStatic}/assets/form-wizard/jquery.steps.css" />
-
-
-
-    <!-- Custom styles for this template -->
-    <link href="${ctxStatic}/css/style.css" rel="stylesheet">
-    <link href="${ctxStatic}/css/helper.css" rel="stylesheet">
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-    <!--[if lt IE 9]>
-    <script src="${ctxStatic}/js/html5shiv.js"></script>
-    <script src="${ctxStatic}/js/respond.min.js"></script>
-    <![endif]-->
-
-
+    <link href="${ctxStatic}/assets/sweet-alert/sweet-alert.min.css" rel="stylesheet">
 </head>
 
-
-<body>
-
-<!-- Aside Start-->
-
-<!-- Aside Ends-->
-
-
-
-<!-- Page Content Start -->
-<!-- ================== -->
-
-<div class="wraper container-fluid">
-
-
-
-
-
-
-
-
-    <!-- Wizard with Validation -->
-    <div class="row">
-        <div class="col-md-8 col-sm-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">注册向导</h3>
-                </div>
-                <div class="panel-body">
-                    <form id="wizard-validation-form" action="#">
-                        <div>
-                            <h3>设置账号信息</h3>
-                            <section>
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="userName">手机号码*</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="username" name="username" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="checkcode">短信验证码*</label>
-                                    <div class="col-lg-10">
-                                        <input class="form-control" id="checkcode" name="checkcode" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="password2">设置密码*</label>
-                                    <div class="col-lg-10">
-                                        <input id="password2" name="password" type="text" class="required form-control">
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="confirm2">确认密码 *</label>
-                                    <div class="col-lg-10">
-                                        <input id="confirm2" name="confirm" type="text" class="required form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-12 control-label ">(*) 必填项</label>
-                                </div>
-                            </section>
-                            <h3>身份验证</h3>
-                            <section>
-
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label" for="name2"> 真实姓名 *</label>
-                                    <div class="col-lg-10">
-                                        <input id="name2" name="name" type="text" class="required form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="surname2"> 单位名称 *</label>
-                                    <div class="col-lg-10">
-                                        <input id="surname2" name="surname" type="text" class="required form-control">
-
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="address2">座机号码 </label>
-                                    <div class="col-lg-10">
-                                        <input id="address2" name="address" type="text" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group clearfix">
-                                    <label class="col-lg-12 control-label ">(*) 必填项</label>
-                                </div>
-
-                            </section>
-                            <h3>人工审核</h3>
-                            <section>
-                                <div class="form-group clearfix">
-                                    <div class="col-lg-12">
-                                        <ul class="list-unstyled w-list">
-                                            <li>First Name : Jonathan </li>
-                                            <li>Last Name : Smith </li>
-                                            <li>Emial: jonathan@smith.com</li>
-                                            <li>Address: 123 Your City, Cityname. </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </section>
-
-                            </section>
-                        </div>
-                    </form>
-                </div>  <!-- End panel-body -->
-            </div> <!-- End panel -->
-
-        </div> <!-- end col -->
-
-    </div> <!-- End row -->
-
-
+<div class="demoHead">
+  <div>
+    <div align="center">
+      <h1>注册</h1>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
 </div>
-<!-- Page Content Ends -->
-<!-- ================== -->
+<form id="signupForm">
+<table align="center" border="0" cellpadding="0" cellspacing="0">
+<tr><td>
+<!-- Smart Wizard -->
+  		<div id="wizard" class="swMain">
+  			<ul style="margin-left: 100px">
+  				<li><a href="#step-1" id="previousid">
+                <label class="stepNumber"></label>
+                <span class="stepDesc" style="margin-top: 10px">
+                   1.设置账号信息<br />
+                </span>
+            </a></li>
+  				<li><a href="#step-2" id="nextid">
+                <label class="stepNumber"></label>
+                <span class="stepDesc"    style="margin-top: 10px">
+                   2.身份验证<br />
+                   <small></small>
+                </span>
+            </a></li>
+  				<li><a href="#step-3" id="finishid">
+                <label class="stepNumber"></label>
+                <span class="stepDesc" style="margin-top: 10px">
+                   3.人工审核<br />
+                   <small></small>
+                </span>
+             </a></li>
+  			</ul>
+  			<div id="step-1">
+            <p>
+                <div class="form-group clearfix" style="margin-top: 20px" >
+                    <label class="col-lg-2 control-label required" for="username">手机号码*</label>
+                    <div class="col-lg-5">
+                        <input class="form-control"  id="username" name="username" maxlength="11" type="text">
+                    </div>
+                    <div class="col-lg-3">
+                        <input  class="required form-control btn-warning" type="button" id="btn"  onclick="sendSMS(this);" value="获取验证码"/>
+                    </div>
+                </div>
 
-<!-- Footer Start -->
+                <div class="form-group clearfix">
+                    <label class="col-lg-2 control-label " for="checkcode">短信验证码*</label>
+                    <div class="col-lg-8">
+                        <input class="required form-control" id="checkcode" maxlength="4" name="checkcode" type="text">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-2 control-label " for="password">设置密码*</label>
+                    <div class="col-lg-8">
+                        <input id="password" name="password" type="text" maxlength="20" class="form-control">
 
-<!-- Footer Ends -->
+                    </div>
+                </div>
 
+                <div class="form-group clearfix">
+                    <label class="col-lg-2 control-label " for="confirm2">确认密码 *</label>
+                    <div class="col-lg-8">
+                        <input id="confirm2" name="confirm2" type="text" maxlength="20" class="form-control">
+                    </div>
+                </div>
+                <div class="required form-group clearfix">
+                    <label class="col-lg-12 control-label ">(*) 必填项</label>
+                </div>
+            </p>
+        </div>
+  			<div id="step-2">
+            <p>
+                <div class="form-group clearfix" style="margin-top: 20px">
+                    <label class="col-lg-2 control-label" for="realname"> 真实姓名 *</label>
+                    <div class="col-lg-8">
+                        <input id="realname" name="realname" type="text" maxlength="64" class="required form-control">
+                    </div>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-lg-2 control-label " for="unitname"> 单位名称 *</label>
+                    <div class="col-lg-8">
+                        <input id="unitname" name="unitname" type="text"  maxlength="64" class="required form-control">
 
+                    </div>
+                </div>
 
+                <div class="form-group clearfix">
+                    <label class="col-lg-2 control-label " for="telephone">座机号码 </label>
+                    <div class="col-lg-8">
+                        <input id="telephone" name="telephone" maxlength="12" type="text" class="form-control">
+                    </div>
+                </div>
 
-
-<!-- js placed at the end of the document so the pages load faster -->
+                <div class="form-group clearfix">
+                    <label class="col-lg-12 control-label ">(*) 必填项</label>
+                </div>
+            </p>
+        </div>
+  			<div id="step-3">
+            <p>
+                <div class="form-group clearfix" style="margin-top: 20px">
+                    <div class="col-lg-12">
+                        <ul class="list-unstyled w-list">
+                            <li>验证信息提交成功！我们会尽快审核并回复。</li>
+                            <li>验证通过后，您的注册手机会收到短信通知，请您及时查看。届时使用注册账号登录即可创建属于您自己的商城。</li>
+                        </ul>
+                    </div>
+                </div>
+            </p>
+        </div>
+  		</div>
+<!-- End SmartWizard Content -->
+</td></tr>
+</table>
+</form>
 <script src="${ctxStatic}/js/jquery.js"></script>
+<script type="text/javascript" src="${ctxStatic}/assets/register/js/jquery.smartWizard.js"></script>
 <script src="${ctxStatic}/js/bootstrap.min.js"></script>
-<script src="${ctxStatic}/js/pace.min.js"></script>
-<script src="${ctxStatic}/js/wow.min.js"></script>
-<script src="${ctxStatic}/js/jquery.nicescroll.js" type="text/javascript"></script>
-
-
-<!--Form Validation-->
-<script src="${ctxStatic}/assets/form-wizard/bootstrap-validator.min.js" type="text/javascript"></script>
-
-<!--Form Wizard-->
-<script src="${ctxStatic}/assets/form-wizard/jquery.steps.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/sweet-alert/sweet-alert.min.js"></script>
+<script src="${ctxStatic}/assets/sweet-alert/sweet-alert.init.js"></script>
 <script type="text/javascript" src="${ctxStatic}/assets/jquery.validate/jquery.validate.min.js"></script>
+<script src="${ctxStatic}/assets/form-wizard/bootstrap-validator.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="${ctxStatic}/assets/register/js/comm.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Smart Wizard
+        $('#wizard').smartWizard();
 
-<!--wizard initialization-->
-<script src="${ctxStatic}/assets/form-wizard/wizard-init.js" type="text/javascript"></script>
+        function onFinishCallback(){
+            $('#wizard').smartWizard('showMessage','Finish Clicked');
+            alert('Finish Clicked');
+        }
+    });
+    function sendSMS(obj){
+        var username = $("#username").val();
+        if(username=="" || username==null){
+            swal("手机号码不能为空!");
+            return false;
+        }
+        if(!IsTelephone(username)){
+            swal("手机号码错误!");
+            return false;
+        }
+        var url="checkUser?username="+username;
+        $.post(url,null,function(result){
+            if(result==true){
+                swal("手机号已经注册了!");
+                return false;
+            }else{
+                var url="sendUserNum";
+                var data={phone:username,tpl:"43699",code1:"46963",code2:"",code3:""};
+                $.post(url,data,function(result){
+                    //var json = eval("(" + jsonData + ")");
+                    if(result=="000000"){
+                        time(obj);
+                        swal("短信发送成功!");
+                    }else if(result="160040"){
+                        swal("验证码超出当天发送上限!");
+                    }else{
+                        swal("短信发送失败!");
+                    }
+                });
+            }
+        });
 
-
-<script src="${ctxStatic}/js/jquery.app.js"></script>
-
-
-</body>
+    }
+</script>
 </html>

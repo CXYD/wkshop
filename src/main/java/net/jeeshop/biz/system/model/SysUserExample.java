@@ -845,6 +845,10 @@ public class SysUserExample {
             addCriterion("khid =", value, "khid");
             return (Criteria) this;
         }
+        public Criteria andKhidIsNotNull() {
+            addCriterion("Khid is not null");
+            return (Criteria) this;
+        }
     }
 
     /**

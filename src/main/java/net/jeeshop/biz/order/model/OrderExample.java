@@ -182,7 +182,7 @@ public class OrderExample {
         }
 
         public Criteria andKhidEqualTo(String value) {
-            addCriterion("khid =", value, "khid");
+            addCriterion("o.khid =", value, "o.khid");
             return (Criteria) this;
         }
 
@@ -337,7 +337,7 @@ public class OrderExample {
         }
 
         public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+            addCriterion("o.create_time >=", value, "o.create_time");
             return (Criteria) this;
         }
 
@@ -347,7 +347,7 @@ public class OrderExample {
         }
 
         public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+            addCriterion("o.create_time <=", value, "o.create_time");
             return (Criteria) this;
         }
 
@@ -362,7 +362,7 @@ public class OrderExample {
         }
 
         public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+            addCriterion("o.create_time between", value1, value2, "o.createTime");
             return (Criteria) this;
         }
 

@@ -1,6 +1,13 @@
 
 <#include "/manage/tpl/header.ftl">
-
+<style>
+        .vertical-center{
+        position: absolute;
+        top: 40%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+    }
+</style>
 <body>
 
 <!-- Aside Start-->
@@ -60,34 +67,37 @@
                 <!-- Notification -->
                 <li class="dropdown">
 
-                <!-- /Notification -->
+                    <!-- /Notification -->
 
-                <!-- user login dropdown start-->
+                    <!-- user login dropdown start-->
                 <li class="dropdown text-center">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="${basepath}/static/img/avatar-2.jpg" class="img-circle profile-img thumb-sm">
-                        <span class="username">  ${currentUser().nickname!currentUser().username}  </span> <span class="caret"></span>
+                        <span class="username">  ${currentUser().nickname!currentUser().username}  </span> <span
+                            class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                        <#--<li><a href="profile.html"><i class="fa fa-briefcase"></i>Profile</a></li>-->
-                        <li name="set"><a href="javascript:void(0)"><i class="fa fa-cog"></i> 用户信息</a></li>
-                            <li name='changePwd'>
-                                <a href="javascript:void(0)"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
-                            </li>
-                            <li class="divider"></li>
+                    <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003"
+                        style="overflow: hidden; outline: none;">
+                        <#--<li name='changePwd'>
+                            <a href="javascript:void(0)"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
+                        </li>-->
+                       <#-- <li class="divider"></li>-->
                         <li><a href="${basepath}/manage/user/logout"><i class="fa fa-sign-out"></i> 注销</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
-            </ul>
+                </li></ul>
             <!-- End right navbar -->
         </nav>
 
     </header>
     <!-- Header Ends -->
-
-
-
+     <#if accountflag=='1'>
+     <div id="div_create">
+     <div  class="vertical-center"  >您还没有创建商城</div>
+         <lable   id="createid" style="margin-top: 40px"  class="vertical-center btn  btn-success size-13">立即创建</lable>
+    </div>
+     </#if>
     <!-- Page Content Start -->
     <!-- ================== -->
 
@@ -150,6 +160,10 @@
 
       }
    }
+    $("#createid").click(function(){
+        $('.wraper').load('${basepath}/manage/shopManage/toCreateShop?username=${username}');
+        $('#div_create').hide();
+    })
 </script>
 
 </body>

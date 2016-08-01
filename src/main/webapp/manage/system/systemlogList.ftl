@@ -1,61 +1,99 @@
-<#--<#import "/manage/tpl/pageBase.ftl" as page>-->
-<#--<@page.pageBase currentMenu="日志管理">-->
+<style>
+    .table th, .table td {
+        text-align: center;
+    }
+</style>
 <script>
-$(function(){
-    var table = $('#dataTable').DataTable({
+
+function cc(){
+    var account=$('#account').val();
+    var logTime =$('#logTime').val();
+    var eTime =$('#endTime').val();
+    if(logTime!="" &&　eTime==""){
+        swal('结束时间不能为空！');
+        return false;
+        　　}
+    if(eTime!="" && logTime==""){
+        swal('开始时间不能为空！');
+        return false;
+    }
+    if(logTime.substring(0,4)<eTime.substring(0,4)){
+        swal("不允许跨年查询！");
+        return false;
+    }
+    tables = $('#dataTable').DataTable({
+        "bFilter": false, //搜索栏
         "processing": true,
         "serverSide": true,
-        "bFilter":false,
+        "destroy":true,
         "language":{
             "url":"${staticpath}/datatables/Chinese.json"
         },
         "ajax": {
             url:"${basepath}/manage/systemlog/loadData",
+            data:{
+                account:account,
+                logTime:logTime,
+                endTime:eTime,
+            },
             dataSrc:"list"
         },
         columns:[
             {name:"title", title:"标题", data:"title"},
             {name:"account", title:"账号", data:"account"},
-            {name:"logTime", title:"登陆时间", data:"logTime"},
-            {name:"loginIP", title:"登陆IP", data:"loginIp"},
-                {name:"loginArea", title:"登陆位置", data:"loginArea"},
-            {name:"diffAreaLogin", title:"是否异地登录", data:"diffAreaLogin",render:function(data,type,row,meta){
-				return data=="y"?"是":"否";
-            }}
+            {name:"log_time", title:"记录时间", data:"logTime"},
+            {name:"login_ip", title:"登陆IP", data:"loginIp"},
+            {name:"login_area", title:"登陆位置", data:"loginArea"},
+            {name:"content", title:"内容", data:"content"}
         ]
     });
+    $("#dataTable thead").css("background","#dff0d8");
+}
+$(function(){
+    cc();
 });
 </script>
-	<form action="${basepath}/manage/systemlog" method="post" theme="simple">
-				<table class="table table-bordered">
-					<tr>
-						<td style="text-align: right;">是否异登陆</td>
-						<td style="text-align: left;">
-							<#assign y_n = {'':"全部",'y':'是','n':'否'}>
-                            <select id="diffAreaLogin" name="diffAreaLogin">
-							<#list y_n?keys as key>
-                                <option value="${key}">${y_n[key]}</option>
-							</#list>
-                            </select>
-						</td>
-						<td>登陆账号</td>
-						<td><input type="text" class="input-medium search-query" name="account"/></td>
-					</tr>
-				</table>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
 
-				<table class="table table-bordered">
-					<tr>
-						<td colspan="16">
-<!-- 								<i class="icon-search icon-white"></i> 查询 -->
+            <div class="panel-body">
+                <div class="row"  >
+                    <div class="col-md-12" >
 
-							<button method="selectList" class="btn btn-primary" table-id="dataTable" onclick="return selectList(this)">
-								<i class="icon-search icon-white"></i> 查询
-							</button>
-						</td>
-					</tr>
-				</table>
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label class="control-label col-sm-1" >开始时间</label>
+                                    <div class="col-sm-2">
+                                        <input type="date" class="form-control" style="width: 150px" name="logTime" id="logTime">
+                                    </div>
+                                    <label class="control-label col-sm-1" >结束时间</label>
+                                    <div class="col-sm-2">
+                                        <input type="date" class="form-control" style="width: 150px" id="endTime" name="endTime">
+                                    </div>
+                                    <label class="control-label col-sm-1" >登陆账号</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" maxlength="32" name="account" id="account">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <lable class="btn btn-primary" onclick="cc();">查询</lable>
+                                    </div>
+                                </div>
 
-        <table class="display stripe row-border cell-border" id="dataTable">
+                            </div>
+                        </form>
+                    </div> <!-- col -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped table-bordered dataTable hover"  id="dataTable">
         </table>
-	</form>
-<#--</@page.pageBase>-->
+    </div>
+</div>

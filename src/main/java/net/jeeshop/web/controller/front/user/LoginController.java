@@ -75,7 +75,7 @@ public class LoginController extends FrontBaseController {
                 CookieUtil.saveCookie(acc,response);
                 OrderExample.Criteria criteria = orderExample.createCriteria();
                 criteria.andContractmobileEqualTo(username);
-                List<OrderBean> orderList = orderService.selectByExample(orderExample);
+                List<OrderBean> orderList = orderService.queryOrderDetail(orderExample);
                 int noPaySum=0;
                 int nohandledSum =0;
                 int refundedSum=0;

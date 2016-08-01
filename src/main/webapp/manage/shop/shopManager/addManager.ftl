@@ -4,7 +4,6 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="m-b-30">
-            <#--<button type="button" class="btn btn-default">返回</button>-->
             <button id="back_bt" type="button" class="btn btn-success">返回</button>
         </div>
     </div>
