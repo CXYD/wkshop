@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.cms.client.NotifyTemplateMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.cms.model.NotifyTemplate" >
+    <id column="id" property="id" />
+    <result column="tpl_type" property="tplType" />
+    <result column="tpl_name" property="tplName" />
+    <result column="tpl_key" property="tplKey" />
+    <result column="content" property="content" />
+    <result column="valid_status" property="validStatus" />
+    <result column="create_time" property="createTime" />
+    <result column="create_account" property="createAccount" />
+    <result column="update_time" property="updateTime" />
+    <result column="update_account" property="updateAccount" />
+    <result column="remark" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, tpl_type, tpl_name, tpl_key, content, valid_status, create_time, create_account, 
+    update_time, update_account, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.cms.model.NotifyTemplateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_message_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_message_template
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_message_template
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.cms.model.NotifyTemplate" >
+    insert into t_message_template (id, tpl_type, tpl_name, tpl_key, content, valid_status, create_time, 
+      create_account, update_time, update_account, remark)
+    values (#{id}, #{tplType}, #{tplName}, #{tplKey}, #{content}, #{validStatus}, #{createTime}, 
+      #{createAccount}, #{updateTime}, #{updateAccount}, #{remark})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.cms.model.NotifyTemplate" >
+    insert into t_message_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tplType != null" >
+        tpl_type,
+      </if>
+      <if test="tplName != null" >
+        tpl_name,
+      </if>
+      <if test="tplKey != null" >
+        tpl_key,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="validStatus != null" >
+        valid_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="tplType != null" >
+        #{tplType},
+      </if>
+      <if test="tplName != null" >
+        #{tplName},
+      </if>
+      <if test="tplKey != null" >
+        #{tplKey},
+      </if>
+      <if test="content != null" >
+        #{content},
+      </if>
+      <if test="validStatus != null" >
+        #{validStatus},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.cms.model.NotifyTemplateExample" resultType="java.lang.Integer" >
+    select count(*) from t_message_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.cms.model.NotifyTemplate" >
+    update t_message_template
+    <set >
+      <if test="tplType != null" >
+        tpl_type = #{tplType},
+      </if>
+      <if test="tplName != null" >
+        tpl_name = #{tplName},
+      </if>
+      <if test="tplKey != null" >
+        tpl_key = #{tplKey},
+      </if>
+      <if test="content != null" >
+        content = #{content},
+      </if>
+      <if test="validStatus != null" >
+        valid_status = #{validStatus},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="createAccount != null" >
+        create_account = #{createAccount},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.cms.model.NotifyTemplate" >
+    update t_message_template
+    set tpl_type = #{tplType},
+      tpl_name = #{tplName},
+      tpl_key = #{tplKey},
+      content = #{content},
+      valid_status = #{validStatus},
+      create_time = #{createTime},
+      create_account = #{createAccount},
+      update_time = #{updateTime},
+      update_account = #{updateAccount},
+      remark = #{remark}
+    where id = #{id}
+  </update>
+</mapper>

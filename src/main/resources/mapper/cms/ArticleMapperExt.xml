@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.cms.client.ArticleMapperExt" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.cms.bean.ArticleBean" extends="net.jeeshop.biz.cms.client.ArticleMapper.BaseResultMap">
+    <result column="category_name" property="categoryName" />
+  </resultMap>
+  <select id="selectArticleBeanList" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.cms.bean.ArticleBean" >
+    select a.*, c.category_name
+    from cms_article a, cms_article_category c
+    where a.category_id = c.id
+    <if test="categoryId != null" >
+      and a.category_id = #{categoryId}
+    </if>
+    <if test="title != null" >
+      and a.title like #{title}
+    </if>
+    <if test="code != null" >
+      and a.code like #{code}
+    </if>
+
+    order by create_time desc
+  </select>
+</mapper>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.ShopInfoMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.shop.model.ShopInfo" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="shopname" property="shopname" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="khid" property="khid" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="updateAccount" property="updateaccount" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="servicecity" property="servicecity" jdbcType="VARCHAR" />
+    <result column="shopurl" property="shopurl" jdbcType="VARCHAR" />
+    <result column="shopdesc" property="shopdesc" jdbcType="VARCHAR" />
+    <result column="logurl" property="logurl" jdbcType="VARCHAR" />
+    <result column="linkmantel" property="linkmantel" jdbcType="VARCHAR" />
+    <result column="servicetel" property="servicetel" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="linkAccount" property="linkaccount" jdbcType="VARCHAR" />
+    <result column="servicesheng" property="servicesheng" jdbcType="VARCHAR" />
+    <result column="quhao" property="quhao" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shopname, createtime, khid, updatetime, updateAccount, status, servicecity, shopurl, 
+    shopdesc, logurl, linkmantel, servicetel, address, linkAccount, servicesheng, quhao
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.shop.model.ShopInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="net.jeeshop.biz.shop.model.ShopInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into shop_info (shopname, createtime, khid, 
+      updatetime, updateAccount, status, 
+      servicecity, shopurl, shopdesc, 
+      logurl, linkmantel, servicetel, 
+      address, linkAccount, servicesheng, 
+      quhao)
+    values (#{shopname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{khid,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{updateaccount,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{servicecity,jdbcType=VARCHAR}, #{shopurl,jdbcType=VARCHAR}, #{shopdesc,jdbcType=VARCHAR}, 
+      #{logurl,jdbcType=VARCHAR}, #{linkmantel,jdbcType=VARCHAR}, #{servicetel,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{linkaccount,jdbcType=VARCHAR}, #{servicesheng,jdbcType=VARCHAR}, 
+      #{quhao,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.shop.model.ShopInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into shop_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="khid != null" >
+        khid,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="updateaccount != null" >
+        updateAccount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="servicecity != null" >
+        servicecity,
+      </if>
+      <if test="shopurl != null" >
+        shopurl,
+      </if>
+      <if test="shopdesc != null" >
+        shopdesc,
+      </if>
+      <if test="logurl != null" >
+        logurl,
+      </if>
+      <if test="linkmantel != null" >
+        linkmantel,
+      </if>
+      <if test="servicetel != null" >
+        servicetel,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="linkaccount != null" >
+        linkAccount,
+      </if>
+      <if test="servicesheng != null" >
+        servicesheng,
+      </if>
+      <if test="quhao != null" >
+        quhao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="khid != null" >
+        #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateaccount != null" >
+        #{updateaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="servicecity != null" >
+        #{servicecity,jdbcType=VARCHAR},
+      </if>
+      <if test="shopurl != null" >
+        #{shopurl,jdbcType=VARCHAR},
+      </if>
+      <if test="shopdesc != null" >
+        #{shopdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="logurl != null" >
+        #{logurl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantel != null" >
+        #{linkmantel,jdbcType=VARCHAR},
+      </if>
+      <if test="servicetel != null" >
+        #{servicetel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkaccount != null" >
+        #{linkaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="servicesheng != null" >
+        #{servicesheng,jdbcType=VARCHAR},
+      </if>
+      <if test="quhao != null" >
+        #{quhao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.shop.model.ShopInfoExample" resultType="java.lang.Integer" >
+    select count(*) from shop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="upShopInfo" parameterType="net.jeeshop.biz.shop.model.ShopInfo">
+    update shop_info
+    set shopdesc=#{shopdesc},shopname=#{shopname},linkmantel=#{linkmantel},servicetel=#{servicetel},quhao=#{quhao},address=#{address}
+    where khid=#{khid}
+  </update>
+  <select id="getMoons" resultType="java.lang.String">
+    SELECT DISTINCT DATE_FORMAT(finishtime, '%Y-%m-%d') FROM ord_order ORDER BY finishtime DESC
+  </select>
+  <insert id="addShop" parameterType="net.jeeshop.biz.shop.model.ShopInfo">
+    insert into shop_info(shopname,createtime,khid,updateAccount,servicesheng,servicecity)
+    values(#{shopname},#{createtime},#{khid},#{updateaccount},#{servicesheng},#{servicecity})
+  </insert>
+  <update id="upUserKhid" parameterType="net.jeeshop.biz.system.model.SysUser">
+    update sys_user
+    set khid=#{khid},role_id=#{roleId}
+    where username=#{username}
+  </update>
+  <update id="upPic" parameterType="net.jeeshop.biz.shop.model.ShopInfo">
+    update shop_info
+    set logurl=#{logurl}
+    where khid=#{khid}
+  </update>
+</mapper>

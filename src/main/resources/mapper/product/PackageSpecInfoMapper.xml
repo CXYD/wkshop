@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.product.client.PackageSpecInfoMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.product.model.PackageSpecInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="package_id" property="packageId" jdbcType="VARCHAR" />
+    <result column="spec_no" property="specNo" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="zeng" property="zeng" jdbcType="VARCHAR" />
+    <result column="returns" property="returns" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="VARCHAR" />
+    <result column="sms" property="sms" jdbcType="VARCHAR" />
+    <result column="folw" property="folw" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="net.jeeshop.biz.product.model.PackageSpecInfo" extends="BaseResultMap" >
+    <result column="spec_array" property="specArray" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, package_id, spec_no, month, zeng, returns, times, sms, folw
+  </sql>
+  <sql id="Blob_Column_List" >
+    spec_array
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="net.jeeshop.biz.product.model.PackageSpecInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from package_spec_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.product.model.PackageSpecInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from package_spec_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from package_spec_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from package_spec_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByPackageId" parameterType="java.lang.String" >
+    delete from package_spec_info
+    where package_id = #{packageId,jdbcType=VARCHAR}
+  </delete>
+
+
+
+  <insert id="insert" parameterType="net.jeeshop.biz.product.model.PackageSpecInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into package_spec_info (package_id, spec_no, month, 
+      zeng, returns, times, 
+      sms, folw, spec_array
+      )
+    values (#{packageId,jdbcType=VARCHAR}, #{specNo,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, 
+      #{zeng,jdbcType=VARCHAR}, #{returns,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, 
+      #{sms,jdbcType=VARCHAR}, #{folw,jdbcType=VARCHAR}, #{specArray,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.product.model.PackageSpecInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into package_spec_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="packageId != null" >
+        package_id,
+      </if>
+      <if test="specNo != null" >
+        spec_no,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="zeng != null" >
+        zeng,
+      </if>
+      <if test="returns != null" >
+        returns,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="sms != null" >
+        sms,
+      </if>
+      <if test="folw != null" >
+        folw,
+      </if>
+      <if test="specArray != null" >
+        spec_array,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="packageId != null" >
+        #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="specNo != null" >
+        #{specNo,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="zeng != null" >
+        #{zeng,jdbcType=VARCHAR},
+      </if>
+      <if test="returns != null" >
+        #{returns,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="sms != null" >
+        #{sms,jdbcType=VARCHAR},
+      </if>
+      <if test="folw != null" >
+        #{folw,jdbcType=VARCHAR},
+      </if>
+      <if test="specArray != null" >
+        #{specArray,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.product.model.PackageSpecInfoExample" resultType="java.lang.Integer" >
+    select count(*) from package_spec_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.product.model.PackageSpecInfo" >
+    update package_spec_info
+    <set >
+      <if test="packageId != null" >
+        package_id = #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="specNo != null" >
+        spec_no = #{specNo,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="zeng != null" >
+        zeng = #{zeng,jdbcType=VARCHAR},
+      </if>
+      <if test="returns != null" >
+        returns = #{returns,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="sms != null" >
+        sms = #{sms,jdbcType=VARCHAR},
+      </if>
+      <if test="folw != null" >
+        folw = #{folw,jdbcType=VARCHAR},
+      </if>
+      <if test="specArray != null" >
+        spec_array = #{specArray,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="net.jeeshop.biz.product.model.PackageSpecInfo" >
+    update package_spec_info
+    set package_id = #{packageId,jdbcType=VARCHAR},
+      spec_no = #{specNo,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      zeng = #{zeng,jdbcType=VARCHAR},
+      returns = #{returns,jdbcType=VARCHAR},
+      times = #{times,jdbcType=VARCHAR},
+      sms = #{sms,jdbcType=VARCHAR},
+      folw = #{folw,jdbcType=VARCHAR},
+      spec_array = #{specArray,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.product.model.PackageSpecInfo" >
+    update package_spec_info
+    set package_id = #{packageId,jdbcType=VARCHAR},
+      spec_no = #{specNo,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      zeng = #{zeng,jdbcType=VARCHAR},
+      returns = #{returns,jdbcType=VARCHAR},
+      times = #{times,jdbcType=VARCHAR},
+      sms = #{sms,jdbcType=VARCHAR},
+      folw = #{folw,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

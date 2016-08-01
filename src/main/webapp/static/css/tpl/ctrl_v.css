@@ -1,0 +1,213 @@
+.dcr-modules {
+  padding-bottom: 155px;
+}
+.dcr-views > div {
+  height: 100%;
+}
+.testModule {
+  height: 100%;
+}
+.ad_ctrl_main {
+  height: 100%;
+	margin: 50px auto;
+}
+.ctrl_area {
+	height: 100%;
+}
+.item_box {
+	width: 340px;
+	margin: auto;
+	padding: 25px;
+	border: 1px solid #ededed;
+	position: relative;
+	margin-bottom: 20px;
+}
+.item_box .btn-group 	{
+	width: 100%;
+	margin-top: 10px;
+}
+.item_box .btn-group button {
+	width: 100%;
+}
+.item_box .btn-group .title {
+	width: 90%;
+	text-align: left;
+	display: inline-block;
+}
+.upload_plus {
+	position: relative;
+}
+.upload_plus form {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.upload_plus form .input-file {
+	font-size: 10000px;
+	opacity: 0;
+}
+
+.upload_plus .img {
+	overflow: hidden;
+	max-height: 150px;
+	background: #e6f4ff;
+}
+.upload_plus .img img {
+	width: 100%;	
+  border: 1px solid #fff;
+}
+.upload_plus .default {
+  display: block;
+  width: 100%;
+  height: 150px;
+  margin: auto;
+  background: #e6f4ff url('https://d.weidian.com/images/shop_diy/icon_add_img.png') no-repeat center center;
+}
+.upload_plus .default span {
+  color: #b8bfcb;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 15px;
+}
+
+.btn_add_ad {
+  background: #72a8de;
+  border-radius: 2px;
+  color: #fff;
+  line-height: 36px;
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  width: 104px;
+}
+.btn_area {
+  position: fixed;
+  width: 645px;
+  bottom: 75px;
+  left: 50%;
+  display: block;
+  background: white;
+  padding: 20px 18px 20px 0;
+  margin-left: -89px;
+  z-index: 1001;
+}
+.btn_area .btn {
+  float: right;
+  line-height: 36px;
+  font-size: 14px;
+  height: 36px;
+  margin-left: 10px;
+  width: 118px;
+  color: #fff;
+  background: #fd4337;
+  border-radius: 2px;
+  border: 1px solid #fd4337;
+  text-align: center;
+  padding: 0;
+}
+.btn_area .white {
+  background: white;
+  color: #111;
+  border: 1px solid #dcdcdc;
+}
+
+.muli_check_group {
+  padding: 20px 50px;
+}
+.muli_check_group a,
+.muli_check_group span, {
+  display: inline-block;
+}
+.icon_checkbox {
+  background: url('https://d.weidian.com/images/shop_diy/icon_checkbox.png') no-repeat center;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+}
+.checkbox_off {
+  background-position: 0 0;
+}
+.checkbox_on {
+  background-position: 0 -22px;
+}
+
+.testModule .err_box {
+  border: 1px solid #fd4337;
+}
+.icon_del {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: block;
+	background: url('https://d.weidian.com/images/shop_diy/icon_del.png') no-repeat;
+	width: 14px;
+	height: 14px;
+	text-indent: -9999px;
+}
+
+.btn_add_ad{
+    width: 118px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 2px;
+    color: #666666;
+    font-size: 14px;
+    line-height: 36px;
+    margin-top: 25px;
+}
+
+.btn_add_ad:hover{
+      background: #dcdcdc;
+      color: #111;
+  }
+
+   .upload_plus form{
+      z-index: 1;
+   }
+  .drc_ican_updateImg{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      color: #fff;
+      font-size: 14px;
+      line-height: 14px;
+      font-style:normal;
+      height: 64px;
+  }
+
+  .drc_ican_updateImg:before{
+      content: "";
+      display: table;
+      background: url("../../img/microshop/drc_icon_upImg.png")no-repeat center 35%;
+      width: 40px;
+      height: 40px;
+      margin:0 auto;
+      margin-bottom: 10px;
+  }
+
+  .item_box_upImg .drc_updateImg{
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      cursor: pointer;
+      display: none;
+      
+  }
+  .item_box_upImg:hover .drc_updateImg{
+      background-color: rgba(0,0,0,0.3);
+      display: table;
+  }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.GeneralMapper" >
+    <select id="getBuySet" parameterType="java.lang.String" resultType="net.jeeshop.biz.shop.model.BuySet">
+      select * from general_buyset where khid=#{khid}
+    </select>
+    <update id="upBuySet" parameterType="net.jeeshop.biz.shop.model.BuySet">
+        update general_buyset
+        set record=#{record},moreproduct=#{moreproduct},detail=#{detail},loginbuy=#{loginbuy}
+        where khid=#{khid}
+    </update>
+    <insert id="addBuySet" parameterType="net.jeeshop.biz.shop.model.BuySet">
+        insert into general_buyset(record,moreproduct,detail,loginbuy,khid)
+	    values(#{record},#{moreproduct},#{detail},#{loginbuy},#{khid})
+    </insert>
+    <select id="getDKd" parameterType="java.lang.String" resultType="java.lang.String">
+        select product_name from pro_product_info where khid=#{khid}
+    </select>
+    <select id="getWWCount" resultType="java.lang.Integer">
+        SELECT COUNT(DISTINCT T_0206) FROM gen_weiwan
+    </select>
+    <select id="getWeiWanList" parameterType="net.jeeshop.web.util.Page" resultType="net.jeeshop.biz.shop.model.WeiWan">
+        select *,count(*)as userNum from gen_weiwan where 1=1
+        <if test="T_0206!=null and T_0206!='' ">
+            and T_0206 like concat(concat('%', #{T_0206}), '%')
+        </if>
+        <if test="zifei!=null and zifei!='' ">
+            and T_0206 like concat(concat('%', #{zifei}), '%')
+        </if>
+        <if test="tuijian!=null and tuijian!='' ">
+            and tuijian like concat(concat('%', #{tuijian}), '%')
+        </if>
+        GROUP BY T_0206
+        <if test="sort!=null and sort!='' ">
+            order by ${sort}
+        </if>
+        limit #{startRecord},#{pageSize}
+    </select>
+    <select id="getWeiWanCount" parameterType="net.jeeshop.web.util.Page" resultType="net.jeeshop.biz.shop.model.WeiWan">
+        select *,count(*)as userNum from gen_weiwan where 1=1
+        <if test="T_0206!=null and T_0206!='' ">
+            and T_0206 like concat(concat('%', #{T_0206}), '%')
+        </if>
+        <if test="zifei!=null and zifei!='' ">
+            and T_0206 like concat(concat('%', #{zifei}), '%')
+        </if>
+        <if test="tuijian!=null and tuijian!='' ">
+            and tuijian like concat(concat('%', #{tuijian}), '%')
+        </if>
+        GROUP BY T_0206
+
+    </select>
+    <select id="TuiJian" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT T_0206,COUNT(T_0206)AS NAME FROM gen_weiwan WHERE T_0202=#{param} GROUP BY T_0206 ORDER BY NAME DESC LIMIT 1
+    </select>
+    <update id="upTuiJian" parameterType="net.jeeshop.biz.shop.model.WeiWan">
+        update gen_weiwan set tuijian=#{tuijian},guanlian=#{guanlian}
+        where ID=#{ID}
+    </update>
+</mapper>

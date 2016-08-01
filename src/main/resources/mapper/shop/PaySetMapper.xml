@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.PaySetMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.shop.model.PaySet" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="llpay" property="llpay" jdbcType="INTEGER" />
+    <result column="alipay" property="alipay" jdbcType="INTEGER" />
+    <result column="delaypay" property="delaypay" jdbcType="INTEGER" />
+    <result column="khid" property="khid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, llpay, alipay, delaypay, khid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.shop.model.PaySetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pay_set
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="net.jeeshop.biz.shop.model.PaySet" useGeneratedKeys="true" keyProperty="id" >
+    insert into pay_set (llpay, alipay, delaypay, 
+      khid)
+    values (#{llpay,jdbcType=INTEGER}, #{alipay,jdbcType=INTEGER}, #{delaypay,jdbcType=INTEGER}, 
+      #{khid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.shop.model.PaySet" useGeneratedKeys="true" keyProperty="id" >
+    insert into pay_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="llpay != null" >
+        llpay,
+      </if>
+      <if test="alipay != null" >
+        alipay,
+      </if>
+      <if test="delaypay != null" >
+        delaypay,
+      </if>
+      <if test="khid != null" >
+        khid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="llpay != null" >
+        #{llpay,jdbcType=INTEGER},
+      </if>
+      <if test="alipay != null" >
+        #{alipay,jdbcType=INTEGER},
+      </if>
+      <if test="delaypay != null" >
+        #{delaypay,jdbcType=INTEGER},
+      </if>
+      <if test="khid != null" >
+        #{khid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.shop.model.PaySetExample" resultType="java.lang.Integer" >
+    select count(*) from pay_set
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="upPaySet" parameterType="net.jeeshop.biz.shop.model.PaySet">
+    update pay_set
+    set llpay=#{llpay},alipay=#{alipay},delaypay=#{delaypay}
+    where khid=#{khid}
+  </update>
+  <select id="getPaySet" parameterType="net.jeeshop.biz.shop.model.PaySet" resultType="net.jeeshop.biz.shop.model.PaySet">
+    select * from pay_set where khid=#{khid}
+  </select>
+
+</mapper>

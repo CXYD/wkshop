@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.product.client.ProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.product.model.ProductInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="create_account" property="createAccount" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_account" property="updateAccount" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="short_description" property="shortDescription" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="is_new" property="isNew" jdbcType="CHAR" />
+    <result column="is_hot" property="isHot" jdbcType="CHAR" />
+    <result column="procontent" property="procontent" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="BIGINT" />
+    <result column="month_price" property="monthPrice" jdbcType="DOUBLE" />
+    <result column="old_price" property="oldPrice" jdbcType="DOUBLE" />
+    <result column="sell_price" property="sellPrice" jdbcType="DOUBLE" />
+    <result column="product_status" property="productStatus" jdbcType="CHAR" />
+    <result column="up_time" property="upTime" jdbcType="TIMESTAMP" />
+    <result column="down_time" property="downTime" jdbcType="TIMESTAMP" />
+    <result column="store_nums" property="storeNums" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="ad_img" property="adImg" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="SMALLINT" />
+    <result column="comments" property="comments" jdbcType="INTEGER" />
+    <result column="sale" property="sale" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="khid" property="khid" jdbcType="VARCHAR" />
+    <result column="prestr" property="prestr" jdbcType="VARCHAR" />
+    <result column="to_balance" property="toBalance" jdbcType="CHAR" />
+    <result column="receipt" property="receipt" jdbcType="CHAR" />
+    <result column="linkproduct" property="linkproduct" jdbcType="INTEGER" />
+    <result column="receipt_price" property="receiptPrice" jdbcType="INTEGER" />
+    <result column="issettle" property="issettle" jdbcType="INTEGER" />
+    <result column="freight" property="freight" jdbcType="DOUBLE" />
+    <result column="processid" property="processid" jdbcType="BIGINT" />
+    <result column="commission" property="commission" jdbcType="DOUBLE" />
+    <result column="type" property="type" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="net.jeeshop.biz.product.model.ProductInfo" extends="BaseResultMap" >
+    <result column="spec_array" property="specArray" jdbcType="LONGVARCHAR" />
+    <result column="select_array" property="selectArray" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_id, category_name, create_account, create_time, update_account, update_time, 
+    product_name, short_description, description, is_new, is_hot, procontent, title, 
+    keywords, brand_id, month_price, old_price, sell_price, product_status, up_time, 
+    down_time, store_nums, img, ad_img, unit, visit, sort, comments, sale, grade, khid, 
+    prestr, to_balance, receipt, linkproduct, receipt_price, issettle, freight, processid, 
+    commission, type
+  </sql>
+  <sql id="Blob_Column_List" >
+    spec_array
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="net.jeeshop.biz.product.model.ProductInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pro_product_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.product.model.ProductInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pro_product_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pro_product_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pro_product_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.product.model.ProductInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into pro_product_info (category_id, category_name, create_account, 
+      create_time, update_account, update_time, 
+      product_name, short_description, description, 
+      is_new, is_hot, procontent, 
+      title, keywords, brand_id, 
+      month_price, old_price, sell_price, 
+      product_status, up_time, down_time, 
+      store_nums, img, ad_img, 
+      unit, visit, sort, 
+      comments, sale, grade, 
+      khid, prestr, to_balance, 
+      receipt, linkproduct, receipt_price, 
+      issettle, freight, processid, 
+      commission, type, spec_array,select_array
+      )
+    values (#{categoryId,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{createAccount,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateAccount,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{productName,jdbcType=VARCHAR}, #{shortDescription,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{isNew,jdbcType=CHAR}, #{isHot,jdbcType=CHAR}, #{procontent,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{brandId,jdbcType=BIGINT}, 
+      #{monthPrice,jdbcType=DOUBLE}, #{oldPrice,jdbcType=DOUBLE}, #{sellPrice,jdbcType=DOUBLE}, 
+      #{productStatus,jdbcType=CHAR}, #{upTime,jdbcType=TIMESTAMP}, #{downTime,jdbcType=TIMESTAMP}, 
+      #{storeNums,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{adImg,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{visit,jdbcType=INTEGER}, #{sort,jdbcType=SMALLINT}, 
+      #{comments,jdbcType=INTEGER}, #{sale,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, 
+      #{khid,jdbcType=VARCHAR}, #{prestr,jdbcType=VARCHAR}, #{toBalance,jdbcType=CHAR}, 
+      #{receipt,jdbcType=CHAR}, #{linkproduct,jdbcType=INTEGER}, #{receiptPrice,jdbcType=INTEGER}, 
+      #{issettle,jdbcType=INTEGER}, #{freight,jdbcType=DOUBLE}, #{processid,jdbcType=BIGINT},
+      #{commission,jdbcType=DOUBLE}, #{type,jdbcType=CHAR}, #{specArray,jdbcType=LONGVARCHAR}, #{selectArray,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.product.model.ProductInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into pro_product_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="shortDescription != null" >
+        short_description,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="isNew != null" >
+        is_new,
+      </if>
+      <if test="isHot != null" >
+        is_hot,
+      </if>
+      <if test="procontent != null" >
+        procontent,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="monthPrice != null" >
+        month_price,
+      </if>
+      <if test="oldPrice != null" >
+        old_price,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="productStatus != null" >
+        product_status,
+      </if>
+      <if test="upTime != null" >
+        up_time,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="storeNums != null" >
+        store_nums,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="adImg != null" >
+        ad_img,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="khid != null" >
+        khid,
+      </if>
+      <if test="prestr != null" >
+        prestr,
+      </if>
+      <if test="toBalance != null" >
+        to_balance,
+      </if>
+      <if test="receipt != null" >
+        receipt,
+      </if>
+      <if test="linkproduct != null" >
+        linkproduct,
+      </if>
+      <if test="receiptPrice != null" >
+        receipt_price,
+      </if>
+      <if test="issettle != null" >
+        issettle,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="processid != null" >
+        processid,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="specArray != null" >
+        spec_array,
+      </if>
+      <if test="selectArray != null" >
+        select_array,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortDescription != null" >
+        #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null" >
+        #{isNew,jdbcType=CHAR},
+      </if>
+      <if test="isHot != null" >
+        #{isHot,jdbcType=CHAR},
+      </if>
+      <if test="procontent != null" >
+        #{procontent,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="monthPrice != null" >
+        #{monthPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oldPrice != null" >
+        #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=CHAR},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeNums != null" >
+        #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="adImg != null" >
+        #{adImg,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="khid != null" >
+        #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="prestr != null" >
+        #{prestr,jdbcType=VARCHAR},
+      </if>
+      <if test="toBalance != null" >
+        #{toBalance,jdbcType=CHAR},
+      </if>
+      <if test="receipt != null" >
+        #{receipt,jdbcType=CHAR},
+      </if>
+      <if test="linkproduct != null" >
+        #{linkproduct,jdbcType=INTEGER},
+      </if>
+      <if test="receiptPrice != null" >
+        #{receiptPrice,jdbcType=INTEGER},
+      </if>
+      <if test="issettle != null" >
+        #{issettle,jdbcType=INTEGER},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="processid != null" >
+        #{processid,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="specArray != null" >
+        #{specArray,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="selectArray != null" >
+        #{selectArray,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.product.model.ProductInfoExample" resultType="java.lang.Integer" >
+    select count(*) from pro_product_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.product.model.ProductInfo" >
+    update pro_product_info
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccount != null" >
+        create_account = #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortDescription != null" >
+        short_description = #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isNew != null" >
+        is_new = #{isNew,jdbcType=CHAR},
+      </if>
+      <if test="isHot != null" >
+        is_hot = #{isHot,jdbcType=CHAR},
+      </if>
+      <if test="procontent != null" >
+        procontent = #{procontent,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="monthPrice != null" >
+        month_price = #{monthPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oldPrice != null" >
+        old_price = #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productStatus != null" >
+        product_status = #{productStatus,jdbcType=CHAR},
+      </if>
+      <if test="upTime != null" >
+        up_time = #{upTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeNums != null" >
+        store_nums = #{storeNums,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="adImg != null" >
+        ad_img = #{adImg,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="khid != null" >
+        khid = #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="prestr != null" >
+        prestr = #{prestr,jdbcType=VARCHAR},
+      </if>
+      <if test="toBalance != null" >
+        to_balance = #{toBalance,jdbcType=CHAR},
+      </if>
+      <if test="receipt != null" >
+        receipt = #{receipt,jdbcType=CHAR},
+      </if>
+      <if test="linkproduct != null" >
+        linkproduct = #{linkproduct,jdbcType=INTEGER},
+      </if>
+      <if test="receiptPrice != null" >
+        receipt_price = #{receiptPrice,jdbcType=INTEGER},
+      </if>
+      <if test="issettle != null" >
+        issettle = #{issettle,jdbcType=INTEGER},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="processid != null" >
+        processid = #{processid,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="specArray != null" >
+        spec_array = #{specArray,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="selectArray != null" >
+        select_array = #{selectArray,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="net.jeeshop.biz.product.model.ProductInfo" >
+    update pro_product_info
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      create_account = #{createAccount,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_account = #{updateAccount,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      product_name = #{productName,jdbcType=VARCHAR},
+      short_description = #{shortDescription,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      is_new = #{isNew,jdbcType=CHAR},
+      is_hot = #{isHot,jdbcType=CHAR},
+      procontent = #{procontent,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      month_price = #{monthPrice,jdbcType=DOUBLE},
+      old_price = #{oldPrice,jdbcType=DOUBLE},
+      sell_price = #{sellPrice,jdbcType=DOUBLE},
+      product_status = #{productStatus,jdbcType=CHAR},
+      up_time = #{upTime,jdbcType=TIMESTAMP},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      ad_img = #{adImg,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      visit = #{visit,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER},
+      khid = #{khid,jdbcType=VARCHAR},
+      prestr = #{prestr,jdbcType=VARCHAR},
+      to_balance = #{toBalance,jdbcType=CHAR},
+      receipt = #{receipt,jdbcType=CHAR},
+      linkproduct = #{linkproduct,jdbcType=INTEGER},
+      receipt_price = #{receiptPrice,jdbcType=INTEGER},
+      issettle = #{issettle,jdbcType=INTEGER},
+      freight = #{freight,jdbcType=DOUBLE},
+      processid = #{processid,jdbcType=BIGINT},
+      commission = #{commission,jdbcType=DOUBLE},
+      type = #{type,jdbcType=CHAR},
+      spec_array = #{specArray,jdbcType=LONGVARCHAR},
+      select_array = #{selectArray,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.product.model.ProductInfo" >
+    update pro_product_info
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      create_account = #{createAccount,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_account = #{updateAccount,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      product_name = #{productName,jdbcType=VARCHAR},
+      short_description = #{shortDescription,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      is_new = #{isNew,jdbcType=CHAR},
+      is_hot = #{isHot,jdbcType=CHAR},
+      procontent = #{procontent,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=BIGINT},
+      month_price = #{monthPrice,jdbcType=DOUBLE},
+      old_price = #{oldPrice,jdbcType=DOUBLE},
+      sell_price = #{sellPrice,jdbcType=DOUBLE},
+      product_status = #{productStatus,jdbcType=CHAR},
+      up_time = #{upTime,jdbcType=TIMESTAMP},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      store_nums = #{storeNums,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      ad_img = #{adImg,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      visit = #{visit,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=SMALLINT},
+      comments = #{comments,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER},
+      khid = #{khid,jdbcType=VARCHAR},
+      prestr = #{prestr,jdbcType=VARCHAR},
+      to_balance = #{toBalance,jdbcType=CHAR},
+      receipt = #{receipt,jdbcType=CHAR},
+      linkproduct = #{linkproduct,jdbcType=INTEGER},
+      receipt_price = #{receiptPrice,jdbcType=INTEGER},
+      issettle = #{issettle,jdbcType=INTEGER},
+      freight = #{freight,jdbcType=DOUBLE},
+      processid = #{processid,jdbcType=BIGINT},
+      commission = #{commission,jdbcType=DOUBLE},
+      type = #{type,jdbcType=CHAR},
+      spec_array = #{specArray,jdbcType=LONGVARCHAR},
+      select_array = #{selectArray,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

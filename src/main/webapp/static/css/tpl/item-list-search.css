@@ -1,0 +1,227 @@
+/* pagination */
+.pagination {
+  text-align: center;
+}
+.pagination .pagination-btn,
+.pagination .pagination-total,
+.pagination .pagination-turn {
+  display: inline-block;
+}
+.pagination .pagination-input-num {
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  margin: 0px 7px;
+  padding: 0px;
+  border: 1px solid #ededed;
+}
+.pagination .pagination-turn a {
+  cursor: pointer;
+  display: inline-block;
+  width: 78px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  margin-left: 18px;
+  border: 1px solid #ededed;
+}
+.pagination .pagination-btn > li {
+  display: inline-block;
+  margin: 0 4px;
+}
+.pagination .pagination-btn .selected a {
+  color: #fff;
+  background-color: #dfdfdf;
+}
+.pagination .pagination-btn .pagination-btn-arrow {
+  /*font-size: 16px;*/
+}
+.pagination .pagination-btn .pagination-btn-more {
+  border: none;
+}
+.pagination .pagination-btn a {
+  display: block;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border: 1px solid #ededed;
+  color: #666;
+  cursor: pointer;
+}
+.mask-layer {
+  position: fixed;
+  width: 9000px;
+  height: 9000px;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: -4000px;
+  left: -4000px;
+  z-index: 9999;
+}
+.mask-layer .item-list-search-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 3px #000;
+}
+.item-list-search-wrap {
+  width: 960px;
+  height: 552px;
+  margin-left: -480px;
+  margin-top: -270px;
+}
+.item-list-search-wrap .title {
+  box-sizing: border-box;
+  height: 66px;
+  line-height: 66px;
+  padding: 0 20px;
+  background-color: #fd4337;
+  font-size: 0;
+}
+.item-list-search-wrap .title .title-text {
+  display: block;
+  float: left;
+  font-size: 20px;
+  color: #fff;
+  margin-right: 30px;
+}
+.item-list-search-wrap .title .list-search-box {
+  display: block;
+  float: left;
+  position: relative;
+  background-color: #fff;
+  width: 218px;
+  height: 32px;
+  margin-top: 18px;
+}
+.item-list-search-wrap .title .list-search-box .search-box-input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 174px;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 12px;
+  font-size: 12px;
+}
+.item-list-search-wrap .title .list-search-box .search-box-btn {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+  background: url('https://d.weidian.com/images/common/search.png') no-repeat center center;
+}
+.item-list-search-wrap .title .close-btn {
+  display: inline-block;
+  float: right;
+  color: #fff;
+  font-size: 24px;
+}
+.item-list-search-wrap .item-list {
+  padding: 20px 0px 20px 20px;
+  height: 350px;
+  overflow: auto;
+  /*        .item-content.itemSelected .item-content-detail-wrap{
+            border: 1px solid #fd4337;
+        }*/
+}
+.item-list-search-wrap .item-list .item-content {
+  width: 442px;
+  height: 76px;
+  display: inline-block;
+  font-size: 0;
+  margin-bottom: 8px;
+}
+.item-list-search-wrap .item-list .item-content .item-content-checkbox {
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  margin-top: 32px;
+}
+.item-list-search-wrap .item-list .item-content .item-content-detail-wrap {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+  width: 410px;
+  height: 76px;
+  border: 1px solid #ededed;
+  padding: 8px;
+  margin-left: 12px;
+  font-size: 14px;
+}
+.item-list-search-wrap .item-list .item-content:nth-child(odd) {
+  margin-right: 30px;
+}
+.item-list-search-wrap .pagination-wrap {
+  position: absolute;
+  bottom: 76px;
+  right: 300px;
+}
+.item-list-search-wrap .item-btns {
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 0;
+}
+.item-list-search-wrap .item-btns .btn {
+  display: inline-block;
+  width: 140px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 16px;
+}
+.item-list-search-wrap .item-btns .btn-cancel {
+  color: #111;
+  border-color: #ededed;
+  background-color: #fff;
+  margin-right: 10px;
+}
+.item-list-search-wrap .item-btns .btn-ok {
+  color: #fff;
+  background-color: #fd4337;
+  border-color: #fd4337;
+}
+.item-content-detail .item-image {
+  width: 60px;
+  height: 60px;
+  border: none;
+  float: left;
+}
+.item-content-detail .item-name {
+  height: 36px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: 72px;
+  color: #858585;
+  overflow: hidden;
+}
+.item-content-detail .item-price {
+  font-size: 12px;
+  line-height: 12px;
+  margin-left: 72px;
+  color: #111;
+}
+.item-content-detail .item-discount {
+  height: 20px;
+  line-height: 20px;
+  padding: 0 10px;
+  background: #fd4337;
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  right: 15px;
+  bottom: 8px;
+}

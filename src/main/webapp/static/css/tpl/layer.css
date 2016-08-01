@@ -1,0 +1,99 @@
+/*弹出层相关样式，主要是cpcM中的方法实现的弹窗*/
+.cpcLayer-bg{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:rgba(255,255,255,0);
+    z-index:1100;
+}
+.cpcLayer{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:rgba(255,255,255,0);
+    z-index:1101;
+
+}
+.cpcLayer .cpcLayer_con{
+    width:175px;
+    padding:20px;
+    border-radius:4px;
+    margin:0 auto;
+    color:#fff;
+    text-align:center;
+    font-size:16px;
+    position:relative;
+    top:35%;
+    background-color:#433736;
+    background-color:rgba(47,34,33,.9);
+    display:none
+}
+.cpcLayer .cpcLayer_con.cpcConfirm_con{
+    width:315px;
+    padding:0;
+    top:30%
+}
+.cpcLayer .cpcLayer_con > p {
+    padding:20px;
+}
+.cpcLayer .cpcLayer_shadow{
+    display:block;
+    overflow:hidden;
+}
+.cpcLayer .cpcLayer_shadowA{
+    width:100%;
+    height:1px;
+    background:-webkit-gradient(linear, left top, right top, from(rgba(47,34,33,.1)), color-stop(0.35, #6e6262), color-stop(0.5, #6e6262), color-stop(0.65, #6e6262), to(rgba(47,34,33,.1)));
+    background:-webkit-linear-gradient(left, rgba(47,34,33,.1), #6e6262, #6e6262, #6e6262, rgba(47,34,33,.1));
+    background:-moz-linear-gradient(left, rgba(47,34,33,.1), #6e6262, #6e6262, #6e6262, rgba(47,34,33,.1));
+    background:-o-linear-gradient(left, rgba(47,34,33,.1), #6e6262, #6e6262, #6e6262, rgba(47,34,33,.1));
+}
+.cpcLayer .cpcLayer_shadowB{
+    width:100%;
+    height:1px;
+    background:-webkit-gradient(linear, left top, right top, from(rgba(47,34,33,.1)), color-stop(0.35, #2f2121), color-stop(0.5, #2f2121), color-stop(0.65, #2f2121), to(rgba(47,34,33,.1)));
+    background:-webkit-linear-gradient(left, rgba(47,34,33,.1), #2f2121, #2f2121, #2f2121, rgba(47,34,33,.1));
+    background:-moz-linear-gradient(left, rgba(47,34,33,.1), #2f2121, #2f2121, #2f2121, rgba(47,34,33,.1));
+    background:-o-linear-gradient(left, rgba(47,34,33,.1), #2f2121, #2f2121, #2f2121, rgba(47,34,33,.1));
+}
+.cpcLayer .cpcLayer_shadowC{
+    width:1px;
+    height:95%;
+    float:left;
+    background:-webkit-gradient(linear,50% 0%,50% 100%,from(#6e6262),to(rgba(47,34,33,.1)));
+    background:-webkit-linear-gradient(90deg, rgba(47,34,33,.1), #6e6262);
+    background:-moz-linear-gradient(90deg, rgba(47,34,33,.1), #6e6262);
+    background:-o-linear-gradient(90deg, rgba(47,34,33,.1), #6e6262);
+}
+.cpcLayer .cpcLayer_shadowD{
+    width:1px;
+    height:95%;
+    float:left;
+    background:-webkit-gradient(linear,50% 0%,50% 100%,from(#2f2121),to(rgba(47,34,33,.1)));
+    background:-webkit-linear-gradient(90deg, rgba(47,34,33,.1), #2f2121);
+    background:-moz-linear-gradient(90deg, rgba(47,34,33,.1), #2f2121);
+    background:-o-linear-gradient(90deg, rgba(47,34,33,.1), #2f2121);
+}
+.cpcLayer .cpcLayer_btnA{
+    width:49%;
+    height:100%;
+    font-size:18px;
+    cursor:pointer;
+    float:left;
+}
+.cpcLayer .cpcLayer_btnB{
+    width:49%;
+    height:100%;
+    font-size:18px;
+    cursor:pointer;
+    float:right;
+}
+.cpcLayer .cpcLayer_btnW{
+    width:100%;
+    height:60px;
+    line-height:60px;
+}

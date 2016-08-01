@@ -1,0 +1,17 @@
+.e701 {
+    font-size: 14px;
+    color: #666666;
+}
+
+.e701 .e701-edit-wrap {
+    width: 600px;
+    margin: 35px 0 60px 40px;
+}
+
+
+.dcr-gtSelector .gtSelector-box {
+    width: 320px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}

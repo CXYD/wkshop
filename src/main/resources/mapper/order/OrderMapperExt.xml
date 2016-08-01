@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.order.client.OrderMapperExt" >
+    <resultMap id="BaseResultMap" type="net.jeeshop.biz.order.bean.OrderBean" extends="net.jeeshop.biz.order.client.OrderMapper.BaseResultMap">
+        <result column="productName" property="productName" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+</mapper>

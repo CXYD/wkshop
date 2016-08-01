@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.PayAccountMapper" >
+    <insert id="addAccount" parameterType="net.jeeshop.biz.shop.model.PayAccount">
+    insert into pay_account(payname,paybank,payaccount,createdate,khid)
+	values(#{payname},#{paybank},#{payaccount},#{createdate},#{khid})
+  </insert>
+  <select id="getAccount" parameterType="java.lang.String" resultType="net.jeeshop.biz.shop.model.PayAccount">
+      select * from pay_account where khid=#{khid}
+  </select>
+    <update id="upAccount" parameterType="net.jeeshop.biz.shop.model.PayAccount">
+        update pay_account
+        set payname=#{payname},paybank=#{paybank},payaccount=#{payaccount},createdate=#{createdate}
+        where khid=#{khid}
+    </update>
+
+</mapper>

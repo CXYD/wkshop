@@ -1,0 +1,152 @@
+*{ list-style:none}
+body{ background:#f0f2f5 !important; }
+.whole{width:100%; font-size:13px;}
+.fill-top{ padding-top:1em !important;}
+.Zero-top{ padding-top:0.5em !important;}
+.leftnone{ margin-left:0 !important;}
+.height{ line-height:2.5em;}
+.height2{ line-height:2em;}
+.size-delete{ text-decoration:line-through;}
+input,button,select,textarea{outline:none}
+.new-btn{margin-right:1em !important;outline:none; background:#f60 !important;}
+.radius-btn{border-radius:5px !important;}
+.indent26{ text-indent:26px;}
+/*订单详情*/
+.Mall-content{ float:left; width:100%; padding-left:2%;background:#fff; line-height:3em; font-size:15px;}/*块级元素整体样式 例：订单号*/
+.Mall-Specifications{ float:left; width:100%; line-height:2em;}/*整体块级元素包含框DIV*/
+.ia{ padding-left:5px !important; padding-right:0 !important;}/*清除右边距内填充 修改左边距为5像素*/
+.size-13,.form-control{ font-size:13px !important;}
+.size-12{ font-size:12px}
+.size-15{ font-size:15px}
+.padding-none{padding-left:0px !important; padding-right:0 !important;}/*清除内边距内填充*/
+.padding-Ten{padding-left:10px !important; padding-right:10px !important;color:#666;}/*修改左右边距为10像素 修改文字颜色 可用到左右显示内容 例：用户信息*/
+.background-f8{ background:#f8f8f8;}/*添加背景颜色*/
+.right-1em{ margin-right:1em !important;}/*右边距内填充*/
+.color-red{ color:#ff3333;}/*文字颜色为红色*/
+.color-25{ color:#252525;}/*文字颜色为深黑*/
+.color-666{ color:#666;}/*文字颜色为浅灰*/
+.color-999{ color:#999;}/*文字颜色为浅灰*/
+.color-f60{ color:#f60;}/*文字颜色为橙黄色*/
+.bottom-Line{border-bottom:1px solid #e3e5e9;}
+.iqaa{ background:url(../img/front/wscqt6-8-2.png) no-repeat 98% center; background-size:3%;}/*添加背景图片位置右对齐居中*/
+.color-333{ color:#333;}/*文字颜色为深灰*/
+.user-body{ margin-bottom:0.5em !important; width:100%; float:left; background:#fff; padding-bottom:0.5em !important; border-bottom:1px solid #e3e5e9;}/*块级元素显示整体样式 例：用户信息*/
+.element-body{padding-bottom:0.5em !important; border-bottom:1px solid #e3e5e9;}/*块级元素子元素 例：用户信息整排样式*/
+.element-end,.element-body,.Submit-body,.Submit-body{float:left; width:98%; margin-left:2%; margin-top:0.5em !important; }/*块级元素最后一个子元素 例：入网资料整排样式*/
+.money-body{float:left; width:100%; padding-left:2%; border-bottom:1px solid #e3e5e9;padding-top:0.5em !important; padding-bottom:0.5em !important;}/*块级元素子元素整体样式 例：商品金额整排样式*/
+.reminder{ float:left; width:96%; text-align:right; color:#999; padding-bottom:0.5em !important; font-size:12px;}/*块级元素子元素整体样式 例：下单时间*/
+/*tab切换按钮样式 例：填写订单支付方式*/
+.loaf{ border-bottom:none !important;}/*按钮父元素li是否显示下划线*/
+.nav li{ margin-right:10px !important;}/*按钮父元素li右边距*/
+.active a{  border:1px solid #f60 !important;color:#f60 !important;}/*修改按钮选中样式 边框颜色 文字颜色 */
+.nav-tabs>li>a {border:1px solid #666;color:#666666; background:none !important; border-radius: 4px 4px 4px 4px !important;padding: 1px 10px !important;}/*按钮样式*/
+.syiaq{border-radius:0px !important;}/*提交订单按钮样式 例：订单填写 底部按钮*/
+.syiaq,.fillet{ background:#f60 !important; font-size:100%;color:#FFF !important;}/*提交订单按钮样式 例：订单填写 底部按钮*/
+.fillet{border-radius:5px !important; background:#eeeeee !important; color:#cecece !important;}/*提交订单按钮样式 例：注册按钮带圆角*/
+/*注册页面*/
+.register,.newly-added{ float:left; width:100%; padding-top:1.5em; background:#FFF}/*注册页面父元素  例：注册页面背景颜色白色*/
+.register{ padding:8%;}
+.newly-added ul,.register ul{ padding:0 !important;}/*注册页面子元素ul内填充边距清零*/
+.register-content{ margin-top:1em; width:100%; float:left;}/*注册页面子元素li整行样式 例：账号*/
+.dfaqa{float:left; width:100%; margin:0 !important;}/*控制按钮样式大小 例：填写页面底部提交按钮*/
+.dxld-log{ width:100%;border:0;}/*控制输入框样式 例：登录输入框*/
+.account{ padding-bottom:1.5em !important; background:#FFF;}/*控制整体样式 例：账户管理底部背景颜色 内填充*/
+.radius-btn{border-radius:5px !important;}
+.delete-btn { padding: 5px; margin: 0; border: 1px solid #beceeb; }
+.clear { display: none; position: absolute; width: 16px; height: 16px; margin: 8px 0 0 -20px; background:url(../img/front/qq.png); background-size:100%;}
+.delete-btn::-ms-clear { display: none; }
+.delete-btn:valid + .clear { display: inline; }
+.Sign-user{ float:left; width:100%; position:relative;}
+.Sign-name{ position:absolute; top:37%; left:18%; color:#FFF}
+.want{ margin-top:1em;}
+.want-picture{ position:absolute; top:71%; text-align:center; height:2em; line-height:2em; margin:0; width:80%; color:#FFF}
+.order-query{margin-top:45%;color:#FFF; float:left;}
+.Submit-success{border:1px solid #cccccc; margin-top:2em; padding:1em; float: left; width: 100%; line-height:1.5em;}
+.data-explain{ float:left; width:92%; padding:2%; margin-left:4%; border:1px dashed #CCC; margin-bottom:1em;}
+/*身份验证切换*/
+#identity-content,#Option-contract{width: 100%; float:left;}
+#identity-content p{float: left; width:30%; margin-left:15%; height: 40px;line-height: 40px; margin-bottom:0; text-align: center; font-size: 13px; cursor: pointer;}
+#identity-content ul{ float:left; margin:0; padding:0; width:100%; background:#FFF; margin-top:1em;}
+#identity-content li,#Option-contract li{float: left; width:97%; margin:0 3% 3% 3%;text-align: center;display: none; line-height:1.5em;}
+#identity-content p.qh{color:#f60; border-bottom:1px solid #f60;}
+#identity-content li.nr,#Option-contract li.nr{display: block;}
+/*选择合约切换*/
+#Option-contract{ background:#FFF; padding-bottom:10px; position:relative;}
+#Option-contract p{ width:100%; height: 40px;line-height: 40px; margin-bottom:0; text-align: center;font-size: 13px;cursor:pointer;border-bottom:1px solid #CCC; border-right:1px solid #CCC;}
+#Option-contract ul{ float:left; margin:0; padding:0; width:75%; background:#f8f8f8;}
+#Option-contract p.qh{color:#f60; background:#f8f8f8; border-right:none;}
+.Package{ padding-left:5px !important; padding-right:0 !important;line-height:2em;color:#666;}
+.detailed{ line-height:1.5em !important; padding-bottom:1em;border-bottom:1px solid #e3e5e9;}
+.Package-title{ float:left; background:#FFF; line-height:2em; padding-left:4%; width:100%; margin:0; border-bottom:1px solid #CCC; padding-bottom:0.5em; padding-top:0.5em;}
+.Package-title span,.mobile{float:left; text-align:center; color:#666;}
+.Package-title span{ width:50%;}
+.mobile{ width:37%;}
+.Package-title span.one{ width:20%; color:#333}
+.Package-title span.two{ border-right:1px solid #CCC;}
+.dropdown-menu{ min-width:100% !important;text-align:center !important;}
+.dropdown-menu li{ padding:0 0px !important;}
+.mobile{margin-top:0.3em; margin-bottom:0.2em; border-left:1px solid #CCC;}
+.mobile-list{ float:left; width:100%; background:#FFF;}
+.mobile-sort{float:left; width:100%; background:#FFF; border-bottom:1px solid #CCC;}
+.mobile-sort one{float:left; width:33%}
+.beyond-two{text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}/*文字超过2行省略号*/
+.mobile-default{float:left; width:25%;}
+.mobile-default-btn{background:#FFF;border-radius:0; width:100%;}
+/*商品页*/
+.commodity,.commodity li,.commodity-col{ padding:0; margin:0; width:100%; float:left; background:#FFF}
+.commodity-title{ line-height:1.8em; margin-top:10px !important;}
+.commodity-col{margin-top:.5em; padding-bottom:1em !important;}
+.col-one{ float:left; width:45%; margin-left:3.333%; border:1px solid #CCC;}
+.dfafda{ background-size:100%;width: 100%; position: relative; display: inline-block;}
+.sda{ padding-bottom:40px !important;}
+.affffa{ position:fixed; width:100%; bottom:0; z-index:40; background:none;}
+.fjiq-one{  z-index:10; bottom:0; background:#000;opacity:0.8; height:45px;}
+.dasdasd{ position:absolute; z-index:999; bottom:40px; left:5%; border:1px solid #f60; padding:5px; font-size:13px;border-radius:5px; background:#FFF}
+.dasdasd a{ color:#666;}
+.adwa{ float:left; width:60%;position:absolute; text-align:center; line-height:25px; bottom:10px; z-index:99; margin-left:20%; background:#f60; font-size:13px; border-radius:5px;}
+.adwa a{ color:#fff; }
+/*选择规格弹窗*/
+.choose-specs{ position:fixed; width:100%; z-index:999; height:100%; display:none;}
+.specs-bgs{ position:absolute; height:100%; width:100%;background:#000;opacity:0.5; z-index:-1}
+.specs-content{ float:left; width:100%; background:#FFF; z-index:999; position:absolute; bottom:0; font-size:13px;}
+.specs-Life{ float:left; width:100%; max-height:260px; overflow:auto; margin-top:10px;}
+/*加减号输入框*/
+.number-choice{ float:left; width:100%; }
+.jdiqa{width:3em; text-align:center;}
+.tcnc-btn{position:absolute; right:10px; top:-20px;}
+
+.yhtdsia{ border:0;overflow-y: hidden;height:1.8em; width:96%;}
+
+.margin-0{margin-top:0 !important;}
+.iainfa{ float:left; width:96%; margin-left:2%; height:35px; line-height:35px; border:0; text-align:center !important;}
+/*底部快捷导航*/
+.quick-nav{ position:fixed; bottom:0; z-index:999; padding-bottom:3px; padding-top:6px; background:#FFF; width:100%;}
+.row{margin: 0 0 0 0 !important;}
+
+.org-btn{display:inline-block;height:40px;text-align:center;color:#fff;font-size:16px;
+    -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;
+    background-image:-moz-linear-gradient(top,#ec6618 0%,#ed7c18 100%);
+    background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#ec6618),color-stop(1,#ed7c18));
+    -webkit-box-shadow:0 1px 1px rgba(130,130,130,0.75);
+    -moz-box-shadow:0 1px 1px rgba(130,130,130,0.75);
+    box-shadow:0 1px 1px rgba(130,130,130,0.75);
+    box-shadow: none;
+    width: 100%;
+    margin-top: 5px;
+}
+.org-btn-hover{color:#fff;background-image:-moz-linear-gradient(top,#ed7c18 0%,#ec6618 100%);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#ed7c18),color-stop(1,#ec6618));}
+.gray-btn{display:inline-block;height:40px;text-align:center;color:#666;font-size:16px;
+    -webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;
+    background-image:-moz-linear-gradient(top,#ececec 0%,#e5e5e5 100%);
+    background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#ececec),color-stop(1,#e5e5e5));
+    -webkit-box-shadow:0 1px 1px rgba(130,130,130,0.75);
+    -moz-box-shadow:0 1px 1px rgba(130,130,130,0.75);
+    box-shadow:0 1px 1px rgba(130,130,130,0.75);
+}
+.gray-btn-hover{color:#666;background-image:-moz-linear-gradient(top,#e5e5e5 0%,#ececec 100%);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#e5e5e5),color-stop(1,#ececec));}
+
+
+
+
+
+

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.member.client.MemberMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.member.model.Member" >
+    <id column="id" property="id" />
+    <result column="create_account" property="createAccount" />
+    <result column="create_time" property="createTime" />
+    <result column="update_account" property="updateAccount" />
+    <result column="update_time" property="updateTime" />
+    <result column="username" property="username" />
+    <result column="nick_name" property="nickName" />
+    <result column="password" property="password" />
+    <result column="address" property="address" />
+    <result column="real_name" property="realName" />
+    <result column="gender" property="gender" />
+    <result column="email" property="email" />
+    <result column="birth_date" property="birthDate" />
+    <result column="mobile" property="mobile" />
+    <result column="id_type" property="idType" />
+    <result column="id_num" property="idNum" />
+    <result column="province" property="province" />
+    <result column="city" property="city" />
+    <result column="area" property="area" />
+    <result column="is_email_active" property="isEmailActive" />
+    <result column="is_freeze" property="isFreeze" />
+    <result column="last_login_time" property="lastLoginTime" />
+    <result column="last_login_ip" property="lastLoginIp" />
+    <result column="last_login_area" property="lastLoginArea" />
+    <result column="freeze_start_time" property="freezeStartTime" />
+    <result column="freeze_end_time" property="freezeEndTime" />
+    <result column="member_rank_id" property="memberRankId" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_account, create_time, update_account, update_time, username, nick_name, 
+    password, address, real_name, gender, email, birth_date, mobile, id_type, id_num, 
+    province, city, area, is_email_active, is_freeze, last_login_time, last_login_ip, 
+    last_login_area, freeze_start_time, freeze_end_time, member_rank_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.member.model.MemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.member.model.Member" >
+    insert into member (id, create_account, create_time, update_account, update_time, 
+      username, nick_name, password, address, real_name, gender, email, 
+      birth_date, mobile, id_type, id_num, province, city, area, is_email_active, 
+      is_freeze, last_login_time, last_login_ip, last_login_area,
+      freeze_start_time, freeze_end_time, member_rank_id)
+    values (#{id}, #{createAccount}, #{createTime}, #{updateAccount}, #{updateTime}, 
+      #{username}, #{nickName}, #{password}, #{address}, #{realName}, #{gender}, #{email}, 
+      #{birthDate}, #{mobile}, #{idType}, #{idNum}, #{province}, #{city}, #{area}, #{isEmailActive}, 
+      #{isFreeze}, #{lastLoginTime}, #{lastLoginIp}, #{lastLoginArea}, #{registTime}, 
+      #{freezeStartTime}, #{freezeEndTime}, #{memberRankId})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.member.model.Member" >
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="birthDate != null" >
+        birth_date,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idNum != null" >
+        id_num,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="isEmailActive != null" >
+        is_email_active,
+      </if>
+      <if test="isFreeze != null" >
+        is_freeze,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+      <if test="lastLoginArea != null" >
+        last_login_area,
+      </if>
+      <if test="freezeStartTime != null" >
+        freeze_start_time,
+      </if>
+      <if test="freezeEndTime != null" >
+        freeze_end_time,
+      </if>
+      <if test="memberRankId != null" >
+        member_rank_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime},
+      </if>
+      <if test="username != null" >
+        #{username},
+      </if>
+      <if test="nickName != null" >
+        #{nickName},
+      </if>
+      <if test="password != null" >
+        #{password},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="realName != null" >
+        #{realName},
+      </if>
+      <if test="gender != null" >
+        #{gender},
+      </if>
+      <if test="email != null" >
+        #{email},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate},
+      </if>
+      <if test="mobile != null" >
+        #{mobile},
+      </if>
+      <if test="idType != null" >
+        #{idType},
+      </if>
+      <if test="idNum != null" >
+        #{idNum},
+      </if>
+      <if test="province != null" >
+        #{province},
+      </if>
+      <if test="city != null" >
+        #{city},
+      </if>
+      <if test="area != null" >
+        #{area},
+      </if>
+      <if test="isEmailActive != null" >
+        #{isEmailActive},
+      </if>
+      <if test="isFreeze != null" >
+        #{isFreeze},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp},
+      </if>
+      <if test="lastLoginArea != null" >
+        #{lastLoginArea},
+      </if>
+      <if test="registTime != null" >
+        #{registTime},
+      </if>
+      <if test="freezeStartTime != null" >
+        #{freezeStartTime},
+      </if>
+      <if test="freezeEndTime != null" >
+        #{freezeEndTime},
+      </if>
+      <if test="memberRankId != null" >
+        #{memberRankId},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.member.model.MemberExample" resultType="java.lang.Integer" >
+    select count(*) from member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.member.model.Member" >
+    update member
+    <set >
+      <if test="createAccount != null" >
+        create_account = #{createAccount},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime},
+      </if>
+      <if test="username != null" >
+        username = #{username},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName},
+      </if>
+      <if test="password != null" >
+        password = #{password},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender},
+      </if>
+      <if test="email != null" >
+        email = #{email},
+      </if>
+      <if test="birthDate != null" >
+        birth_date = #{birthDate},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType},
+      </if>
+      <if test="idNum != null" >
+        id_num = #{idNum},
+      </if>
+      <if test="province != null" >
+        province = #{province},
+      </if>
+      <if test="city != null" >
+        city = #{city},
+      </if>
+      <if test="area != null" >
+        area = #{area},
+      </if>
+      <if test="isEmailActive != null" >
+        is_email_active = #{isEmailActive},
+      </if>
+      <if test="isFreeze != null" >
+        is_freeze = #{isFreeze},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime},
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip = #{lastLoginIp},
+      </if>
+      <if test="lastLoginArea != null" >
+        last_login_area = #{lastLoginArea},
+      </if>
+      <if test="freezeStartTime != null" >
+        freeze_start_time = #{freezeStartTime},
+      </if>
+      <if test="freezeEndTime != null" >
+        freeze_end_time = #{freezeEndTime},
+      </if>
+      <if test="memberRankId != null" >
+        member_rank_id = #{memberRankId},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.member.model.Member" >
+    update member
+    set create_account = #{createAccount},
+      create_time = #{createTime},
+      update_account = #{updateAccount},
+      update_time = #{updateTime},
+      username = #{username},
+      nick_name = #{nickName},
+      password = #{password},
+      address = #{address},
+      real_name = #{realName},
+      gender = #{gender},
+      email = #{email},
+      birth_date = #{birthDate},
+      mobile = #{mobile},
+      id_type = #{idType},
+      id_num = #{idNum},
+      province = #{province},
+      city = #{city},
+      area = #{area},
+      is_email_active = #{isEmailActive},
+      is_freeze = #{isFreeze},
+      last_login_time = #{lastLoginTime},
+      last_login_ip = #{lastLoginIp},
+      last_login_area = #{lastLoginArea},
+      freeze_start_time = #{freezeStartTime},
+      freeze_end_time = #{freezeEndTime},
+      member_rank_id = #{memberRankId}
+    where id = #{id}
+  </update>
+  <insert id="regMember" parameterType="net.jeeshop.biz.member.model.Member">
+    insert into member(username,password,create_time)
+    values(#{username},#{password},#{createTime})
+  </insert>
+
+</mapper>

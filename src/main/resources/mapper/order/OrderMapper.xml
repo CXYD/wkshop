@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.order.client.OrderMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.order.bean.OrderBean" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="khid" property="khid" jdbcType="VARCHAR" />
+    <result column="create_account" property="createAccount" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_account" property="updateAccount" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="member_id" property="memberId" jdbcType="BIGINT" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="adslaccount" property="adslaccount" jdbcType="VARCHAR" />
+    <result column="orderstatus" property="orderstatus" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="product_amount" property="productAmount" jdbcType="DOUBLE" />
+    <result column="ship_amount" property="shipAmount" jdbcType="DOUBLE" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="paytype" property="paytype" jdbcType="CHAR" />
+    <result column="is_paid" property="isPaid" jdbcType="CHAR" />
+    <result column="pay_fee" property="payFee" jdbcType="DOUBLE" />
+    <result column="payment_num" property="paymentNum" jdbcType="VARCHAR" />
+    <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="contractmobile" property="contractmobile" jdbcType="CHAR" />
+    <result column="distributddress" property="distributddress" jdbcType="VARCHAR" />
+    <result column="installaddress" property="installaddress" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="ownermobi" property="ownermobi" jdbcType="CHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="packageID" property="packageid" jdbcType="BIGINT" />
+    <result column="packageName" property="packagename" jdbcType="VARCHAR" />
+    <result column="firstMonthFeeType" property="firstmonthfeetype" jdbcType="VARCHAR" />
+    <result column="invoice" property="invoice" jdbcType="VARCHAR" />
+    <result column="invoiceprice" property="invoiceprice" jdbcType="DOUBLE" />
+    <result column="commision" property="commision" jdbcType="DOUBLE" />
+    <result column="predeposit" property="predeposit" jdbcType="DOUBLE" />
+    <result column="member_remark" property="memberRemark" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="finishtime" property="finishtime" jdbcType="TIMESTAMP" />
+    <result column="settlestatus" property="settlestatus" jdbcType="VARCHAR" />
+    <result column="netusername" property="netusername" jdbcType="VARCHAR" />
+    <result column="netcardid" property="netcardid" jdbcType="VARCHAR" />
+    <result column="netimg1" property="netimg1" jdbcType="VARCHAR" />
+    <result column="netimg2" property="netimg2" jdbcType="VARCHAR" />
+    <result column="netimg3" property="netimg3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, khid, create_account, create_time, update_account, update_time, member_id, order_num, 
+    adslaccount, orderstatus, amount, product_amount, ship_amount, title, weight, quantity, 
+    paytype, is_paid, pay_fee, payment_num, payment_time, linkman, contractmobile, distributddress, 
+    installaddress, owner, ownermobi, idcard, origin, packageID, packageName, firstMonthFeeType, 
+    invoice, invoiceprice, commision, predeposit, member_remark, remark, finishtime, 
+    settlestatus, netusername, netcardid, netimg1, netimg2, netimg3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ord_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ord_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <sql id="BalPay_List" >
+    o.finishtime,o.order_num,o.create_time,p.product_name as productName,o.paytype,o.amount,o.commision,(o.amount-o.commision) AS balamount,(CASE  o.settlestatus  WHEN '0' THEN '待结算' WHEN '1' THEN '已结算' END) AS settlestatus   </sql>
+  <select id="selectBalPay" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="BalPay_List" />
+    FROM ord_order o LEFT JOIN ord_order_item od ON(o.order_num=od.order_id) LEFT JOIN pro_product_info p ON(od.product_id=p.id)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ord_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.order.model.Order" useGeneratedKeys="true" keyProperty="id" >
+    insert into ord_order (id, khid, create_account, 
+      create_time, update_account, update_time, 
+      member_id, order_num, adslaccount, 
+      orderstatus, amount, product_amount, 
+      ship_amount, title, weight, 
+      quantity, paytype, is_paid, 
+      pay_fee, payment_num, payment_time, 
+      linkman, contractmobile, distributddress, 
+      installaddress, owner, ownermobi, 
+      idcard, origin, packageID, 
+      packageName, firstMonthFeeType, invoice, 
+      invoiceprice, commision, predeposit, 
+      member_remark, remark, finishtime, 
+      settlestatus, netusername, netcardid, 
+      netimg1, netimg2, netimg3
+      )
+    values (#{id,jdbcType=BIGINT}, #{khid,jdbcType=VARCHAR}, #{createAccount,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateAccount,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{memberId,jdbcType=BIGINT}, #{orderNum,jdbcType=VARCHAR}, #{adslaccount,jdbcType=VARCHAR}, 
+      #{orderstatus,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, #{productAmount,jdbcType=DOUBLE}, 
+      #{shipAmount,jdbcType=DOUBLE}, #{title,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE}, 
+      #{quantity,jdbcType=INTEGER}, #{paytype,jdbcType=CHAR}, #{isPaid,jdbcType=CHAR}, 
+      #{payFee,jdbcType=DOUBLE}, #{paymentNum,jdbcType=VARCHAR}, #{paymentTime,jdbcType=TIMESTAMP}, 
+      #{linkman,jdbcType=VARCHAR}, #{contractmobile,jdbcType=CHAR}, #{distributddress,jdbcType=VARCHAR}, 
+      #{installaddress,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{ownermobi,jdbcType=CHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{packageid,jdbcType=BIGINT}, 
+      #{packagename,jdbcType=VARCHAR}, #{firstmonthfeetype,jdbcType=VARCHAR}, #{invoice,jdbcType=VARCHAR}, 
+      #{invoiceprice,jdbcType=DOUBLE}, #{commision,jdbcType=DOUBLE}, #{predeposit,jdbcType=DOUBLE}, 
+      #{memberRemark,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{finishtime,jdbcType=TIMESTAMP}, 
+      #{settlestatus,jdbcType=VARCHAR}, #{netusername,jdbcType=VARCHAR}, #{netcardid,jdbcType=VARCHAR}, 
+      #{netimg1,jdbcType=VARCHAR}, #{netimg2,jdbcType=VARCHAR}, #{netimg3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.order.model.Order" useGeneratedKeys="true" keyProperty="id"  >
+    insert into ord_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="khid != null" >
+        khid,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="adslaccount != null" >
+        adslaccount,
+      </if>
+      <if test="orderstatus != null" >
+        orderstatus,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="productAmount != null" >
+        product_amount,
+      </if>
+      <if test="shipAmount != null" >
+        ship_amount,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="paytype != null" >
+        paytype,
+      </if>
+      <if test="isPaid != null" >
+        is_paid,
+      </if>
+      <if test="payFee != null" >
+        pay_fee,
+      </if>
+      <if test="paymentNum != null" >
+        payment_num,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="contractmobile != null" >
+        contractmobile,
+      </if>
+      <if test="distributddress != null" >
+        distributddress,
+      </if>
+      <if test="installaddress != null" >
+        installaddress,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="ownermobi != null" >
+        ownermobi,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="packageid != null" >
+        packageID,
+      </if>
+      <if test="packagename != null" >
+        packageName,
+      </if>
+      <if test="firstmonthfeetype != null" >
+        firstMonthFeeType,
+      </if>
+      <if test="invoice != null" >
+        invoice,
+      </if>
+      <if test="invoiceprice != null" >
+        invoiceprice,
+      </if>
+      <if test="commision != null" >
+        commision,
+      </if>
+      <if test="predeposit != null" >
+        predeposit,
+      </if>
+      <if test="memberRemark != null" >
+        member_remark,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="finishtime != null" >
+        finishtime,
+      </if>
+      <if test="settlestatus != null" >
+        settlestatus,
+      </if>
+      <if test="netusername != null" >
+        netusername,
+      </if>
+      <if test="netcardid != null" >
+        netcardid,
+      </if>
+      <if test="netimg1 != null" >
+        netimg1,
+      </if>
+      <if test="netimg2 != null" >
+        netimg2,
+      </if>
+      <if test="netimg3 != null" >
+        netimg3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="khid != null" >
+        #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="adslaccount != null" >
+        #{adslaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstatus != null" >
+        #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="productAmount != null" >
+        #{productAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="shipAmount != null" >
+        #{shipAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=CHAR},
+      </if>
+      <if test="isPaid != null" >
+        #{isPaid,jdbcType=CHAR},
+      </if>
+      <if test="payFee != null" >
+        #{payFee,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentNum != null" >
+        #{paymentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="contractmobile != null" >
+        #{contractmobile,jdbcType=CHAR},
+      </if>
+      <if test="distributddress != null" >
+        #{distributddress,jdbcType=VARCHAR},
+      </if>
+      <if test="installaddress != null" >
+        #{installaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="ownermobi != null" >
+        #{ownermobi,jdbcType=CHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="packageid != null" >
+        #{packageid,jdbcType=BIGINT},
+      </if>
+      <if test="packagename != null" >
+        #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="firstmonthfeetype != null" >
+        #{firstmonthfeetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceprice != null" >
+        #{invoiceprice,jdbcType=DOUBLE},
+      </if>
+      <if test="commision != null" >
+        #{commision,jdbcType=DOUBLE},
+      </if>
+      <if test="predeposit != null" >
+        #{predeposit,jdbcType=DOUBLE},
+      </if>
+      <if test="memberRemark != null" >
+        #{memberRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlestatus != null" >
+        #{settlestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="netusername != null" >
+        #{netusername,jdbcType=VARCHAR},
+      </if>
+      <if test="netcardid != null" >
+        #{netcardid,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg1 != null" >
+        #{netimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg2 != null" >
+        #{netimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg3 != null" >
+        #{netimg3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.order.model.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from ord_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.order.model.Order" >
+    update ord_order
+    <set >
+      <if test="khid != null" >
+        khid = #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccount != null" >
+        create_account = #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="adslaccount != null" >
+        adslaccount = #{adslaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstatus != null" >
+        orderstatus = #{orderstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="productAmount != null" >
+        product_amount = #{productAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="shipAmount != null" >
+        ship_amount = #{shipAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        paytype = #{paytype,jdbcType=CHAR},
+      </if>
+      <if test="isPaid != null" >
+        is_paid = #{isPaid,jdbcType=CHAR},
+      </if>
+      <if test="payFee != null" >
+        pay_fee = #{payFee,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentNum != null" >
+        payment_num = #{paymentNum,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="contractmobile != null" >
+        contractmobile = #{contractmobile,jdbcType=CHAR},
+      </if>
+      <if test="distributddress != null" >
+        distributddress = #{distributddress,jdbcType=VARCHAR},
+      </if>
+      <if test="installaddress != null" >
+        installaddress = #{installaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="ownermobi != null" >
+        ownermobi = #{ownermobi,jdbcType=CHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="packageid != null" >
+        packageID = #{packageid,jdbcType=BIGINT},
+      </if>
+      <if test="packagename != null" >
+        packageName = #{packagename,jdbcType=VARCHAR},
+      </if>
+      <if test="firstmonthfeetype != null" >
+        firstMonthFeeType = #{firstmonthfeetype,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        invoice = #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceprice != null" >
+        invoiceprice = #{invoiceprice,jdbcType=DOUBLE},
+      </if>
+      <if test="commision != null" >
+        commision = #{commision,jdbcType=DOUBLE},
+      </if>
+      <if test="predeposit != null" >
+        predeposit = #{predeposit,jdbcType=DOUBLE},
+      </if>
+      <if test="memberRemark != null" >
+        member_remark = #{memberRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        finishtime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlestatus != null" >
+        settlestatus = #{settlestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="netusername != null" >
+        netusername = #{netusername,jdbcType=VARCHAR},
+      </if>
+      <if test="netcardid != null" >
+        netcardid = #{netcardid,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg1 != null" >
+        netimg1 = #{netimg1,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg2 != null" >
+        netimg2 = #{netimg2,jdbcType=VARCHAR},
+      </if>
+      <if test="netimg3 != null" >
+        netimg3 = #{netimg3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.order.model.Order" >
+    update ord_order
+    set khid = #{khid,jdbcType=VARCHAR},
+      create_account = #{createAccount,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_account = #{updateAccount,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      member_id = #{memberId,jdbcType=BIGINT},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      adslaccount = #{adslaccount,jdbcType=VARCHAR},
+      orderstatus = #{orderstatus,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      product_amount = #{productAmount,jdbcType=DOUBLE},
+      ship_amount = #{shipAmount,jdbcType=DOUBLE},
+      title = #{title,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      quantity = #{quantity,jdbcType=INTEGER},
+      paytype = #{paytype,jdbcType=CHAR},
+      is_paid = #{isPaid,jdbcType=CHAR},
+      pay_fee = #{payFee,jdbcType=DOUBLE},
+      payment_num = #{paymentNum,jdbcType=VARCHAR},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      contractmobile = #{contractmobile,jdbcType=CHAR},
+      distributddress = #{distributddress,jdbcType=VARCHAR},
+      installaddress = #{installaddress,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      ownermobi = #{ownermobi,jdbcType=CHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      packageID = #{packageid,jdbcType=BIGINT},
+      packageName = #{packagename,jdbcType=VARCHAR},
+      firstMonthFeeType = #{firstmonthfeetype,jdbcType=VARCHAR},
+      invoice = #{invoice,jdbcType=VARCHAR},
+      invoiceprice = #{invoiceprice,jdbcType=DOUBLE},
+      commision = #{commision,jdbcType=DOUBLE},
+      predeposit = #{predeposit,jdbcType=DOUBLE},
+      member_remark = #{memberRemark,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      finishtime = #{finishtime,jdbcType=TIMESTAMP},
+      settlestatus = #{settlestatus,jdbcType=VARCHAR},
+      netusername = #{netusername,jdbcType=VARCHAR},
+      netcardid = #{netcardid,jdbcType=VARCHAR},
+      netimg1 = #{netimg1,jdbcType=VARCHAR},
+      netimg2 = #{netimg2,jdbcType=VARCHAR},
+      netimg3 = #{netimg3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="order_Column_List" >
+    o.id,o.order_num,o.khid,o.create_time,p.product_name as productName,od.price,od.quantity,o.linkman,o.contractmobile,(CASE  o.paytype  WHEN '21' THEN  '连连支付' WHEN '22' THEN  '支付宝支付' WHEN '23' THEN '货到付款' END) AS paytype,o.amount,(CASE o.orderstatus WHEN '02' THEN '已取消' WHEN '03' THEN '待付款' WHEN '04'  THEN '待办理' WHEN '05' THEN '办理成功' WHEN '06' THEN '待退款' WHEN '07' THEN '退款结束' WHEN '08' THEN '办理失败' END ) AS  orderstatus,o.update_account,o.update_time,o.is_paid,o.remark,od.newmob as newmob,od.oldmob as oldmob,o.invoice,o.netusername,o.netcardid,o.netimg1,o.netimg2,o.netimg3,od.cardprice,od.firstfee,od.issales,o.packageName,o.distributddress,o.owner,o.ownermobi,o.installaddress,o.idcard
+  </sql>
+  <select id="queryOrder" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="order_Column_List" />
+    from ord_order o LEFT JOIN ord_order_item od ON(o.order_num=od.order_id) LEFT JOIN pro_product_info p ON(od.product_id=p.id)
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,556 @@
+@charset "UTF-8";
+/*正文样式*/
+html{
+    /*展示区域rem换算*/
+    font-size: 32px;
+    height:100%;
+}
+body{
+    height: 100%;
+    overflow: hidden;
+    background: #e7e8eb;
+}
+input{
+    font-family:"Microsoft YaHei","黑体",Arial,sans-serif;
+}
+/*模块展示区域样式*/
+.dcr-header{
+    height: 60px;
+    line-height: 62px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+.dcr-header .dcr-crumbs{
+    box-sizing: border-box;
+    width: 1180px;
+    margin: 0 auto;
+    height: 100%;
+    background: #FFFFFF;
+    border-bottom: 1px solid #dcdcdc;
+    padding-left: 20px;
+    font-size: 16px;
+}
+.dcr-header .dcr-crumbs .crumbs-elements{
+    display: inline-block;
+    height : 100%;
+    margin-right: 5px;
+}
+.dcr-header .dcr-crumbs .crumbs-back{
+    cursor: pointer;
+    width: 21px;
+    background: url("https://d.weidian.com/images/decoration/dcr_icon_back.png") center no-repeat;
+}
+.dcr-header .dcr-crumbs .crumbs-main {
+    cursor: pointer;
+    color: #666666;
+    vertical-align: top;
+}
+.dcr-header .dcr-crumbs .crumbs-ltn{
+    width: 8px;
+    background: url("https://d.weidian.com/images/decoration/dcr_icon_ltn.png") center no-repeat;
+}
+.dcr-header .dcr-crumbs .crumbs-current{
+    color: #111111;
+    vertical-align: top;
+}
+.dcr-footer{
+    height: 75px;
+    background: RGBA(0,0,0,.8);
+    line-height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1099;
+}
+.dcr-footer .dcr-footer-btn{
+    width: 260px;
+    margin: 0 auto;
+    line-height: 35px;
+    text-align: center;
+}
+.dcr-footer .dcr-footer-btn a{
+    float: left;
+    height: 35px;
+    margin: 20px 15px 0;
+    border-radius: 2px;
+    color: #FFFFFF;
+    background: #dcdcdc;
+    width: 100px;
+    cursor: auto;
+}
+.dcr-footer .dcr-footer-btn a.dcr-click-able{
+    background: #4a83dc;
+    cursor: pointer
+;
+}
+.dcr-con {
+    box-sizing: border-box;
+    height: 100%;
+    width: 1182px;
+    margin: 0 auto;
+    position: relative;
+    border-right: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    padding: 60px 0 0;
+}
+/*展示区域样式*/
+.dcr-con .dcr-shower{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding-bottom: 85px;
+    width: 500px;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #dcdcdc;
+    background: #f8f8f8;
+}
+.dcr-shower .dcr-phone{
+    width: 320px;
+    border: 1px solid #dcdcdc;
+    min-height: 568px;
+    background: #eeeeee;
+    margin: 40px auto 0;
+    position: relative;
+    /*padding-bottom: 170px;*/
+}
+.dcr-shower .dcr-phone .dcr-phone-head{
+    position: relative;
+    /*cursor: pointer;*/
+}
+.dcr-phone-head img{
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #1b1b1f;
+}
+.dcr-shower .dcr-phone .dcr-phone-title{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    line-height: 33px;
+    text-align: center;
+    color:#FFFFFF;
+}
+.dcr-shower .dcr-phone .dcr-title-edit{
+    display: none;
+    position: absolute;
+    left: -6px;
+    top: -13px;
+    z-index:1; 
+    width: 328px;
+    height: 90px;
+    border: 2px solid #4880d7;
+}
+.dcr-shower .dcr-phone .dcr-title-btn{
+    position: absolute;
+    z-index :2 ;
+    right: 0;
+    bottom : 0;
+    height: 25px;
+    width: 50px;
+    -webkit-border-top-left-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    border-top-left-radius: 2px;
+    color: #FFFFFF;
+    background: #4a83dc;
+    text-align: center;
+    cursor: pointer;
+}
+.dcr-phone-head:hover{
+    z-index: 10;
+}
+.dcr-phone-head:hover .dcr-title-edit{
+    display: block;
+}
+.dcr-shower .dcr-phone .dcr-phone-body{
+
+}
+.dcr-shower .dcr-phone .dcr-addModule{
+    box-sizing: border-box;
+    margin : 20px auto;
+    width: 280px;
+    height : 120px;
+    background:#ffffff;
+    border: 1px dashed #dcdcdc;
+    text-align: center;
+    padding: 35px 0;
+    color : #666666;
+    font-weight: 100;
+    cursor: pointer;
+}
+.dcr-shower .dcr-phone .dcr-addModule p{
+    font-size: 24px;
+    line-height: 20px;
+}
+.dcr-shower .dcr-phone .dcr-addModule span{
+    font-size: 14px;
+    line-height: 14px;
+    color: #999999;
+}
+.dcr-shower .dcr-phone .dcr-addModule:hover{
+    border: 1px dashed #666666;
+}
+.dcr-shower .dcr-phone .dcr-addModule:hover span{
+    color: #666666;
+}
+.dcr-dragItem{
+    position:relative;
+    box-sizing: border-box;
+    /*border:1px dashed rgba(0,0,0,0);*/
+    padding-bottom: 1px;
+    cursor: move;
+    -webkit-transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        padding .3s ease-out;
+    -moz-transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        padding .3s ease-out;
+    transition: transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        padding .3s ease-out;
+}
+.dcr-dragItem .dcr-dragContent{
+    box-sizing: border-box;
+    /*border:2px solid rgba(0,0,0,0) ;*/
+    width: 320px ;
+    margin-bottom:12px; 
+
+}
+.dcr-dragging{
+    z-index: 399;
+    opacity: .9;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+/*模块右侧编辑区域样式*/
+.dcr-dragItem .dcr-drag-mask{
+    position:absolute;
+    z-index : 10;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+}.dcr-dragItem .auxiliary-area{
+    position:absolute;
+    top:0;
+    right: -46px;
+    width: 45px;
+    display: none;
+    height : 110px;
+    cursor: default;
+    z-index: 20;
+}
+.dcr-dragItem .auxiliary-area p{
+    cursor: pointer;
+    position:absolute;
+    left: 0;
+    height: 25px;
+    line-height: 25px;
+    width: 45px;
+    background:url('https://d.weidian.com/images/decoration/dcr_icon_prev.png') center no-repeat #bfbfbf;
+}
+.dcr-dragItem .auxiliary-area p:hover{
+    background-color: #666666;
+}
+.dcr-dragItem .auxiliary-area .btn-toPre{
+    top: -1px;
+    background-image:url('https://d.weidian.com/images/decoration/dcr_icon_prev.png');
+}
+.dcr-dragItem .auxiliary-area .btn-toNext{
+    top: 28px;
+    background-image: url('https://d.weidian.com/images/decoration/dcr_icon_next.png');
+}
+.dcr-dragItem .auxiliary-area .btn-add{
+    bottom: 28px;
+    background-image: url('https://d.weidian.com/images/decoration/dcr_icon_add.png');
+}
+.dcr-dragItem .auxiliary-area .btn-del{
+    bottom: -1px;
+    background-image: url('https://d.weidian.com/images/decoration/dcr_icon_del.png');
+}
+/*编辑区域选中后的样式*/
+.dcr-item-selector{
+    z-index: 9;
+}
+.dcr-dragItem.dcr-item-selector .dcr-dragContent:before{
+    content: "";
+    box-sizing:content-box;
+    border: 2px solid #4a83dc;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 0, 0,0.5);
+    /*padding: 10px 4px;*/
+    position:absolute;
+    z-index : -1;
+    top: -12px;
+    left: -6px;
+    right: -6px;
+    bottom: 0;
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+.dcr-phone-head.dcr-item-selector{
+    padding : 0;
+}
+.dcr-phone-head.dcr-item-selector .dcr-title-edit,.dcr-phone-head.dcr-item-error .dcr-title-edit{
+    display: block;
+}
+.dcr-phone-head.dcr-item-error .dcr-title-edit{
+    border: 2px solid #fd4337!important;
+}
+.dcr-dragItem.dcr-item-error .dcr-dragContent{
+    border: 2px solid #fd4337;
+    min-height: 20px;
+    background: #FFFFFF;
+}
+.dcr-dragItem.dcr-item-selector.dcr-item-error .dcr-dragContent:before{
+    border: 2px solid #fd4337;
+}
+.dcr-dragItem.dcr-item-selector.dcr-item-error .dcr-dragContent{
+    border: 0 none;
+}
+/*模块区域 鼠标悬停效果样式*/
+.dcr-dragItem:hover {
+    z-index: 20;
+}
+.dcr-dragItem:hover .dcr-drag-mask{
+    border:1px dashed #666666;
+}
+.dcr-dragItem:hover .auxiliary-area{
+    display: block;
+}
+.dcr-dragItem.dcr-item-selector:hover  .dcr-drag-mask{
+    border: 0 none;
+}
+.dcr-dragItem.dcr-item-selector:hover .auxiliary-area{
+    right: -51px;
+    top: -10px;
+}
+
+/*模块编辑渔区样式*/
+.dcr-modules{
+    box-sizing: border-box;
+    float: left;
+    width: 680px;
+    height: 100%;
+    overflow-x: hidden;
+
+    background: #FFFFFF;
+    padding-bottom: 75px;
+
+}
+.dcr-modules .dcr-main-guide{
+    font-size: 16px;
+    line-height: 24px;
+    color: #999999;
+    padding: 40px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.dcr-views{
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*添加模块弹窗样式*/
+
+/*模态窗附加样式 -- 圆角 宽度*/
+.dcr-modal-window .ui-modal-dialog{
+    width: 900px;
+}
+.dcr-modal-window .ui-modal-content{
+    border-radius: 3px;
+    overflow: hidden;
+}
+/*模态窗头部样式*/
+.cpc-modal-dcr .dcr-modal-header{
+    height: 45px;
+    background: #f4f5f9;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.cpc-modal-dcr .dcr-modal-header span{
+    line-height: 45px;
+    color : #111111;
+    font-size: 16px;
+}
+.cpc-modal-dcr .dcr-modal-header i{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background: url("https://d.weidian.com/images/decoration/dcr_icon_close.png");
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.cpc-modal-dcr .dcr-modal-content{
+    background: #FFFFFF;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.cpc-modal-dcr .dcr-modal-content.dcr-select-module{
+    height: 500px;
+    padding: 0 0 0 20px;
+    overflow-x: hidden;
+    overflow-y:auto ;
+}
+.dcr-select-module .dcr-moduleTab{
+    height: 50px;
+    border-bottom: 1px solid #ededed;
+    line-height: 55px;
+}
+.dcr-select-module .dcr-moduleTab ul{
+    display: block;
+    height: 100%;
+}
+.dcr-select-module .dcr-moduleTab ul li{
+    text-align: center;
+    display: inline-block;
+    height: 100%;
+    box-sizing: border-box;
+    margin-right: 5px;
+    width: 80px;
+    font-size: 14px;
+    color: #111111;
+    cursor: pointer;
+}
+.dcr-select-module .dcr-moduleTab ul li.dcr-cur{
+    border-bottom: 3px solid #585858;
+}
+.dcr-select-module .dcr-moduleList{
+    padding: 35px 20px 0 0;
+}
+.dcr-select-module .dcr-moduleList ul{
+    display: block;
+    width: 720px;
+    margin: 0 auto;
+}
+.dcr-select-module .dcr-moduleList ul li{
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+.dcr-select-module .dcr-moduleList ul li p{
+    text-align: center;
+}
+.dcr-select-module .dcr-moduleList ul li p span{
+    font-size: 12px;
+    color:#999999;
+    line-height: 30px;
+}
+.dcr-select-module .dcr-moduleList ul li img{
+    box-sizing:border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ededed;
+}
+.dcr-select-module .dcr-moduleList ul li:hover img{
+    border: 1px solid #6aa9e7;
+}
+.dcr-select-module .dcr-moduleList.dcr-modal-curType1 ul,.dcr-select-module .dcr-moduleList.dcr-modal-curType2 ul{
+    width: 620px;
+}
+.dcr-select-module .dcr-moduleList.dcr-modal-curType1 ul li .dcr-module-img{
+    width: 290px;
+}
+.dcr-select-module .dcr-moduleList.dcr-modal-curType2 ul li .dcr-module-img{
+    width: 290px;
+}
+.dcr-select-module .dcr-moduleList.dcr-modal-curType3 ul li .dcr-module-img{
+    width: 220px;
+}
+.dcr-select-module .dcr-moduleList.dcr-modal-curType4 ul li .dcr-module-img{
+    width: 140px;
+}
+
+
+
+/*页面错误样式*/
+.module_error{
+    border : 2px solid #ff0000;
+
+}
+
+/*地图样式效果矫正 -- 图片轮播显示效果修复*/
+.dcr-dragContent .module_503 .module_503-img{
+    display: none;
+}
+.dcr-dragContent .module_503 .module_503-img:first-child{
+    position: relative;
+    display: block;
+    z-index: 1;
+    width: 320px;
+}
+.dcr-dragContent .module_503 .select-item{
+    z-index: 2;
+    width:100%;
+}
+/*预览样式矫正 -- 公众号标题字号缩小*/
+.dcr-dragContent .module_302 .module_302-title{
+    font-size: 20px;
+}
+.dcr-dragContent .module_302 .module_302-foot{
+    font-size: 14px;
+}
+/*预览样式矫正 -- 富文本区域样式*/
+.dcr-dragContent .module_99{
+    overflow: hidden;
+}
+.dcr-dragContent .module_99 img{
+    max-width: 100%;
+}
+
+
+/*修正 搜索框 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_201{
+    margin-top: .266667rem;
+}
+
+/*修正 图片导航 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_504{
+    margin-top: .266667rem;
+}
+
+/*修正 有间隙大图 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_501 .show-gap{
+    margin-top: .266667rem;
+}
+/*修正 有间隙双列图 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_502 .module_502_gap{
+    padding-top: .266667rem;
+}
+/*修正 单图商品-卡片样式，单图商品-极简样式 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_701 .single-line.style_2{
+    margin-top: .266667rem;
+}
+.content .dcr-dragItem:first-child .module_701 .single-line.style_3{
+    margin-top: .266667rem;
+}
+/*修正 两列商品 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_701 .double-line.style_2{
+    margin-top: .266667rem;
+}
+.content .dcr-dragItem:first-child .module_701 .double-line.style_3{
+    margin-top: .266667rem;
+}
+/*修正 列表商品 在顶部样式距离问题*/
+.content .dcr-dragItem:first-child .module_701 .three-line{
+    margin-top: .266667rem;
+}
+
+
+.ui-modal-open .dcr-con .dcr-shower,.ui-modal-open .dcr-views{
+    overflow-y: hidden;
+}

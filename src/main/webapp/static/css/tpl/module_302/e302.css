@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/* 公众号标题 */
+.e_302 {
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  /* 模块描述 */
+  /* 编辑框 */
+  /* 公众号标题*/
+  /*输入提示*/
+  /*输入框*/
+  /*日期输入框*/
+  /*作者输入框*/
+  /*输入错误时，输入框样式*/
+  /* 错误提示信息*/
+  /*改变输入框字体颜色*/
+  /*链接输入框*/
+  /*.cancel{
+      width: 118px;
+      height: 36px;
+      border: 1px solid #dcdcdc;
+      text-align: center;
+      line-height: 36px;
+      display: block;
+      font-size: 14px;
+      float: right;
+      margin: 10px 10px 0 0;
+  }*/
+  /*.confirm{
+      width: 120px;
+      height: 38px;
+      text-align: center;
+      line-height: 38px;
+      display: block;
+      background: #fd4337;
+      color: #fff;
+      font-size: 14px;
+      float: right;
+      margin: 10px 10px 0 0;
+  }*/ }
+  .e_302 .e_302-module-describe {
+    font-size: 16px;
+    line-height: 24px;
+    color: #999999;
+    padding: 40px; }
+  .e_302 .e_302-edit {
+    padding: 39px;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc; }
+  .e_302 .e_302-edit-box {
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #7f7f7f;
+    margin-bottom: 10px;
+    overflow: hidden; }
+  .e_302 .e_302-edit-date-box {
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #7f7f7f;
+    margin-bottom: 10px; }
+    .e_302 .e_302-edit-date-box .e_302-dropdown-menu {
+      left: 70px;
+      width: 526px;
+      outline: none; }
+    .e_302 .e_302-edit-date-box .e_302-edit-date {
+      position: relative;
+      width: 300px; }
+  .e_302 .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  .e_302 .e_302-name {
+    display: block;
+    width: 70px;
+    float: left; }
+  .e_302 .e_302-value {
+    height: 38px;
+    border: 1px solid #dcdcdc;
+    width: 502px;
+    float: left;
+    font-size: 14px;
+    padding: 0 12px;
+    box-sizing: content-box; }
+    .e_302 .e_302-value.e_302-shopName {
+      /*链接名称置灰*/ }
+  .e_302 .e_302-date {
+    width: 168px;
+    height: 38px;
+    padding-left: 12px;
+    border-top: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    float: left;
+    background: #fff;
+    box-sizing: content-box;
+    text-align: left; }
+  .e_302 .e_302-date-btn {
+    width: 30px;
+    height: 38px;
+    border-radius: 0;
+    padding-left: 12px;
+    border-top: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    float: left;
+    background: url(../../images/decoration/drc_icon_expander.png) no-repeat 25px 15px; }
+  .e_302 .e_302-author {
+    width: 198px; }
+  .e_302 .error {
+    border: 1px solid red; }
+  .e_302 .err-msg {
+    color: red;
+    font-size: 14px;
+    margin-left: 70px;
+    height: 32px;
+    line-height: 32px;
+    margin-top: -10px; }
+  .e_302 input {
+    color: #111; }
+  .e_302 input::-webkit-input-placeholder {
+    color: #999; }
+  .e_302 .link {
+    margin-left: 70px;
+    background: url(../../images/decoration/drc_icon_expander.png) no-repeat 506px 15px;
+    text-align: left; }
+  .e_302 .clear {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both; }

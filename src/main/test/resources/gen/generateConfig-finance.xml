@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- This should cause an error because sqlMapGenerator is required
+         if there is no javaClientGenerator -->
+    <context id="finance" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.ext.plugin.MapperFileOverwritePlugin">
+            <!-- 是否覆盖已经有的mapper文件，默认值为true -->
+            <!--<property name="mapperOverwrite" value="true"/>-->
+        </plugin>
+        <plugin type="org.mybatis.generator.ext.plugin.JshopCustomPlugin"/>
+        <commentGenerator type="org.mybatis.generator.ext.comment.CommentGeneratorExt"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/jshop"
+                        userId="root" password="root"/>
+
+        <javaModelGenerator targetPackage="net.jeeshop.biz.finance.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="net.jeeshop.biz.base.model.BaseModel"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper.finance"
+                         targetProject="src/main/resources"></sqlMapGenerator>
+        <javaClientGenerator type="org.mybatis.generator.custom.javamapper.GenericJavaMapperGenerator" targetPackage="net.jeeshop.biz.finance.client"
+                             targetProject="src/main/java">
+            <property name="rootInterface" value="net.jeeshop.biz.base.client.BaseMapper"/>
+        </javaClientGenerator>
+        <!--支付体系 -->
+        <table tableName="fin_payment_type" domainObjectName="PaymentType">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="payment_type" javaType="net.jeeshop.biz.finance.enums.PaymentTypeCode"/>
+        </table>
+        <table tableName="fin_payment" domainObjectName="Payment">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="payment_status" javaType="net.jeeshop.biz.finance.enums.PaymentStatus"/>
+            <columnOverride column="refund_status" javaType="net.jeeshop.biz.finance.enums.RefundStatus"/>
+        </table>
+        <table tableName="fin_payment_item" domainObjectName="PaymentItem">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="payment_status" javaType="net.jeeshop.biz.finance.enums.PaymentStatus"/>
+            <columnOverride column="payment_type" javaType="net.jeeshop.biz.finance.enums.PaymentTypeCode"/>
+        </table>
+        <table tableName="fin_payment_refund" domainObjectName="PaymentRefund">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="refund_status" javaType="net.jeeshop.biz.finance.enums.RefundStatus"/>
+        </table>
+        <table tableName="fin_payment_refund_item" domainObjectName="PaymentRefundItem">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="refund_status" javaType="net.jeeshop.biz.finance.enums.RefundStatus"/>
+            <columnOverride column="payment_type" javaType="net.jeeshop.biz.finance.enums.PaymentTypeCode"/>
+        </table>
+
+        <!-- 积分账户 -->
+        <table tableName="fin_points_account" domainObjectName="PointsAccount">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+        <table tableName="fin_points_award" domainObjectName="PointsAward">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+        <table tableName="fin_points_account_history" domainObjectName="PointsAccountHistory">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+        <table tableName="fin_points_award_expire" domainObjectName="PointsAwardExpire">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+        <table tableName="fin_points_payment" domainObjectName="PointsPayment">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+        <table tableName="fin_points_payment_award_link" domainObjectName="PointsPaymentAwardLink">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="id" javaType="java.lang.Long"/>
+        </table>
+    </context>
+
+</generatorConfiguration>

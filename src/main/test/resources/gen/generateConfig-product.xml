@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- This should cause an error because sqlMapGenerator is required
+         if there is no javaClientGenerator -->
+    <context id="system" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.ext.plugin.MapperFileOverwritePlugin">
+            <!-- 是否覆盖已经有的mapper文件，默认值为true -->
+            <!--<property name="mapperOverwrite" value="true"/>-->
+        </plugin>
+        <plugin type="org.mybatis.generator.ext.plugin.JshopCustomPlugin"/>
+        <commentGenerator type="org.mybatis.generator.ext.comment.CommentGeneratorExt"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://61.135.193.154:3306/jshop"
+                        userId="zdh" password="asdjkl"/>
+
+        <javaModelGenerator targetPackage="net.jeeshop.biz.product.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="net.jeeshop.biz.base.model.BaseModel"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper.product"
+                         targetProject="src/main/resources"></sqlMapGenerator>
+        <javaClientGenerator type="org.mybatis.generator.custom.javamapper.GenericJavaMapperGenerator" targetPackage="net.jeeshop.biz.product.client"
+                             targetProject="src/main/java">
+            <property name="rootInterface" value="net.jeeshop.biz.base.client.BaseMapper"/>
+        </javaClientGenerator>
+
+        <!-- 商品属性 -->
+        <!--<table tableName="pro_product_attr" domainObjectName="ProductAttr">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--<columnOverride column="is_mandated" javaType="java.lang.Boolean"/>-->
+            <!--<columnOverride column="value_type" javaType="net.jeeshop.biz.product.enums.ProductAttrValueType"/>-->
+        <!--</table>-->
+
+        <!--&lt;!&ndash; 商品与商品属性关联表 &ndash;&gt;-->
+        <!--<table tableName="pro_product_attr_link" domainObjectName="ProductAttrLink">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--<columnOverride column="is_valid" javaType="java.lang.Boolean"/>-->
+        <!--</table>-->
+
+        <!-- 商品标签-->
+        <!--<table tableName="pro_label" domainObjectName="ProductLabel">-->
+            <!--<generatedKey column="label_id" sqlStatement="JDBC"/>-->
+            <!--<columnOverride column="label_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+        <!--&lt;!&ndash; 商品分类 &ndash;&gt;-->
+        <!--<table tableName="pro_product_class" domainObjectName="ProductClass">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!-- 商品信息 -->
+        <!--<table tableName="pro_product_info" domainObjectName="ProductInfo">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--货品表-->
+        <!--<table tableName="pro_goods" domainObjectName="GoodsInfo">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--规格表-->
+        <!--<table tableName="pro_spec" domainObjectName="SpecInfo">-->
+        <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--流程表-->
+        <!--<table tableName="pro_process" domainObjectName="ProcessInfo">-->
+        <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--套餐-->
+        <!--<table tableName="package_info" domainObjectName="PackageInfo">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+        <!--套餐规格-->
+        <!--<table tableName="package_spec_info" domainObjectName="PackageSpecInfo">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+            <!--&lt;!&ndash;<columnOverride column="product_status" javaType="net.jeeshop.biz.product.enums.ProductStatus"/>&ndash;&gt;-->
+        <!--</table>-->
+
+
+
+        <!--&lt;!&ndash; 商品图片 &ndash;&gt;-->
+        <!--<table tableName="pro_product_image" domainObjectName="ProductImage">-->
+
+            <!--<columnOverride column="is_Main_Image" javaType="java.lang.Boolean"/>-->
+        <!--</table>-->
+        <!--&lt;!&ndash; 商品与商品规格关联管理 &ndash;&gt;-->
+        <!--<table tableName="pro_product_info_spec_link" domainObjectName="ProductInfoSpecLink">-->
+        <!--</table>-->
+        <!--&lt;!&ndash; 商品与商品值关联关系 &ndash;&gt;-->
+        <!--<table tableName="pro_product_spec_value_link" domainObjectName="ProductSpecValueLink">-->
+        <!--</table>-->
+        <!--&lt;!&ndash; 商品评论 &ndash;&gt;-->
+        <!--<table tableName="pro_product_comment" domainObjectName="ProductComment">-->
+        <!--</table>-->
+    </context>
+
+</generatorConfiguration>

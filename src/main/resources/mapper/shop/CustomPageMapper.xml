@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.CustomPageMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.shop.model.CustomPage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pageid" property="pageid" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_teim" property="updateTeim" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="dsp" property="dsp" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="isIndex" property="isindex" jdbcType="CHAR" />
+    <result column="khid" property="khid" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="net.jeeshop.biz.shop.model.CustomPage" extends="BaseResultMap" >
+    <result column="pageContent" property="pagecontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pageid, create_time, update_teim, title, dsp, img, isIndex, khid
+  </sql>
+  <sql id="Blob_Column_List" >
+    pageContent
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="net.jeeshop.biz.shop.model.CustomPageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from custom_page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.shop.model.CustomPageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from custom_page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from custom_page
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from custom_page
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.shop.model.CustomPage" useGeneratedKeys="true" keyProperty="id" >
+    insert into custom_page (pageid, create_time, update_teim, 
+      title, dsp, img, isIndex, 
+      khid, pageContent)
+    values (#{pageid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTeim,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{dsp,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{isindex,jdbcType=CHAR}, 
+      #{khid,jdbcType=VARCHAR}, #{pagecontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.shop.model.CustomPage" useGeneratedKeys="true" keyProperty="id" >
+    insert into custom_page
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pageid != null" >
+        pageid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTeim != null" >
+        update_teim,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="dsp != null" >
+        dsp,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="isindex != null" >
+        isIndex,
+      </if>
+      <if test="khid != null" >
+        khid,
+      </if>
+      <if test="pagecontent != null" >
+        pageContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pageid != null" >
+        #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTeim != null" >
+        #{updateTeim,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="dsp != null" >
+        #{dsp,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isindex != null" >
+        #{isindex,jdbcType=CHAR},
+      </if>
+      <if test="khid != null" >
+        #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="pagecontent != null" >
+        #{pagecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.shop.model.CustomPageExample" resultType="java.lang.Integer" >
+    select count(*) from custom_page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.shop.model.CustomPage" >
+    update custom_page
+    <set >
+      <if test="pageid != null" >
+        pageid = #{pageid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTeim != null" >
+        update_teim = #{updateTeim,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="dsp != null" >
+        dsp = #{dsp,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isindex != null" >
+        isIndex = #{isindex,jdbcType=CHAR},
+      </if>
+      <if test="khid != null" >
+        khid = #{khid,jdbcType=VARCHAR},
+      </if>
+      <if test="pagecontent != null" >
+        pageContent = #{pagecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="net.jeeshop.biz.shop.model.CustomPage" >
+    update custom_page
+    set pageid = #{pageid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_teim = #{updateTeim,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      dsp = #{dsp,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      isIndex = #{isindex,jdbcType=CHAR},
+      khid = #{khid,jdbcType=VARCHAR},
+      pageContent = #{pagecontent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.shop.model.CustomPage" >
+    update custom_page
+    set pageid = #{pageid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_teim = #{updateTeim,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      dsp = #{dsp,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      isIndex = #{isindex,jdbcType=CHAR},
+      khid = #{khid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updatePageHomeStatus" parameterType="java.lang.String">
+    update custom_page
+    set isIndex=0
+    where khid = #{khid,jdbcType=VARCHAR}
+  </update>
+</mapper>

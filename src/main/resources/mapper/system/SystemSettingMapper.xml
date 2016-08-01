@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.system.client.SystemSettingMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.system.model.SystemSetting" >
+    <id column="id" property="id" />
+    <result column="create_account" property="createAccount" />
+    <result column="create_time" property="createTime" />
+    <result column="update_account" property="updateAccount" />
+    <result column="update_time" property="updateTime" />
+    <result column="system_code" property="systemCode" />
+    <result column="app_name" property="appName" />
+    <result column="website" property="website" />
+    <result column="logo" property="logo" />
+    <result column="title" property="title" />
+    <result column="description" property="description" />
+    <result column="keywords" property="keywords" />
+    <result column="shortcut_icon" property="shortcutIcon" />
+    <result column="address" property="address" />
+    <result column="telphone" property="telphone" />
+    <result column="email" property="email" />
+    <result column="icp" property="icp" />
+    <result column="is_open" property="isOpen" />
+    <result column="close_msg" property="closeMsg" />
+    <result column="image_root_path" property="imageRootPath" />
+    <result column="default_product_img" property="defaultProductImg" />
+    <result column="style" property="style" />
+    <result column="version" property="version" />
+    <result column="statistics_code" property="statisticsCode" />
+    <result column="is_responsive" property="isResponsive" />
+    <result column="images" property="images" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_account, create_time, update_account, update_time, system_code, app_name, 
+    website, logo, title, description, keywords, shortcut_icon, address, telphone, email, 
+    icp, is_open, close_msg, image_root_path, default_product_img, style, version, statistics_code, 
+    is_responsive, images
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.system.model.SystemSettingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_system_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_system_setting
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_system_setting
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.system.model.SystemSetting" >
+    insert into sys_system_setting (id, create_account, create_time, update_account, update_time, 
+      system_code, app_name, website, logo, title, description, keywords, 
+      shortcut_icon, address, telphone, email, icp, is_open, close_msg, 
+      image_root_path, default_product_img, style, version, statistics_code, 
+      is_responsive, images)
+    values (#{id}, #{createAccount}, #{createTime}, #{updateAccount}, #{updateTime}, 
+      #{systemCode}, #{appName}, #{website}, #{logo}, #{title}, #{description}, #{keywords}, 
+      #{shortcutIcon}, #{address}, #{telphone}, #{email}, #{icp}, #{isOpen}, #{closeMsg}, 
+      #{imageRootPath}, #{defaultProductImg}, #{style}, #{version}, #{statisticsCode}, 
+      #{isResponsive}, #{images})
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.system.model.SystemSetting" >
+    insert into sys_system_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createAccount != null" >
+        create_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateAccount != null" >
+        update_account,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="systemCode != null" >
+        system_code,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="shortcutIcon != null" >
+        shortcut_icon,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="icp != null" >
+        icp,
+      </if>
+      <if test="isOpen != null" >
+        is_open,
+      </if>
+      <if test="closeMsg != null" >
+        close_msg,
+      </if>
+      <if test="imageRootPath != null" >
+        image_root_path,
+      </if>
+      <if test="defaultProductImg != null" >
+        default_product_img,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="statisticsCode != null" >
+        statistics_code,
+      </if>
+      <if test="isResponsive != null" >
+        is_responsive,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount},
+      </if>
+      <if test="createTime != null" >
+        #{createTime},
+      </if>
+      <if test="updateAccount != null" >
+        #{updateAccount},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime},
+      </if>
+      <if test="systemCode != null" >
+        #{systemCode},
+      </if>
+      <if test="appName != null" >
+        #{appName},
+      </if>
+      <if test="website != null" >
+        #{website},
+      </if>
+      <if test="logo != null" >
+        #{logo},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="keywords != null" >
+        #{keywords},
+      </if>
+      <if test="shortcutIcon != null" >
+        #{shortcutIcon},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="telphone != null" >
+        #{telphone},
+      </if>
+      <if test="email != null" >
+        #{email},
+      </if>
+      <if test="icp != null" >
+        #{icp},
+      </if>
+      <if test="isOpen != null" >
+        #{isOpen},
+      </if>
+      <if test="closeMsg != null" >
+        #{closeMsg},
+      </if>
+      <if test="imageRootPath != null" >
+        #{imageRootPath},
+      </if>
+      <if test="defaultProductImg != null" >
+        #{defaultProductImg},
+      </if>
+      <if test="style != null" >
+        #{style},
+      </if>
+      <if test="version != null" >
+        #{version},
+      </if>
+      <if test="statisticsCode != null" >
+        #{statisticsCode},
+      </if>
+      <if test="isResponsive != null" >
+        #{isResponsive},
+      </if>
+      <if test="images != null" >
+        #{images},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.system.model.SystemSettingExample" resultType="java.lang.Integer" >
+    select count(*) from sys_system_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.system.model.SystemSetting" >
+    update sys_system_setting
+    <set >
+      <if test="createAccount != null" >
+        create_account = #{createAccount},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime},
+      </if>
+      <if test="updateAccount != null" >
+        update_account = #{updateAccount},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime},
+      </if>
+      <if test="systemCode != null" >
+        system_code = #{systemCode},
+      </if>
+      <if test="appName != null" >
+        app_name = #{appName},
+      </if>
+      <if test="website != null" >
+        website = #{website},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo},
+      </if>
+      <if test="title != null" >
+        title = #{title},
+      </if>
+      <if test="description != null" >
+        description = #{description},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords},
+      </if>
+      <if test="shortcutIcon != null" >
+        shortcut_icon = #{shortcutIcon},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone},
+      </if>
+      <if test="email != null" >
+        email = #{email},
+      </if>
+      <if test="icp != null" >
+        icp = #{icp},
+      </if>
+      <if test="isOpen != null" >
+        is_open = #{isOpen},
+      </if>
+      <if test="closeMsg != null" >
+        close_msg = #{closeMsg},
+      </if>
+      <if test="imageRootPath != null" >
+        image_root_path = #{imageRootPath},
+      </if>
+      <if test="defaultProductImg != null" >
+        default_product_img = #{defaultProductImg},
+      </if>
+      <if test="style != null" >
+        style = #{style},
+      </if>
+      <if test="version != null" >
+        version = #{version},
+      </if>
+      <if test="statisticsCode != null" >
+        statistics_code = #{statisticsCode},
+      </if>
+      <if test="isResponsive != null" >
+        is_responsive = #{isResponsive},
+      </if>
+      <if test="images != null" >
+        images = #{images},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.system.model.SystemSetting" >
+    update sys_system_setting
+    set create_account = #{createAccount},
+      create_time = #{createTime},
+      update_account = #{updateAccount},
+      update_time = #{updateTime},
+      system_code = #{systemCode},
+      app_name = #{appName},
+      website = #{website},
+      logo = #{logo},
+      title = #{title},
+      description = #{description},
+      keywords = #{keywords},
+      shortcut_icon = #{shortcutIcon},
+      address = #{address},
+      telphone = #{telphone},
+      email = #{email},
+      icp = #{icp},
+      is_open = #{isOpen},
+      close_msg = #{closeMsg},
+      image_root_path = #{imageRootPath},
+      default_product_img = #{defaultProductImg},
+      style = #{style},
+      version = #{version},
+      statistics_code = #{statisticsCode},
+      is_responsive = #{isResponsive},
+      images = #{images}
+    where id = #{id}
+  </update>
+</mapper>

@@ -1,0 +1,245 @@
+@charset "UTF-8";
+/* 页面标题模块 */
+.e_1 {
+    letter-spacing: 1px;
+    word-spacing: 1px;
+
+}
+.e_1 .e_1-module-describe {
+    font-size: 16px;
+    line-height: 24px;
+    color: #999999;
+    padding: 40px;
+}
+.e_1 .e_1-edit {
+    padding: 39px;
+    height: 500px;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+}
+.e_1 .e_1-edit-box {
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #7f7f7f;
+    margin-bottom: 10px; }
+.e_1 .e_1-name {
+    display: block;
+    width: 70px;
+    float: left;
+    font-size: 14px;
+    color: #666666;
+}
+.e_1 .e_1-value {
+    height: 38px;
+    border: 1px solid #dcdcdc;
+    width: 502px;
+    float: left;
+    font-size: 14px;
+    padding: 0 12px; }
+.e_1 .error {
+    border: 1px solid red; }
+.e_1 input {
+    color: #111; }
+.e_1 input::-webkit-input-placeholder {
+    color: #111; }
+.e_1 .e_1-share {
+    font-size: 14px;
+    margin-left: 70px;
+    line-height: 32px;
+    height: 32px;
+    margin-top: -10px; }
+.e_1 .e_1-share em {
+    color: #b2b2b2;
+    float: left;
+    font-size: 12px;
+}
+.e_1 .e_1-share-btn {
+    color: #00a0e9;
+    font-size: 12px;
+    cursor: pointer;
+}
+.e_1 #e_1-share_bg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 800px;
+    z-index: 1001;
+    -moz-opacity: 0.7;
+    opacity: .70;
+    filter: alpha(opacity=70); }
+.e_1 #e_1-share_show {
+    display: none;
+    box-sizing:border-box;
+    position: absolute;
+    top: 360px;
+    left: 170px;
+    width: 380px;
+    height: 210px;
+    background-color: rgba(255,255,255,.9);
+    z-index: 1002;
+    overflow: auto;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.2);
+
+}
+.e_1 .e_1-share-header {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 19px;
+}
+.e_1 .e_1-share-header-name {
+    float: left;
+    line-height: 50px;
+    font-size: 14px;
+    color: #111111;
+}
+.e_1 #e_1-share-close {
+    width: 40px;
+    height: 50px;
+    float: right;
+    display: block;
+    background: url(../../images/decoration/drc_icon_close.png) right no-repeat;
+    cursor: pointer;
+}
+.e_1 .e_1-share-box {
+    width: 298px;
+    height: 95px;
+    margin: 0 20px 20px 20px;
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #666;
+}
+.e_1 .e_1-share-title {
+    line-height: 14px;
+    height: 14px;
+    font-size: 14px;
+    color: #666666;
+}
+.e_1 .e_1-share-details {
+    width: 298px;
+    height: 60px;
+    overflow: hidden;
+    margin-top: 20px;
+    font-size: 14px; }
+.e_1 .e_1-share-image{
+    max-width: 60px;
+    max-height: 60px;
+}
+.e_1 .e_1-share-image, .e_1 .e_1-share-describe {
+    float: left;
+}
+.e_1 .e_1-share-describe {
+    width: 218px;
+    font-size: 12px;
+    padding: 0 10px 10px 10px;
+    line-height: 14px;
+    color: #666666;
+}
+.e_1 .e_1-color-reset {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #00a0e9;
+    line-height: 40px;
+    height: 40px;
+    float: left;
+    display: block;
+    cursor: pointer;
+}
+.e_1 .e_1-color-reset.e_1-reset-doNotNeed{
+    color: #b2b2b2;
+    cursor: default;
+}
+.e_1 .e_1-bgcolor {
+    padding-top: 10px;
+}
+.e_1 .e_1-color-value {
+    width: 178px;
+    /*height: 18px;*/
+    float: left;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+}
+.e_1 .e_1-color-value p {
+    width: 178px;
+    height: 18px;
+    border: none; }
+.e_1 .clear {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both; }
+.e_1 .cancel {
+    width: 118px;
+    height: 36px;
+    border: 1px solid #dcdcdc;
+    text-align: center;
+    line-height: 36px;
+    display: block;
+    font-size: 14px;
+    float: right;
+    margin: 10px 10px 0 0; }
+.e_1 .confirm {
+    width: 120px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    display: block;
+    background: #fd4337;
+    color: #fff;
+    font-size: 14px;
+    float: right;
+    margin: 10px 10px 0 0; }
+.e_1 .err-msg {
+    color: red;
+    font-size: 16px;
+    margin-left: 70px;
+    height: 32px;
+    line-height: 32px;
+    margin-top: -10px; }
+.e_1 .e_1-color-picker {
+    margin: 15px 0 0 70px;
+
+}
+
+.e_1 .e_1_imgUpload{
+    margin: 0 0 10px 70px;
+    height: 60px;
+    line-height: 60px;
+}
+.e_1 .e_1_imgUpload .input-file{
+    cursor: pointer;
+}
+.e_1 .e_1_imgUpload .e_1_imgUpload_btn{
+    float: left;
+    position: relative;
+    width: 58px;
+    height: 58px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    background: url("https://d.weidian.com/images/decoration/dcr-icon-add1.png") center no-repeat #f9f9f9;
+}
+.e_1 .e_1_imgUpload .e_1_imgUpload_btn img{
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+.e_1 .e_1_imgUpload .e_1_imgUpload_input{
+    display: none;
+}
+.e_1 .e_1_imgUpload .e_1_imgUpload_desc{
+    color: #999999;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.e_1 .e_1_showUploadBtn .upload_plus:hover .e_1_imgUpload_btn:before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content:"";
+    background: url("https://d.weidian.com/images/decoration/dcr_icon_add2.png") center no-repeat rgba(0,0,0,.6);
+}

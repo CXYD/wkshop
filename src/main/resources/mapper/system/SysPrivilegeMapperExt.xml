@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.system.client.SysPrivilegeMapperExt" >
+
+  <insert id="insertPrivileges" parameterType="java.util.List">
+    insert into sys_privilege (id, role_id, resource_id,
+      create_time, update_time, create_Account,
+      update_Account)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.id,jdbcType=INTEGER},#{item.rid,jdbcType=INTEGER},#{item.mid,jdbcType=INTEGER},#{item.createTime,jdbcType=TIMESTAMP},
+      #{item.updateTime,jdbcType=TIMESTAMP},#{item.createAccount,jdbcType=VARCHAR},#{item.updateAccount,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByRoleId">
+    delete from sys_privilege
+    where role_id = #{value,jdbcType=INTEGER}
+  </delete>
+
+</mapper>

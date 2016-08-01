@@ -1,0 +1,24 @@
+.e99 {
+  font-size: 14px;
+  color: #666; }
+  .e99 .notice {
+    border-bottom: 1px solid #e7e7eb;
+    padding: 40px; }
+    .e99 .notice .notice-text {
+      font-size: 16px;
+      line-height: 24px;
+      color: #999; }
+      .e99 .notice .notice-text a {
+        color: #00a0e9; }
+  .e99 .e99-bg {
+    width: 600px;
+    margin: 20px auto; }
+  .e99 .e99-ueditor {
+    width: 600px;
+    min-height: 400px;
+    margin: 20px auto;
+    border: 1px solid #dcdcdc; }
+  .e99 .err-msg {
+    width: 600px;
+    margin: 0 auto;
+    color: red; }

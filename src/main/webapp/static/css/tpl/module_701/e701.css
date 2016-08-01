@@ -1,0 +1,190 @@
+@charset "UTF-8";
+.e701 {
+  font-size: 14px;
+  color: #666666; }
+  .e701 .notice {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 10px 40px 10px 40px; }
+    .e701 .notice .notice-text {
+      font-size: 16px;
+      line-height: 24px;
+      color: #999; }
+  .e701 .e701-edit-wrap {
+    width: 600px;
+    margin: 35px 0 60px 40px; }
+  .e701 .edit-select-goods-type {
+    margin-top: 14px;
+    height: 430px;
+    margin-bottom: 25px; }
+  .e701 .e701-edit-selection {
+    width: 100%;
+    margin-bottom: 14px; }
+    .e701 .e701-edit-selection:after {
+      content: ".";
+      height: 0;
+      display: block;
+      visibility: hidden;
+      clear: both; }
+    .e701 .e701-edit-selection .e701-edit-selection-title {
+      float: left;
+      padding-top: 15px; }
+    .e701 .e701-edit-selection .edit-zone {
+      box-sizing: border-box;
+      width: 530px;
+      padding: 20px;
+      border: 1px solid #e7e7e7;
+      background-color: #f8f8f8;
+      float: right;
+      color: #111111;
+      /* 设置自定义按钮样式，隐藏保存数组的input框 */
+      /* 自定义按钮样式 */
+      /* 自定义checkbox样式 */
+      /* 模板样式区 */
+      /* 列表名称区域 */
+      /* 添加商品区域 */ }
+      .e701 .e701-edit-selection .edit-zone.edit-zone-pbFix {
+        padding-bottom: 15px; }
+      .e701 .e701-edit-selection .edit-zone input[type="checkbox"], .e701 .e701-edit-selection .edit-zone input[type="radio"] {
+        display: none; }
+      .e701 .e701-edit-selection .edit-zone label {
+        margin-right: 20px;
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+        font-size: 14px;
+        line-height: 14px; }
+        .e701 .e701-edit-selection .edit-zone label:before {
+          content: "";
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          margin-right: 10px;
+          position: absolute;
+          left: 0;
+          bottom: -1px;
+          background-color: #FFFFFF !important;
+          border: 1px solid #cfcfcf; }
+      .e701 .e701-edit-selection .edit-zone input[type="radio"] + label:before {
+        border-radius: 50%; }
+      .e701 .e701-edit-selection .edit-zone input[type="radio"]:checked + label:before {
+        background: url(../../images/decoration/drc_checkRa.png) no-repeat 3px 4px; }
+      .e701 .e701-edit-selection .edit-zone input[type="checkbox"]:checked + label:before {
+        background: url(../../images/decoration/drc_checkCh.png) no-repeat center center; }
+      .e701 .e701-edit-selection .edit-zone .style-selector {
+        line-height: 14px;
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #dcdcdc; }
+      .e701 .e701-edit-selection .edit-zone .show-list-selector {
+        color: #111111; }
+        .e701 .e701-edit-selection .edit-zone .show-list-selector .checked {
+          color: #111111; }
+      .e701 .e701-edit-selection .edit-zone .list-name {
+        box-sizing: border-box;
+        width: 488px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #dcdcdc;
+        background-color: #FFFFFF;
+        padding: 0 12px; }
+        .e701 .e701-edit-selection .edit-zone .list-name .list-name-size {
+          color: #999;
+          float: right; }
+        .e701 .e701-edit-selection .edit-zone .list-name input[type="text"] {
+          width: 420px;
+          height: 30px;
+          font-size: 14px;
+          color: #111111; }
+      .e701 .e701-edit-selection .edit-zone .list-name-pos {
+        margin-top: 15px; }
+        .e701 .e701-edit-selection .edit-zone .list-name-pos label {
+          margin-right: 12px; }
+        .e701 .e701-edit-selection .edit-zone .list-name-pos.un-editable {
+          color: #111111; }
+          .e701 .e701-edit-selection .edit-zone .list-name-pos.un-editable input[type="radio"]:checked + label:before {
+            background: url(../../images/decoration/drc_disabled.png) no-repeat 3px 4px; }
+      .e701 .e701-edit-selection .edit-zone .add-item-by {
+        line-height: 14px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #dcdcdc; }
+      .e701 .e701-edit-selection .edit-zone .add-item-one {
+        margin-top: 20px; }
+        .e701 .e701-edit-selection .edit-zone .add-item-one .btn-add-item {
+          display: inline-block;
+          width: 104px;
+          height: 36px;
+          line-height: 36px;
+          background-color: #4a83dc;
+          text-align: center;
+          color: #fff;
+          border-radius: 2px; }
+      .e701 .e701-edit-selection .edit-zone .add-item-cate .add-item-cate-choice::after {
+        content: "";
+        display: table;
+        clear: both; }
+      .e701 .e701-edit-selection .edit-zone .add-item-cate .add-item-cate-choice > p {
+        float: left;
+        height: 34px;
+        line-height: 34px;
+        margin-right: 10px; }
+      .e701 .e701-edit-selection .edit-zone .add-item-cate .add-item-cate-choice > div {
+        box-sizing: border-box;
+        float: left;
+        border: 1px solid #dcdcdc;
+        width: 220px;
+        height: 34px;
+        line-height: 34px;
+        margin-bottom: 10px;
+        overflow: hidden; }
+        .e701 .e701-edit-selection .edit-zone .add-item-cate .add-item-cate-choice > div select {
+          width: 240px; }
+      .e701 .e701-edit-selection .edit-zone .add-item-cate .add-item-cate-choice input[type="number"] {
+        width: 220px;
+        padding-left: 12px;
+        background-color: #f8f8f8; }
+      .e701 .e701-edit-selection .edit-zone .show-one-item {
+        border: 1px solid #ededed;
+        color: #111;
+        padding: 10px;
+        background-color: #fff;
+        margin: 10px 0;
+        position: relative; }
+        .e701 .e701-edit-selection .edit-zone .show-one-item::after {
+          content: "";
+          display: table;
+          clear: both; }
+        .e701 .e701-edit-selection .edit-zone .show-one-item img {
+          width: 70px;
+          height: 70px;
+          margin-right: 10px;
+          float: left; }
+        .e701 .e701-edit-selection .edit-zone .show-one-item .show-one-item-name {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+        .e701 .e701-edit-selection .edit-zone .show-one-item .btns-show-one-item {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+          -moz-border-radius-topleft: 2px;
+          border-top-left-radius: 2px; }
+          .e701 .e701-edit-selection .edit-zone .show-one-item .btns-show-one-item a {
+            color: #fff;
+            text-align: center;
+            width: 48px;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            float: left;
+            font-size: 14px; }
+          .e701 .e701-edit-selection .edit-zone .show-one-item .btns-show-one-item .btn-show-one-item-edit {
+            display: none;
+            border-right: 1px solid #444; }
+  .e701 .item-list-search-wrap .item-btns .btn {
+    padding: 0; }
+  .e701 .warningOverLimit {
+    color: red; }

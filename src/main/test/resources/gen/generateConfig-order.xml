@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- This should cause an error because sqlMapGenerator is required
+         if there is no javaClientGenerator -->
+    <context id="system" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.ext.plugin.MapperFileOverwritePlugin">
+            <!-- 是否覆盖已经有的mapper文件，默认值为true -->
+            <!--<property name="mapperOverwrite" value="true"/>-->
+        </plugin>
+        <plugin type="org.mybatis.generator.ext.plugin.JshopCustomPlugin"/>
+        <commentGenerator type="org.mybatis.generator.ext.comment.CommentGeneratorExt"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://61.135.193.154:3306/jshop?characterEncoding=utf8&amp;allowMultiQueries=true"
+                        userId="zdh" password="asdjkl"/>
+
+        <javaModelGenerator targetPackage="net.jeeshop.biz.order.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="net.jeeshop.biz.base.model.BaseModel"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper.order"
+                         targetProject="src/main/resources">
+
+        </sqlMapGenerator>
+        <javaClientGenerator type="org.mybatis.generator.custom.javamapper.GenericJavaMapperGenerator" targetPackage="net.jeeshop.biz.order.client"
+                             targetProject="src/main/java">
+            <property name="rootInterface" value="net.jeeshop.biz.base.client.BaseMapper"/>
+        </javaClientGenerator>
+
+        <!--<table tableName="ord_member_favorite" domainObjectName="MemberFavorite">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="product_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order" domainObjectName="Order">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order_comment" domainObjectName="OrderComment">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <table tableName="ord_order_item" domainObjectName="OrderItem">
+            <columnOverride column="id" javaType="java.lang.Long"/>
+            <columnOverride column="member_id" javaType="java.lang.Long"/>
+            <columnOverride column="product_id" javaType="java.lang.Long"/>
+            <columnOverride column="order_id" javaType="java.lang.Long"/>
+        </table>
+
+        <!--<table tableName="ord_order_log" domainObjectName="OrderLog">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order_pay" domainObjectName="OrderPay">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order_pay_item" domainObjectName="OrderPayItem">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_pay_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order_pay_request" domainObjectName="OrderPayRequest">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_pay_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_order_ship" domainObjectName="OrderShip">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_refund_order" domainObjectName="RefundOrder">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_refund_order_item" domainObjectName="RefundOrderItem">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="return_order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_item_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="product_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_refund_payment" domainObjectName="RefundPayment">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="order_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="refund_order_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="ord_shopping_cart" domainObjectName="ShoppingCart">-->
+            <!--<columnOverride column="id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="product_id" javaType="java.lang.Long"/>-->
+            <!--<columnOverride column="member_id" javaType="java.lang.Long"/>-->
+        <!--</table>-->
+
+    </context>
+
+</generatorConfiguration>

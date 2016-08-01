@@ -1,0 +1,86 @@
+.ui-fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.ui-fade.ui-in{
+    opacity : 1
+}
+.ui-modal-open{
+    overflow: hidden;
+}
+.ui-modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 540;
+    background-color: #000;
+}
+.ui-modal-backdrop.ui-fade {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.ui-modal-backdrop.ui-in {
+    filter: alpha(opacity=50);
+    opacity: .7;
+}
+.ui-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 550;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.ui-modal.ui-fade .ui-modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition:      -o-transform .3s ease-out;
+    transition:         transform .3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+}
+.ui-modal.ui-in .ui-modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.ui-modal-open .ui-modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.ui-modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+.ui-modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    outline: 0;
+}
+
+/*模态窗尺寸样式*/
+/*第一种类型弹窗尺寸*/
+.ui-modal-dialog {
+    width: 772px;
+    margin: 100px auto 0;
+}
+/*第二种类型弹窗尺寸*/
+.ui-modal-m{
+    width: 720px;
+    margin : 200px auto 0;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.shop.client.ShopManagerMapper" >
+  <insert id="addManager" parameterType="net.jeeshop.biz.system.model.SysUser">
+    insert into sys_user(create_account,create_time,username,password,nickname,khid,role_id)
+	values(#{createAccount},#{createTime},#{username},#{password},#{nickname},#{khid},#{roleId})
+  </insert>
+    <select id="getManagerByName" parameterType="net.jeeshop.biz.system.model.SysUser" resultType="net.jeeshop.biz.system.model.SysUser">
+        SELECT * from sys_user where username=#{username}
+    </select>
+  <select id="getUserCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*) from sys_user where khid=#{khid}
+  </select>
+  <select id="getUserList" parameterType="net.jeeshop.web.util.Page" resultType="net.jeeshop.biz.system.model.SysUser">
+    select * from sys_user where khid=#{khid} and id limit #{startRecord},#{pageSize}
+  </select>
+  <select id="getUser" parameterType="java.lang.String" resultType="net.jeeshop.biz.system.model.SysUser">
+    select * from sys_user where username=#{username}
+  </select>
+  <update id="upManager" parameterType="net.jeeshop.biz.system.model.SysUser" >
+    update sys_user
+    set username=#{username},nickname=#{nickname},password=#{password}
+    where id=#{id}
+  </update>
+  <select id="getManagerNoID" parameterType="net.jeeshop.biz.system.model.SysUser" resultType="net.jeeshop.biz.system.model.SysUser">
+    SELECT * from sys_user where username=#{username} and id!=#{id}
+  </select>
+  <delete id="delManager" parameterType="net.jeeshop.biz.system.model.SysUser" >
+    delete from sys_user where username=#{username}
+  </delete>
+</mapper>

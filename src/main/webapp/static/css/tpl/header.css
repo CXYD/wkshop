@@ -1,0 +1,144 @@
+.wd-header{
+    width: 100%;
+}
+
+.wd-header .header-t{
+    width: 100%;
+    height: 30px;
+    position: relative;
+    background: #000;
+}
+
+.wd-header .header-t .banner{
+    width: 1200px;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 14px;
+    position: relative;
+}
+
+.wd-header .header-t .banner .banner-list{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.wd-header .header-t .banner .banner-list a{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding-left:15px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 300;
+    font-family:PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+}
+
+.wd-header .header-b{
+    width: 100%;
+    height: 79px;
+    font-size: 14px;
+    margin: 0 auto;
+    background: #3e3e3e;
+    border-top:1px solid #4d4d4d;
+    border-bottom:1px solid #4d4d4d;
+}
+
+.wd-header .header-b .header-b-c{
+    width: 1200px;
+    height: 78px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wd-header .header-b .header-b-c .header-b-l{
+    width: 255px;
+    height: 78px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.wd-header .header-b .header-b-c .header-b-r{
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips{
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding-right: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips span#hd_u_name{
+    display: none;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list-icon{
+    width: 12px;
+    height: 8px;
+    background: url(https://d.weidian.com/images/index/jt.png);
+    position: absolute;
+    right: 10px;
+    top: 9px;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list{
+    width: 180px;
+    padding: 10px 20px;
+    position: absolute;
+    top: 28px;
+    right: 0;
+    z-index: 1;
+    border:1px solid #ececeb;
+    background: #f6f6f6;
+    display: none;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list .tips-t{
+    padding-bottom: 7px;
+    border-bottom:1px solid #e3e3e4;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list .tips-t a{
+    display: block;
+    height:40px;
+    line-height: 40px;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list .tips-t a i{
+    font-style: normal;
+    color: #d98272;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list .tips-b{
+    padding-top: 10px;
+}
+
+.wd-header .header-b .header-b-r .wealth-tips .tips-list .tips-b a{
+    display: block;
+    height:40px;
+    line-height: 40px;
+}
+
+.wd-header .header-b .header-b-r a.quit{
+    display: inline-block;
+    padding-left: 8px;
+    color: #f8524a;
+}
+
+
+
+
+
+
+
+
+

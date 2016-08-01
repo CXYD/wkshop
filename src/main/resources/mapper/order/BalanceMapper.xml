@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.order.client.BalanceMapper" >
+  <resultMap id="BaseResultMap" type="net.jeeshop.biz.order.model.Balance" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="baldate" property="baldate" jdbcType="TIMESTAMP" />
+    <result column="incomeamount" property="incomeamount" jdbcType="DOUBLE" />
+    <result column="payamount" property="payamount" jdbcType="DOUBLE" />
+    <result column="balamount" property="balamount" jdbcType="DOUBLE" />
+    <result column="balstatus" property="balstatus" jdbcType="INTEGER" />
+    <result column="balman" property="balman" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, orderno, DATE_FORMAT(baldate, '%Y-%m-%d') as baldate, incomeamount, payamount, balamount,(CASE balstatus WHEN '0' THEN '待结算' WHEN '1' THEN '已申请' WHEN '2' THEN '已结算' END) AS balstatus,balman, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.BalanceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ba_balance
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ba_balance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ba_balance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.jeeshop.biz.order.model.Balance" >
+    insert into ba_balance (id, orderno, baldate, 
+      incomeamount, payamount, balamount, 
+      balstatus, balman, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderno,jdbcType=VARCHAR}, #{baldate,jdbcType=TIMESTAMP}, 
+      #{incomeamount,jdbcType=DOUBLE}, #{payamount,jdbcType=DOUBLE}, #{balamount,jdbcType=DOUBLE}, 
+      #{balstatus,jdbcType=INTEGER}, #{balman,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.biz.order.model.Balance" >
+    insert into ba_balance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+      <if test="baldate != null" >
+        baldate,
+      </if>
+      <if test="incomeamount != null" >
+        incomeamount,
+      </if>
+      <if test="payamount != null" >
+        payamount,
+      </if>
+      <if test="balamount != null" >
+        balamount,
+      </if>
+      <if test="balstatus != null" >
+        balstatus,
+      </if>
+      <if test="balman != null" >
+        balman,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="baldate != null" >
+        #{baldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incomeamount != null" >
+        #{incomeamount,jdbcType=DOUBLE},
+      </if>
+      <if test="payamount != null" >
+        #{payamount,jdbcType=DOUBLE},
+      </if>
+      <if test="balamount != null" >
+        #{balamount,jdbcType=DOUBLE},
+      </if>
+      <if test="balstatus != null" >
+        #{balstatus,jdbcType=INTEGER},
+      </if>
+      <if test="balman != null" >
+        #{balman,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.biz.order.model.BalanceExample" resultType="java.lang.Integer" >
+    select count(*) from ba_balance
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.order.model.Balance" >
+    update ba_balance
+    set orderno = #{orderno,jdbcType=VARCHAR},
+      baldate = #{baldate,jdbcType=TIMESTAMP},
+      incomeamount = #{incomeamount,jdbcType=DOUBLE},
+      payamount = #{payamount,jdbcType=DOUBLE},
+      balamount = #{balamount,jdbcType=DOUBLE},
+      balstatus = #{balstatus,jdbcType=INTEGER},
+      balman = #{balman,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="net.jeeshop.biz.order.model.Balance" >
+    update ba_balance
+    <set >
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="baldate != null" >
+        baldate = #{baldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incomeamount != null" >
+        incomeamount = #{incomeamount,jdbcType=DOUBLE},
+      </if>
+      <if test="payamount != null" >
+        payamount = #{payamount,jdbcType=DOUBLE},
+      </if>
+      <if test="balamount != null" >
+        balamount = #{balamount,jdbcType=DOUBLE},
+      </if>
+      <if test="balstatus != null" >
+        balstatus = #{balstatus,jdbcType=INTEGER},
+      </if>
+      <if test="balman != null" >
+        balman = #{balman,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

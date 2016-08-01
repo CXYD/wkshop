@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.jeeshop.biz.system.client.SysResourceMapperExt" >
+  <select id="selectByRoleId" resultMap="net.jeeshop.biz.system.client.SysResourceMapper.BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    m.*
+    from sys_resource m, sys_privilege p
+    where m.id = p.resource_id and p.role_id = #{rid}
+  </select>
+
+  <select id="selectByCondition" resultMap="net.jeeshop.biz.system.client.SysResourceMapper.BaseResultMap" parameterType="java.util.Map">
+      select m.*
+      from sys_resource m, sys_privilege p
+      where m.id = p.resource_id
+      and m.parent_id=#{pid}
+      <if test="rid != null">
+          and p.role_id = #{rid}
+      </if>
+
+  </select>
+</mapper>
