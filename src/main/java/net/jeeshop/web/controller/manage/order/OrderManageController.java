@@ -47,6 +47,7 @@ public class OrderManageController  extends ManageBaseController<OrderBean,Order
     @Autowired
     KeyValueService keyValueService;
 
+
     private static final String page_toList = "manage/order/orderList";
 
     private OrderManageController() {

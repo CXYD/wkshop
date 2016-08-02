@@ -14,7 +14,7 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>页面标题</title>
+    <title>首页</title>
     <!-- Bootstrap core CSS -->
     <link href="${basepath}/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="${basepath}/static/css/bootstrap-reset.css" rel="stylesheet">
@@ -510,10 +510,11 @@
 
 
 <div class="quick-nav" name="footer">
-    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/homePage?khid=${khid}"><img data-name="home" src="${basepath}/static/img/front/wscqt6-8-46.png" width="25"></a> </div>
-    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/classPage?khid=${khid}"><img  data-name="classPage" src="${basepath}/static/img/front/wscqt6-8-47.png" width="25"></a> </div>
-    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/findPage?khid=${khid}"><img data-name="findPage" src="${basepath}/static/img/front/wscqt6-8-48.png" width="25"></a> </div>
-    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/myPage?khid=${khid}"><img data-name="myPage" src="${basepath}/static/img/front/wscqt6-8-49.png" width="25"></a> </div>
+    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/homePage?khid=${khid}"><img <#--data-name="home"--> src="${basepath}/static/img/front/wscqt6-8-50.png" width="25"></a> </div>
+    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/classPage?khid=${khid}"><img  <#--data-name="classPage"--> src="${basepath}/static/img/front/wscqt6-8-47.png" width="25"></a> </div>
+    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/findPage?khid=${khid}"><img <#--data-name="findPage"-->
+            src="${basepath}/static/img/front/wscqt6-8-48.png" width="25"></a> </div>
+    <div class="col-xs-3 text-center"><a href="${basepath}/webapp/myPage?khid=${khid}"><img <#--data-name="myPage"--> src="${basepath}/static/img/front/wscqt6-8-49.png" width="25"></a> </div>
 </div>
 
 </body>

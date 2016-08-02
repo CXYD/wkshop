@@ -23,11 +23,11 @@
 
                             <p class="show-one-item-name ng-binding">商品标题</p>
 
-                            <p class="show-one-item-price ng-binding">￥0.00</p>
+                            <p class="show-one-item-price ng-binding">0.00</p>
 
                         </div>
                         <div class="add-item-one ng-scope" ng-if="templates.type==701">
-                            <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(0)">选择商品</a>
+                            <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(0)">添加商品</a>
                         </div>
 
 
@@ -36,14 +36,14 @@
 
                             <p class="show-one-item-name ng-binding">商品标题</p>
 
-                            <p class="show-one-item-price ng-binding">￥0.00</p>
+                            <p class="show-one-item-price ng-binding">0.00</p>
 
 
                         </div>
                         </div>
 
                     <div class="add-item-one ng-scope" ng-if="templates.type==701">
-                        <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(1)">选择商品</a>
+                        <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(1)">添加商品</a>
                     </div>
 
                     </div>

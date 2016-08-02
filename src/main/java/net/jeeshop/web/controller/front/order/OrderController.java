@@ -9,8 +9,6 @@ import net.jeeshop.biz.order.model.OrderExample;
 import net.jeeshop.biz.order.model.OrderItem;
 import net.jeeshop.biz.order.model.OrderItemExample;
 import net.jeeshop.biz.order.service.OrderService;
-import net.jeeshop.biz.product.model.ProductInfo;
-import net.jeeshop.biz.product.service.ProductInfoService;
 import net.jeeshop.web.controller.manage.ManageBaseController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +37,6 @@ public class OrderController  extends ManageBaseController<OrderBean,OrderExampl
     OrderService orderService;
     @Autowired
     OrderItemMapper orderItemMapper;
-
-    @Autowired
-    ProductInfoService productInfoService;
 
 
     @RequestMapping("searchOrder")
@@ -98,17 +93,12 @@ public class OrderController  extends ManageBaseController<OrderBean,OrderExampl
         OrderItemExample orderItemExample = new OrderItemExample();
         orderItemExample.createCriteria().andOrderIdEqualTo(orderBean.getId());
 
-        List<OrderItem> orderItemList = orderItemMapper.selectByExampleWithBLOBs(orderItemExample);
-        if(orderItemList==null || orderItemList.size()<1){
-            model.setViewName(page_noResult);
-        }else{
-            model.setViewName("front/order/orderDetail");
-        }
+        List<OrderItem> orderItemList = orderItemMapper.selectByExample(orderItemExample);
+
+        model.setViewName("front/order/orderDetail");
         model.addObject("order",orderBean);
 //        model.addObject("orderItemList",orderItemList);  如果存在多件商品，也就是有购物车概念的话，返回此处
         model.addObject("orderItem",orderItemList.get(0));
-        ProductInfo productInfo = productInfoService.selectById(orderItemList.get(0).getProductId());
-        model.addObject("productImgUrl",productInfo.getImg());
         return model;
     }
 

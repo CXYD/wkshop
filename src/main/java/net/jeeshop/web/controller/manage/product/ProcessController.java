@@ -76,18 +76,27 @@ public class ProcessController extends ManageBaseController {
 
         if (StringUtils.isNotBlank(name)) {//验证昵称是否被占用
             logger.debug("验证是否被占用:" + name);
-            String khid = LoginUserHolder.getLoginUser().getKhid();
+            String khid =  LoginUserHolder.getLoginUser().getKhid();
             ProcessInfoExample example = new ProcessInfoExample();
             example.createCriteria().andNameEqualTo(name).andKhidEqualTo(khid);
             ProcessInfo processInfo = processInfoService.selectUniqueByExample(example);
 
-            if (processInfo == null ) {
+            if (processInfo == null) {
                 //数据库中不存在此编码
                 return "ok";
             } else {
-                return "已被占用";
+//                if (e.getId() != null && e.getId().equals(user.getId())) {
+//                    //update操作，又是根据自己的编码来查询的，所以当然可以使用啦
+//                    return "{\"ok\":\"标签可以使用!\"}";
+//                } else {
+//                    //当前为insert操作，但是编码已经存在，则只可能是别的记录的编码
+                return "error";
+//                }
             }
-        } else
-            return "";
+        } else if (StringUtils.isNotBlank(name)) {//验证用户名是否被占用
+            logger.debug("验证流程是否被占用, name:" + name);
+            return "ok";
+        }
+        return null;
     }
 }

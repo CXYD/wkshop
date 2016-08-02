@@ -34,10 +34,7 @@ public class ProductClassService extends BaseService<ProductClass,ProductClassEx
         return productClassMapper;
     }
 
-    public PageBean<ProductClassBean> selectPageBean(final ProductClassExample params, PageQueryBean pageQueryBean) {
-
-
-
+    public PageBean<ProductClassBean> selectPageBean(final ProductClassBean params, PageQueryBean pageQueryBean) {
         return executePageQuery(new PageQueryExecutor<ProductClassBean>() {
             @Override
             public List<ProductClassBean> executeQuery() {

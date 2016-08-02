@@ -2,11 +2,11 @@ package net.jeeshop.web.controller.manage.shop;
 
 import net.jeeshop.biz.base.bean.PageBean;
 import net.jeeshop.biz.base.bean.PageQueryBean;
-import net.jeeshop.biz.base.service.BaseService;
 import net.jeeshop.biz.shop.model.BuySet;
 import net.jeeshop.biz.shop.model.ShopInfo;
 import net.jeeshop.biz.shop.service.ShopInfoService;
 import net.jeeshop.biz.shop.service.ShopManagerService;
+import net.jeeshop.biz.base.service.BaseService;
 import net.jeeshop.biz.system.model.SysUser;
 import net.jeeshop.biz.system.model.SysUserExample;
 import net.jeeshop.biz.system.service.UserService;

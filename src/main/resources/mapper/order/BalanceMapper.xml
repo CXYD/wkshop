@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, orderno, DATE_FORMAT(baldate, '%Y-%m-%d') as baldate, incomeamount, payamount, balamount,(CASE balstatus WHEN '0' THEN '待结算' WHEN '1' THEN '已申请' WHEN '2' THEN '已结算' END) AS balstatus,balman, remark
+    id, DATE_FORMAT(baldate, '%Y-%m-%d') as baldate, incomeamount, payamount, balamount,(CASE balstatus WHEN '0' THEN '待结算' WHEN '1' THEN '已申请' WHEN '2' THEN '已结算' END) AS balstatus,balman, remark
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.BalanceExample" >
     select
@@ -216,4 +216,15 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <insert id="addsettleRecordsBatch" useGeneratedKeys="true" parameterType="java.util.List">
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+    insert into ba_balance (incomeamount,payamount,khid,baldate)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.incomeamount},#{item.payamount},#{item.khid},#{item.baldate})
+    </foreach>
+  </insert>
 </mapper>

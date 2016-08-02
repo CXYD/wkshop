@@ -100,3 +100,4 @@
 <#--<link rel="stylesheet" href="${staticpath}/kindeditor-4.1.7/themes/default/default.css" />-->
 <#--<script charset="utf-8" src="${staticpath}/kindeditor-4.1.7/kindeditor-min.js"></script>-->
 <#--<script charset="utf-8" src="${staticpath}/kindeditor-4.1.7/lang/zh_CN.js"></script>-->
+<script type="text/javascript" src="${basepath}/static/assets/register/js/comm.js"></script>

@@ -679,4 +679,15 @@
       order by ${orderByClause}
     </if>
   </select>
+  <sql id="settle_Column_List" >
+        khid,SUM(amount) AS amount,SUM(commision) AS commision
+  </sql>
+  <select id="querySettleRecords" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="settle_Column_List" />
+    from ord_order where create_time BETWEEN CURDATE()-INTERVAL 1 DAY  AND CURDATE() GROUP BY khid
+  </select>
 </mapper>

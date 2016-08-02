@@ -5,8 +5,14 @@
         background:#dff0d8;
     }
 </style>
+<script>
+    function goBack(data){
+        $('.wraper').load('${basepath}/manage/order/orderManage/toOrderList')
+    }
+</script>
+
 <div class="btn-group">
-    <button type="button" class="btn btn-default"><a href="javascript:history.go(-1)">返回</a></button>
+    <button type="button" class="btn btn-default"><a href="javascript:goBack()">返回</a></button>
 </div>
     <div class="panel panel-default m-t-10 ">
         <div class="panel-heading ">
@@ -170,4 +176,3 @@
                         </form>
                     </div>
                     </div>
-<#--</@page.pageBase>-->

@@ -168,7 +168,6 @@
 
     <script>
         function toAddPage(){
-//            location.href="toAddPage";
             window.open("/wkshop/manage/pageManage/toAddPageNew")
         }
 

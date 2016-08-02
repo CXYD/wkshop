@@ -37,11 +37,9 @@ public class NumSerivce extends BaseService<NuberInfo,NuberInfoExample> {
         return nuberInfoMapper.selectKeyValue(khid);
     }
 
-    public int delByPici(Integer pici){
+    public int delByPici(String pici){
         return nuberInfoMapper.delByPici(pici);
     }
-
-    public int updateStateByPic(NuberInfo nuberInfo){return nuberInfoMapper.updateStateByPici(nuberInfo);}
 
     public List randTenPhoneNum(Integer numberid){
         return  nuberInfoMapper.randTenPhoneNum(numberid);

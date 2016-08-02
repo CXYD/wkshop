@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+
 /** Created with IntelliJ IDEA.
  * User: zhaodh
  * Date: 16/5/30
@@ -47,11 +49,7 @@ public class PageManageAction extends ManageBaseController{
        return page_toAdd;
     }
 
-    /**
-     * 新建页面
-     * @param model
-     * @return
-     */
+
     @RequestMapping("toAddPageNew")
     public String toAddPageNew(Model model){
 
@@ -101,6 +99,79 @@ public class PageManageAction extends ManageBaseController{
         return page_toEdit;
     }
 
+    /**
+     * 插入新模块
+     * @return
+     */
+    @RequestMapping("NewModel")
+    public String toNewModel(){
+        return "/manage/shop/pageManage/toNewModel";
+    }
+
+    /**
+     * 插入图片导航
+     * @return
+     */
+    @RequestMapping("PicNav")
+    public String toPicNav(){
+        return "/manage/shop/pageManage/toPicNav";
+    }
+
+    /**
+     * 插入文本导航
+     * @return
+     */
+    @RequestMapping("TextNav")
+    public String toTextNav(){
+        return "/manage/shop/pageManage/toTextNav";
+    }
+
+    /**
+     * 插入广告
+     * @param idx   图片编号，取值对应程序内的map
+     * @param model
+     * @return
+     */
+    @RequestMapping("Adv/{idx}")
+    public String toAdv(@PathVariable("idx") String idx,Model model){
+        HashMap<String,String> map = new HashMap<String, String>();
+        map.put("21","dpzxsyt-21,建议尺寸640 x 高度不限");
+        map.put("31","dpzxsyt-31,建议尺寸640 x 高度不限，且多图尺寸需相同");
+        String tmp = map.get(idx);
+        String picname = tmp.split(",")[0];
+        String desc = tmp.split(",")[1];
+        model.addAttribute("picname",picname);
+        model.addAttribute("desc",desc);
+
+        return "/manage/shop/pageManage/toAdv";
+    }
+
+    /**
+     * 插入两列广告
+     * @return
+     */
+    @RequestMapping("TwoColAdv")
+    public String toTwoColAdv(){
+        return "/manage/shop/pageManage/toTwoColAdv";
+    }
+
+    /**
+     * 插入商品列表
+     * @return
+     */
+    @RequestMapping("ProductList")
+    public String toProductList(){
+        return "/manage/shop/pageManage/toProductList";
+    }
+
+    /**
+     * 插入公告
+     * @return
+     */
+    @RequestMapping("Notice")
+    public String toNotice(){
+        return "/manage/shop/pageManage/toNotice";
+    }
 
 
     /**
@@ -230,7 +301,7 @@ public class PageManageAction extends ManageBaseController{
         }
         CustomPageExample customPageExample = new CustomPageExample();
         String khid =  LoginUserHolder.getLoginUser().getKhid();
-        customPageExample.createCriteria().andKhidEqualTo(khid);
+//        customPageExample.createCriteria().andKhdidEqualTo(khid);
         customPageExample.setOrderByClause(getOrderColumnData(request));
         PageBean pager = pageManageService.selectPageList(customPageExample, pageQueryBean);
         return pager;

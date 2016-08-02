@@ -26,7 +26,38 @@ public class CacheInitiator implements InitializingBean {
     @Autowired
     private SystemSettingService systemSettingService;
 //    @Autowired
-//
+//    private NewsService newsService;
+//    @Autowired
+//    private CatalogService catalogService;
+//    @Autowired
+//    private IndexImgService indexImgService;
+//    @Autowired
+//    private NavigationService navigationService;
+//    @Autowired
+//    private AttributeService attributeService;
+//    @Autowired
+//    private PayService payService;
+//    @Autowired
+//    private CommentTypeService commentTypeService;
+//    @Autowired
+//    private AreaService areaService;
+//    @Autowired
+//    private ExpressService expressService;
+//    @Autowired
+//    private AdvertService advertService;
+//    @Autowired
+//    private NotifyTemplateService notifyTemplateService;
+//    @Autowired
+//    //	private OssService ossService;
+//    private OrderService orderService;
+//    @Autowired
+//    private CommentService commentService;
+//    @Autowired
+//    private AccountRankService accountRankService;
+//    @Autowired
+//    private ActivityService activityService;
+//    @Autowired
+//    private HotqueryService hotqueryService;
 
 
     @Override

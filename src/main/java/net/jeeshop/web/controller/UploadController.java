@@ -1,7 +1,6 @@
 package net.jeeshop.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import net.jeeshop.web.util.pay.util.FuncUtils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,50 +33,41 @@ public class UploadController {
     public static final String STATUS_PARM_IS_EMPTY = "-1";
     public static final String STATUS_OK = "1";
     public static final String STATUS_EXECPTION = "0";
-
-    public static final String WEB_FILE_URL = "/upload/";
-
-
     static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @RequestMapping("upload")
     @ResponseBody
     public Object uploadImg(@RequestParam(value = "head_photo",required = false)MultipartFile imgFile, HttpServletRequest request){
         JSONObject resMap = new JSONObject();
-        logger.debug("接收上传文件{}", imgFile);
+        logger.debug("接收上传文件{}",imgFile);
         String originFileName = UUID.randomUUID().toString().replace("-","")+".png";
-        String dir=new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        logger.debug("根目录：{}",dir);
-        String uploadPath = dir + "/upload/";
         if (imgFile != null) {
             //获取保存的路径，
+            String realPath = request.getSession().getServletContext().getRealPath("/static/upload");
             if (imgFile.isEmpty()) {
                 // 未选择文件
                 resMap.put("status", STATUS_PARM_IS_EMPTY);
             } else{
+                // 文件原名称
+//                String originFileName = imgFile.getOriginalFilename();
                 try {
                     //这里使用Apache的FileUtils方法来进行保存
-                    FileUtils.copyInputStreamToFile(imgFile.getInputStream(), new File(uploadPath, originFileName));
+                    FileUtils.copyInputStreamToFile(imgFile.getInputStream(), new File(realPath, originFileName));
                     resMap.put("status", STATUS_OK);
-                    resMap.put("imgurl","/upload/"+originFileName);
+                    resMap.put("imgurl","/static/upload/"+File.separator+originFileName);
                 } catch (IOException e) {
+                    System.out.println("文件上传失败");
                     resMap.put("status", STATUS_EXECPTION);
                     logger.error("保存上传的文件出错");
                 }
             }
 
         }
-        return "/upload/"+File.separator+originFileName;
+        return "/wkshop/static/upload"+File.separator+originFileName;
 
 
     }
 
-    /**
-     * 页面配置
-     * @param request
-     * @param imgFile
-     * @return
-     */
     @RequestMapping(value = "imgUpload", method = RequestMethod.POST)
     @ResponseBody
     public Object imgUpload(HttpServletRequest request, MultipartFile imgFile){
@@ -86,24 +76,20 @@ public class UploadController {
         //errorMessage：上传失败，则是错误信息；上传成功，则提示成功以及显示文件上传后的地址
         String errorMessage = "";
 
-            String originFileName = UUID.randomUUID().toString().replace("-","")+".jpg";
+            String originFileName = UUID.randomUUID().toString().replace("-","")+".png";
             if(imgFile != null){
-                // TODO 测试
-//                String realPath = request.getSession().getServletContext().getRealPath("/static");
-                String realPath=new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-                logger.debug("根目录：{}",realPath);
-                String uploadPath = realPath + "/upload/";
+                String realPath = request.getSession().getServletContext().getRealPath("/static/upload");
                 if (imgFile.isEmpty()) {
                     errorMessage = "新增文件失败!";
                     // 未选择文件
                 } else{
+                    // 文件原名称
+//                String originFileName = imgFile.getOriginalFilename();
                     try {
                         //这里使用Apache的FileUtils方法来进行保存
-                        FileUtils.copyInputStreamToFile(imgFile.getInputStream(), new File(uploadPath, originFileName));
+                        FileUtils.copyInputStreamToFile(imgFile.getInputStream(), new File(realPath, originFileName));
 
-                        // TODO 测试
-//                        errorMessage="/static/upload/"+originFileName;
-                        errorMessage ="/upload/"+originFileName;
+                        errorMessage ="/static/upload/"+File.separator+originFileName;
                         flag = true;
                     } catch (IOException e) {
                         System.out.println("文件上传失败");
@@ -122,25 +108,22 @@ public class UploadController {
         return "<script>window.parent.uploadFailed('" + errorMessage + "');</script>";
     }
 
-    /**
-     * 上传产品图片
-     * @param file
-     * @param request
-     * @return
-     */
+
     @RequestMapping(value = "/uploadProductImg")
     @ResponseBody
     public Map upload(MultipartFile file, HttpServletRequest request) {
 
-//        String path = request.getSession().getServletContext().getRealPath("/static/productImg");//项目中的img文件夹下
-        String webAppPath=new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        String uploadPath = webAppPath +"/upload/productImg";
-        logger.debug("webapp路径={}", uploadPath);
+        System.out.println("开始");
+        String path = request.getSession().getServletContext().getRealPath("/static/productImg");//项目中的img文件夹下
+//        String fileName = file.getOriginalFilename();
+//        String fileName = new Date().getTime()+".jpg";
         String fileName = UUID.randomUUID().toString().replace("-","")+".jpg";
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("fileName", "/upload/productImg/"+fileName);
+        map.put("fileName",fileName);
 
-        File targetFile = new File(uploadPath, fileName);
+        System.out.println(fileName);
+        System.out.println(path);
+        File targetFile = new File(path, fileName);
         if(!targetFile.exists()){
             targetFile.mkdirs();
         }
@@ -152,6 +135,7 @@ public class UploadController {
             e.printStackTrace();
         }
 
+        System.out.println(fileName);
         return map;
     }
 
@@ -164,15 +148,15 @@ public class UploadController {
     @RequestMapping("uploadBASE64IMG")
     @ResponseBody
     public Object uploadIMG(String base64_string,HttpServletRequest request){
-//        String path = request.getSession().getServletContext().getRealPath("/static/upload/");
-        String dir=new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        String uploadPath = dir + "/upload/";
+        String path = request.getSession().getServletContext().getRealPath("/static/upload/");
+//        String fileName = file.getOriginalFilename();
+//        String fileName = new Date().getTime()+".jpg";
         JSONObject data = new JSONObject();
 
 
         String fileName ="userid_" + UUID.randomUUID().toString().replace("-","")+".jpg";
 
-        String imgFilePath = uploadPath +File.separator+ fileName;
+        String imgFilePath = path +File.separator+ fileName;
 
         if (base64_string == null) // 图像数据为空
             return false;
@@ -186,7 +170,6 @@ public class UploadController {
                 }
             }
             if(b.length/1024>2048){
-                logger.error("文件大于2M了{}",b.length/1024);
                 // 图片不能大于2M
                 data.put("status", 2);
             }else {
@@ -197,8 +180,8 @@ public class UploadController {
                 out.close();
 
                 data.put("status", 1);
-                data.put("content", "/upload/"+fileName);
-                logger.info("上传照片成功{}",fileName);
+                data.put("content", "/static/upload/"+fileName);
+                logger.info("上传照片成功");
             }
 
 
@@ -208,131 +191,6 @@ public class UploadController {
         }
 
         return data;
-    }
-
-
-
-
-
-    /**
-     * 上传身份证正面
-     * @param request
-     * @return
-     */
-    @RequestMapping("/uploadIDA")
-    @ResponseBody
-    public Object uploadIDA( HttpServletRequest request) {
-
-        String photoBase64 = request.getParameter("file_data");
-
-
-//        String uploadPath = request.getSession().getServletContext().getRealPath("/static/upload/");
-        String dir = new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        String uploadPath = dir + "/upload/";
-        JSONObject data = new JSONObject();
-
-
-        String fileName = "userid_" + UUID.randomUUID().toString().replace("-", "") + ".jpg";
-
-        int state =  decodeBase64ToImage(photoBase64,uploadPath,fileName);
-        logger.debug("状态:{}",state);
-        data.put("errorCode", state);
-        data.put("img1",true);
-        data.put("img1_url",WEB_FILE_URL+fileName);
-
-        return data;
-
-    }
-
-
-    /**
-     * 上传身份证背面
-     * @param request
-     * @return
-     */
-    @RequestMapping("/uploadIDB")
-    @ResponseBody
-    public Object uploadIDB( HttpServletRequest request) {
-
-        String photoBase64 = request.getParameter("file_data");
-
-//        String uploadPath = request.getSession().getServletContext().getRealPath("/static/upload/");
-        String dir = new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        String uploadPath = dir + "/upload/";
-        JSONObject data = new JSONObject();
-
-
-        String fileName = "userid_" + UUID.randomUUID().toString().replace("-", "") + ".jpg";
-
-        int state =  decodeBase64ToImage(photoBase64,uploadPath,fileName);
-        logger.debug("状态:{}",state);
-        data.put("errorCode", state);
-        data.put("img2",true);
-        data.put("img2_url",WEB_FILE_URL+fileName);
-
-        return data;
-
-    }
-
-    /**
-     * 上传手持照片
-     * @param request
-     * @return
-     */
-    @RequestMapping("/uploadIDC")
-    @ResponseBody
-    public Object uploadIDC( HttpServletRequest request) {
-
-        String photoBase64 = request.getParameter("file_data");
-
-//        String uploadPath = request.getSession().getServletContext().getRealPath("/static/upload/");
-        String dir = new File(request.getSession().getServletContext().getRealPath("/")).getParent();
-        String uploadPath = dir + "/upload/";
-        JSONObject data = new JSONObject();
-
-
-        String fileName = "userid_" + UUID.randomUUID().toString().replace("-", "") + ".jpg";
-
-        int state =  decodeBase64ToImage(photoBase64,uploadPath,fileName);
-        logger.debug("状态:{}",state);
-        data.put("errorCode", state);
-        data.put("img3",true);
-        data.put("img3_url",WEB_FILE_URL+fileName);
-
-        return data;
-
-    }
-
-
-
-
-    public static int decodeBase64ToImage(String base64, String path,String imgName) {
-        BASE64Decoder decoder = new BASE64Decoder();
-        try {
-
-            String fileExt = FuncUtils.substringBetween(base64,"data:image/", ";");
-            if(!"jpg".equals(fileExt) && !"jpeg".equals(fileExt) ){
-                    logger.debug("后缀：{}",fileExt);
-                    return 2;
-            }
-            String base64ImgData  = FuncUtils.substringBetween(base64, "base64,", "");
-
-//            logger.debug("数据：{}",base64ImgData);
-            byte[] decoderBytes = decoder.decodeBuffer(base64ImgData);
-            if (decoderBytes.length / 1024 > 3072) {
-                logger.error("文件大于3M了{}", decoderBytes.length / 1024);
-                // 图片不能大于2M
-               return 1;
-            } else {
-                FileOutputStream write = new FileOutputStream(new File(path + File.separator + imgName));
-                write.write(decoderBytes);
-                write.close();
-                return 0;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return 3;
-        }
     }
 
 

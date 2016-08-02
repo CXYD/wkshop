@@ -39,13 +39,17 @@
             swal('开始时间不能为空！');
             return false;
         }
+        if(baldate!="" && baldate==eTime){
+            swal('开始时间和结束时间不能相同！');
+            return false;
+        　　}
         if(baldate.substring(0,4)<eTime.substring(0,4)){
             swal("不允许跨年查询！");
             return false;
         }
         tables = $('#balancedataTable').DataTable({
             "bFilter": false, //搜索栏
-            "bSort": false, //是否支持排序功能
+           /* "bSort": false, //是否支持排序功能*/
             "processing": true,
             "serverSide": true,
             "destroy":true,
@@ -65,13 +69,13 @@
                 {name:"baldate", title:"时间", "orderable": true,data:"baldate",render:function(data,type,row,meat){
                     return data.substring(0,10);
                 }},
-                {name:"incomeamount","orderable": false, title:"收入金额", data:"incomeamount",render:function(data,type,row,meat){
+                {name:"incomeamount","orderable": true, title:"收入金额", data:"incomeamount",render:function(data,type,row,meat){
                     return toDecimal2(data);
                 }},
-                {name:"payamount","orderable": false, title:"支出金额", data:"payamount",render:function(data,type,row,meat){
+                {name:"payamount","orderable": true, title:"支出金额", data:"payamount",render:function(data,type,row,meat){
                     return toDecimal2(data);
                 }},
-                {name:"balamount","orderable": false, title:"结算金额", data:"balamount",render:function(data,type,row,meat){
+                {name:"balamount","orderable": true, title:"结算金额", data:"balamount",render:function(data,type,row,meat){
                     return toDecimal2(data);
                 }},
                 {name:"balstatus", title:"结算状态","orderable": false,  data:"balstatus"},
@@ -135,21 +139,34 @@
             var rowid = tables.row($(this).parents('tr')).data().id;
             var state = $(this).attr("state");
             if(state==1){
-                $.ajax({
-                    url: '${basepath}/manage/order/balance/updateById',
-                    type: 'POST',
-                    dataType: 'text',
-                    data: {id: rowid,status:state},
-                })
-                        .done(function(data) {
-                            if (data=="success") {
-                                tables.ajax.reload();
-                                swal("提示!", "申请成功.", "success");
-                            };
+                var yes = swal({
+                    title: "提示",
+                    text: "确定要申请结算吗？",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    closeOnConfirm: false
+                }, function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            url: '${basepath}/manage/order/balance/updateById',
+                            type: 'POST',
+                            dataType: 'text',
+                            data: {id: rowid,status:state},
                         })
-                        .fail(function() {
-                            swal("error");
-                        });
+                                .done(function(data) {
+                                    if (data=="success") {
+                                        tables.ajax.reload();
+                                        swal("提示!", "申请成功.", "success");
+                                    };
+                                })
+                                .fail(function() {
+                                    swal("error");
+                                });
+                    }
+                });
             }else if(state==2){
                 swal("提示!", "已经申请了.", "success");
             }

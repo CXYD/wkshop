@@ -149,7 +149,7 @@ public class ProductManageController extends ManageBaseController{
         productInfo.setUpTime(new Date());
         productInfo.setKhid(khid);
 
-//        productInfo.setStoreNums(store_nums.get(0));
+        productInfo.setStoreNums(store_nums.get(0));
         productInfo.setSellPrice(sell_price.get(0));
         productInfo.setCommission(commission.get(0));
         productInfo.setMonthPrice(month_price.get(0));
@@ -321,12 +321,9 @@ public class ProductManageController extends ManageBaseController{
             add("1");
             add("0");
         }});
+//        productInfoExample.setOrderByClause(getOrderColumnName(request));
         productInfoExample.setOrderByClause("create_time desc");
-
-        queryParams.setKhid(khid);
-
-        PageBean pager = productInfoService.selectPageBean(productInfoExample,pageQueryBean);
-
+        PageBean pager = productInfoService.selectPageList(productInfoExample, pageQueryBean);
         return pager;
     }
 

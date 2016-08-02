@@ -9,19 +9,16 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="member_id" property="memberId" jdbcType="BIGINT" />
     <result column="product_id" property="productId" jdbcType="BIGINT" />
-    <result column="goodsid" property="goodsid" jdbcType="BIGINT" />
     <result column="price" property="price" jdbcType="DOUBLE" />
     <result column="quantity" property="quantity" jdbcType="INTEGER" />
     <result column="amount" property="amount" jdbcType="DOUBLE" />
     <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="newmob" property="newmob" jdbcType="VARCHAR" />
     <result column="oldmob" property="oldmob" jdbcType="VARCHAR" />
     <result column="cardprice" property="cardprice" jdbcType="DOUBLE" />
     <result column="firstfee" property="firstfee" jdbcType="DOUBLE" />
     <result column="issales" property="issales" jdbcType="CHAR" />
     <result column="product_name" property="productName" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="net.jeeshop.biz.order.model.OrderItem" extends="BaseResultMap" >
-    <result column="newmob" property="newmob" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -83,28 +80,9 @@
   </sql>
   <sql id="Base_Column_List" >
     id, create_account, create_time, update_account, update_time, member_id, product_id, 
-    goodsid, price, quantity, amount, order_id, oldmob, cardprice, firstfee, issales, 
+    price, quantity, amount, order_id, newmob, oldmob, cardprice, firstfee, issales, 
     product_name
   </sql>
-  <sql id="Blob_Column_List" >
-    newmob
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="net.jeeshop.biz.order.model.OrderItemExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from ord_order_item
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.order.model.OrderItemExample" >
     select
     <if test="distinct" >
@@ -119,11 +97,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from ord_order_item
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -134,18 +110,16 @@
   <insert id="insert" parameterType="net.jeeshop.biz.order.model.OrderItem" >
     insert into ord_order_item (id, create_account, create_time, 
       update_account, update_time, member_id, 
-      product_id, goodsid, price, 
-      quantity, amount, order_id, 
+      product_id, price, quantity, 
+      amount, order_id, newmob, 
       oldmob, cardprice, firstfee, 
-      issales, product_name, newmob
-      )
+      issales, product_name)
     values (#{id,jdbcType=BIGINT}, #{createAccount,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateAccount,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{memberId,jdbcType=BIGINT}, 
-      #{productId,jdbcType=BIGINT}, #{goodsid,jdbcType=BIGINT}, #{price,jdbcType=DOUBLE}, 
-      #{quantity,jdbcType=INTEGER}, #{amount,jdbcType=DOUBLE}, #{orderId,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=BIGINT}, #{price,jdbcType=DOUBLE}, #{quantity,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DOUBLE}, #{orderId,jdbcType=VARCHAR}, #{newmob,jdbcType=VARCHAR}, 
       #{oldmob,jdbcType=VARCHAR}, #{cardprice,jdbcType=DOUBLE}, #{firstfee,jdbcType=DOUBLE}, 
-      #{issales,jdbcType=CHAR}, #{productName,jdbcType=VARCHAR}, #{newmob,jdbcType=LONGVARCHAR}
-      )
+      #{issales,jdbcType=CHAR}, #{productName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="net.jeeshop.biz.order.model.OrderItem" >
     insert into ord_order_item
@@ -171,9 +145,6 @@
       <if test="productId != null" >
         product_id,
       </if>
-      <if test="goodsid != null" >
-        goodsid,
-      </if>
       <if test="price != null" >
         price,
       </if>
@@ -185,6 +156,9 @@
       </if>
       <if test="orderId != null" >
         order_id,
+      </if>
+      <if test="newmob != null" >
+        newmob,
       </if>
       <if test="oldmob != null" >
         oldmob,
@@ -200,9 +174,6 @@
       </if>
       <if test="productName != null" >
         product_name,
-      </if>
-      <if test="newmob != null" >
-        newmob,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -227,9 +198,6 @@
       <if test="productId != null" >
         #{productId,jdbcType=BIGINT},
       </if>
-      <if test="goodsid != null" >
-        #{goodsid,jdbcType=BIGINT},
-      </if>
       <if test="price != null" >
         #{price,jdbcType=DOUBLE},
       </if>
@@ -241,6 +209,9 @@
       </if>
       <if test="orderId != null" >
         #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="newmob != null" >
+        #{newmob,jdbcType=VARCHAR},
       </if>
       <if test="oldmob != null" >
         #{oldmob,jdbcType=VARCHAR},
@@ -256,9 +227,6 @@
       </if>
       <if test="productName != null" >
         #{productName,jdbcType=VARCHAR},
-      </if>
-      <if test="newmob != null" >
-        #{newmob,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -289,9 +257,6 @@
       <if test="productId != null" >
         product_id = #{productId,jdbcType=BIGINT},
       </if>
-      <if test="goodsid != null" >
-        goodsid = #{goodsid,jdbcType=BIGINT},
-      </if>
       <if test="price != null" >
         price = #{price,jdbcType=DOUBLE},
       </if>
@@ -303,6 +268,9 @@
       </if>
       <if test="orderId != null" >
         order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="newmob != null" >
+        newmob = #{newmob,jdbcType=VARCHAR},
       </if>
       <if test="oldmob != null" >
         oldmob = #{oldmob,jdbcType=VARCHAR},
@@ -319,31 +287,7 @@
       <if test="productName != null" >
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="newmob != null" >
-        newmob = #{newmob,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="net.jeeshop.biz.order.model.OrderItem" >
-    update ord_order_item
-    set create_account = #{createAccount,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_account = #{updateAccount,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      member_id = #{memberId,jdbcType=BIGINT},
-      product_id = #{productId,jdbcType=BIGINT},
-      goodsid = #{goodsid,jdbcType=BIGINT},
-      price = #{price,jdbcType=DOUBLE},
-      quantity = #{quantity,jdbcType=INTEGER},
-      amount = #{amount,jdbcType=DOUBLE},
-      order_id = #{orderId,jdbcType=VARCHAR},
-      oldmob = #{oldmob,jdbcType=VARCHAR},
-      cardprice = #{cardprice,jdbcType=DOUBLE},
-      firstfee = #{firstfee,jdbcType=DOUBLE},
-      issales = #{issales,jdbcType=CHAR},
-      product_name = #{productName,jdbcType=VARCHAR},
-      newmob = #{newmob,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="net.jeeshop.biz.order.model.OrderItem" >
@@ -354,11 +298,11 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       member_id = #{memberId,jdbcType=BIGINT},
       product_id = #{productId,jdbcType=BIGINT},
-      goodsid = #{goodsid,jdbcType=BIGINT},
       price = #{price,jdbcType=DOUBLE},
       quantity = #{quantity,jdbcType=INTEGER},
       amount = #{amount,jdbcType=DOUBLE},
       order_id = #{orderId,jdbcType=VARCHAR},
+      newmob = #{newmob,jdbcType=VARCHAR},
       oldmob = #{oldmob,jdbcType=VARCHAR},
       cardprice = #{cardprice,jdbcType=DOUBLE},
       firstfee = #{firstfee,jdbcType=DOUBLE},

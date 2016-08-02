@@ -23,7 +23,7 @@ import java.io.IOException;
 @Controller
 public class QRCodeController {
 
-    private final static String HOSTURL = "http://wx.wokuan.cn:8181/wkshop/";
+    private final static String HOSTURL = "http://test.vipwoo.com:8080/wkshop/";
 
     static final Logger logger = org.slf4j.LoggerFactory.getLogger(QRCodeController.class);
 

@@ -20,7 +20,7 @@
                         <div class="show-one-item ng-scope">
                             <img src="https://d.weidian.com/images/decoration/dcr-default-bg5.jpg">
                             <p class="show-one-item-name ng-binding">商品标题</p>
-                            <p class="show-one-item-price ng-binding">￥0.00</p>
+                            <p class="show-one-item-price ng-binding">0.00</p>
                             <#--<div class="btns-show-one-item">-->
                                 <#--<a href="javascript:void(0)" class="btn-show-one-item-edit" ng-click="editItem(this)">编辑</a>-->
                                 <#--<a href="javascript:void(0)" class="btn-show-one-item-delete" ng-click="deleteItem($index)">删除</a>-->
@@ -28,7 +28,7 @@
                         </div>
 
                     <div class="add-item-one ng-scope">
-                        <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(0)">选择商品</a>
+                        <a href="javascript:void(0)" class="btn-add-item" onclick="addItem(0)">添加商品</a>
                     </div>
 
                     </div>
