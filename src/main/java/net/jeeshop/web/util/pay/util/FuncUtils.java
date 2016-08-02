@@ -7,7 +7,6 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -1057,25 +1056,6 @@ public class FuncUtils{
             temp = temp.substring(0, temp.length() - 1);
         }
         return temp;
-    }
-
-
-    /**
-     * 截取两个字符串之间的值
-     * @param str
-     * @param start
-     * @param end
-     * @return
-     */
-    public static  String substringBetween(String str,String start, String end){
-
-        String regex = start+"(.*)"+end;
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-           return  matcher.group(1);
-        }
-        return "";
     }
 
     public static void main(String[] args)

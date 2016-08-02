@@ -44,17 +44,6 @@ public class WebAppController extends FrontBaseController{
     @Autowired
     ShopInfoService shopInfoService;
 
-    static String PAGE_TYPE_FOR_PRODUCT = "1";
-    static String PAGE_TYPE_FOR_CLASS = "2";
-    static String PAGE_TYPE_FOR_CONSTOME = "3";
-
-
-    /**
-     * 自定义页面
-     * @param id
-     * @param model
-     * @return
-     */
     @RequestMapping(value = "{id}")
     public String frontIndex(@PathVariable long id,Model model){
         logger.debug("前台首页");
@@ -66,35 +55,6 @@ public class WebAppController extends FrontBaseController{
         return "front/pageTpl";
     }
 
-
-    /**
-     * 根据类型跳转到不同页面
-     * @param type
-     * @param id
-     * @return
-     */
-    @RequestMapping("dspPage")
-    public String dispatcherPage(String type, String id){
-
-        if(PAGE_TYPE_FOR_PRODUCT.equals(type)){
-            return "forward:/v1/goods/"+id;
-        }else if(PAGE_TYPE_FOR_CONSTOME.equals(type)){
-            return "forward:/webapp/"+id;
-        }else{
-            return "";
-        }
-
-
-
-    }
-
-
-    /**
-     * 首页
-     * @param khid
-     * @param model
-     * @return
-     */
     @RequestMapping(value = "homePage")
     public String homePage( String khid,Model model){
         CustomPageExample customPageExample = new CustomPageExample();

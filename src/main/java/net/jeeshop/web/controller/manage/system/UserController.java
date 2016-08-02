@@ -90,7 +90,6 @@ public class UserController extends ManageBaseController<SysUser, SysUserExample
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(HttpSession session) {
         if (session.getAttribute(ManageContainer.manage_session_user_info) != null) {
-            logger.debug("有session");
             return "redirect:/manage/user/home";
         }
         return page_input;
@@ -124,7 +123,7 @@ public class UserController extends ManageBaseController<SysUser, SysUserExample
             model.addAttribute("errorMsg", errorMsg);
             return page_input;
         } else if (u.getIsValid() != null && u.getIsValid() == false) {
-            errorMsg = "帐号已被禁用，请联系管理员!";
+            errorMsg = "帐号审核中，请联系管理员!";
             logger.error("帐号已被禁用，请联系管理员,{}", u.getUsername());
             model.addAttribute("errorMsg", errorMsg);
             return page_input;
@@ -132,6 +131,7 @@ public class UserController extends ManageBaseController<SysUser, SysUserExample
         LoginUserHolder.setLoginUser(u);
         //用户可访问的菜单写入session
         LoginUserHolder.setLoginUserMenus(menuService.loadMenus(u));
+        String accountflag = "0";
         try {
             systemLogService.newLog("login", "login", LogType.login);
             //判断是不是超级管理员

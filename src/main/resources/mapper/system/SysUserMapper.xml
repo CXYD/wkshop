@@ -222,6 +222,9 @@
       <if test="email != null" >
         email = #{email},
       </if>
+      <if test="khid != null" >
+        khid = #{khid}
+      </if>
     </set>
     where id = #{id}
   </update>
@@ -242,5 +245,20 @@
   <select id="getUserByName" parameterType="net.jeeshop.biz.system.model.SysUser"
           resultType="net.jeeshop.biz.system.model.SysUser">
     select * from sys_user where username=#{username}
+  </select>
+
+  <select id="queryIsCreateShop" resultMap="BaseResultMap" parameterType="net.jeeshop.biz.system.model.SysUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user u left join shop_info s
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
 </mapper>

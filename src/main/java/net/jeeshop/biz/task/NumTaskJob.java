@@ -33,7 +33,6 @@ public class NumTaskJob {
 //    * 通配符
 //    ? 你不想设置那个字段
 
-    //过期时间要与订单过期时间一致
     @Scheduled(cron="0 * * * * *")
     public void checkNumExpires(){
         logger.info("校验占用过期号码");

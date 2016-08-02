@@ -1,6 +1,6 @@
 <div class="dcr-dragContent">
     <div class="module_701 702">
-        <div class="model_701-title " style="display:none">ddd</div>
+
 
         <ul class="double-line style_2">
 

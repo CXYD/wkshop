@@ -55,21 +55,17 @@ public class ClassController extends ManageBaseController<ProductClass,ProductCl
      */
     @RequestMapping("loadData")
     @ResponseBody
-    public PageBean<ProductClassBean> loadData(ProductClassBean queryParams, PageQueryBean pageQueryBean) {
+    public PageBean<ProductLabel> loadData(ProductClassBean queryParams, PageQueryBean pageQueryBean) {
         logger.debug("加载数据....");
         ProductClassExample productClassExample = new ProductClassExample();
         if (LoginUserHolder.getLoginUser() == null) {
             return null;
         }
         String khid =  LoginUserHolder.getLoginUser().getKhid();
-        queryParams.setKhid(khid);
         productClassExample.createCriteria().andKhidEqualTo(khid);
 //        productClassExample.setOrderByClause(getOrderColumnData(request));
         productClassExample.setOrderByClause("createtime desc");
-//        PageBean pager = productClassService.selectPageList(productClassExample, pageQueryBean);
-
-        PageBean pager = productClassService.selectPageBean(productClassExample,pageQueryBean);
-
+        PageBean pager = productClassService.selectPageList(productClassExample, pageQueryBean);
         return pager;
     }
 

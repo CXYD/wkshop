@@ -551,66 +551,6 @@ public class OrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsidIsNull() {
-            addCriterion("goodsid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidIsNotNull() {
-            addCriterion("goodsid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidEqualTo(Long value) {
-            addCriterion("goodsid =", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidNotEqualTo(Long value) {
-            addCriterion("goodsid <>", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidGreaterThan(Long value) {
-            addCriterion("goodsid >", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidGreaterThanOrEqualTo(Long value) {
-            addCriterion("goodsid >=", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidLessThan(Long value) {
-            addCriterion("goodsid <", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidLessThanOrEqualTo(Long value) {
-            addCriterion("goodsid <=", value, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidIn(List<Long> values) {
-            addCriterion("goodsid in", values, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidNotIn(List<Long> values) {
-            addCriterion("goodsid not in", values, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidBetween(Long value1, Long value2) {
-            addCriterion("goodsid between", value1, value2, "goodsid");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsidNotBetween(Long value1, Long value2) {
-            addCriterion("goodsid not between", value1, value2, "goodsid");
-            return (Criteria) this;
-        }
-
         public Criteria andPriceIsNull() {
             addCriterion("price is null");
             return (Criteria) this;
@@ -858,6 +798,76 @@ public class OrderItemExample {
 
         public Criteria andOrderIdNotBetween(Long value1, Long value2) {
             addCriterion("order_id not between", value1, value2, "orderId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobIsNull() {
+            addCriterion("newmob is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobIsNotNull() {
+            addCriterion("newmob is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobEqualTo(String value) {
+            addCriterion("newmob =", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobNotEqualTo(String value) {
+            addCriterion("newmob <>", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobGreaterThan(String value) {
+            addCriterion("newmob >", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobGreaterThanOrEqualTo(String value) {
+            addCriterion("newmob >=", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobLessThan(String value) {
+            addCriterion("newmob <", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobLessThanOrEqualTo(String value) {
+            addCriterion("newmob <=", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobLike(String value) {
+            addCriterion("newmob like", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobNotLike(String value) {
+            addCriterion("newmob not like", value, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobIn(List<String> values) {
+            addCriterion("newmob in", values, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobNotIn(List<String> values) {
+            addCriterion("newmob not in", values, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobBetween(String value1, String value2) {
+            addCriterion("newmob between", value1, value2, "newmob");
+            return (Criteria) this;
+        }
+
+        public Criteria andNewmobNotBetween(String value1, String value2) {
+            addCriterion("newmob not between", value1, value2, "newmob");
             return (Criteria) this;
         }
 

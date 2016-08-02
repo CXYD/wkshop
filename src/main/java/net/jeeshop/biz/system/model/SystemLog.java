@@ -1,30 +1,25 @@
 package net.jeeshop.biz.system.model;
 
-import java.io.Serializable;
-import java.util.Date;
 import net.jeeshop.biz.base.model.BaseModel;
 import net.jeeshop.biz.system.enums.LogType;
 
+import java.io.Serializable;
+import java.util.Date;
+
 public class SystemLog extends BaseModel implements Serializable {
-    /** æ ‡é¢˜ */
     private String title;
 
-    /** æ—¥å¿—å†…å®¹ */
     private String content;
 
-    /** æ—¥å¿—ç±»åž‹ */
     private LogType logType;
 
-    /** æ—¥å¿—ç”¨æˆ· */
     private String account;
 
     /** sys_system_log.login_ip */
     private String loginIp;
 
-    /** ç™»å½•åŒºåŸŸ */
     private String loginArea;
 
-    /** æ—¥å¿—è®°å½•æ—¶é—´ */
     private Date logTime;
     private Date endTime;
 

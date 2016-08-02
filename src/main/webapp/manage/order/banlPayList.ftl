@@ -43,6 +43,10 @@
             swal('结束时间不能为空！');
             return false;
         　　}
+        if(ftime!="" && ftime==eTime){
+            swal('开始时间和结束时间不能相同！');
+            return false;
+        　　}
         if(eTime!="" && ftime==""){
             swal('完成时间不能为空！');
             return false;

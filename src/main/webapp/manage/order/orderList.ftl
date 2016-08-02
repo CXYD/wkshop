@@ -47,6 +47,10 @@
 
             return false;
         　　}
+        　  if(createTime!="" && createTime==endTime){
+            swal('开始时间和结束时间不能相同！');
+            return false;
+        　　}
          if(endTime!="" && createTime==""){
              swal('开始时间不能为空！');
              return false;
@@ -60,7 +64,6 @@
         }
           paySelect=$('#paySelect').val();
           tables = $('#orderdataTable').DataTable({
-          "bSort": false, //是否支持排序功能
           "scrollX": "120%",   //表格的宽度
           "scrollXInner": "130%",   //表格的内容宽度\
             "bFilter": false, //搜索栏
@@ -90,13 +93,13 @@
                      return '<input type="checkbox" name="ids" value="'+data+'"/>';
                  }},*/
                 {name:"order_num","orderable": true, title:"订单号", data:"orderNum"},
-                {name:"create_time","orderable": true, title:"下单时间", data:"createTime"},
+                {name:"o.create_time","orderable": true, title:"下单时间", data:"createTime"},
                 {name:"productName","orderable": false, title:"商品名称", data:"productName"},
                 {name:"price","orderable": false, title:"单价", data:"price",render:function(data,type,row,meat){
                     return toDecimal2(data)
                 }},
-                {name:"quantity","orderorderableable": false, title:"数量", data:"quantity"},
-                {name:"linkman","": false, title:"联系人", data:"linkman"},
+                {name:"quantity","orderable": false, title:"数量", data:"quantity"},
+                {name:"linkman", "orderable": false, title:"联系人", data:"linkman"},
                 {name:"contractmobile","orderable": false, title:"联系手机", data:"contractmobile"},
                 {name:"paytype", title:"支付方式","orderable": false,  data:"paytype"},
                 {name:"amount","orderable": false, title:"实付金额", data:"amount",render:function(data,type,row,meat){

@@ -159,7 +159,7 @@ public class PackageController extends ManageBaseController {
         String khid =  LoginUserHolder.getLoginUser().getKhid();
 
         packageInfo.setSpecArray(spec_array.get(0).toString());
-        packageInfo.setStatus("1");
+        packageInfo.setStatus("0");
         packageInfo.setCreateTime(new Date());
         packageInfo.setKhid(khid);
 

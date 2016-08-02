@@ -27,12 +27,10 @@ public interface NuberInfoMapper extends BaseMapper<NuberInfo, NuberInfoExample>
 
     List selectKeyValue(String khid);
 
-    int delByPici(Integer pici);
+    int delByPici(String pici);
 
     List randTenPhoneNum(int numberid);
 
 
     void updateExpires();
-
-    int updateStateByPici(NuberInfo nuberInfo);
 }

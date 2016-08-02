@@ -358,7 +358,7 @@
 
 <script>
     var page = {};
-    var editPageId = '${id!""}';
+    var editPageId = ${id};
     /**
      * 页面初始化加载
      */
@@ -371,7 +371,6 @@
         initCustomPage();
         initProductSelectTable();
 
-        if(editPageId!="")
         initEditPage();
 
 
@@ -397,8 +396,6 @@
                 console.log("查询返回",page);
                 tpls=JSON.parse(page.pagecontent);
                 console.log(tpls);
-                way.set('title', tpls.title)
-//                way.set('temp_info',tpls.temp_info);
                 initLeftModule(tpls.temp_info);
             }
         })
@@ -414,18 +411,15 @@
            if(tpl_info[i].type!=undefined){
                j = i+1;
                temp_info = tpl_info[i];
-               leftLoadModule('',tpl_info[i].type,temp_info);
+               leftLoadModule('',tpl_info[i].type);
                break;
            }
         }
-//        console.log("j=",j);
+        console.log("j=",j);
         for(j; j<tpl_info.length;j++){
             console.log("加载模块：=",tpl_info[j].type);
-            if(tpl_info[j].type!=undefined){
-                temp_info = tpl_info[j];
-                leftLoadModule($("#currModule").val(),tpl_info[j].type,temp_info);
-
-            }
+            temp_info = tpl_info[j];
+            leftLoadModule($("#currModule").val(),tpl_info[j].type);
 
         }
         rightLoadModule();

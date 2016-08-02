@@ -130,7 +130,7 @@ public class NumberController extends ManageBaseController {
     }
 
     @RequestMapping("deletePici")
-    public @ResponseBody Object deletePici(Integer pici){
+    public @ResponseBody Object deletePici(String pici){
         return numSerivce.delByPici(pici);
     }
 

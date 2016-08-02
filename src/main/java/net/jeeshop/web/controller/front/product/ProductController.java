@@ -1,19 +1,23 @@
 package net.jeeshop.web.controller.front.product;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.jeeshop.biz.base.service.BaseService;
 import net.jeeshop.biz.data.model.NuberInfo;
 import net.jeeshop.biz.data.model.NuberInfoExample;
 import net.jeeshop.biz.data.service.NumSerivce;
 import net.jeeshop.biz.order.bean.OrderBean;
+import net.jeeshop.biz.order.client.OrderItemMapper;
+import net.jeeshop.biz.order.client.OrderMapper;
+import net.jeeshop.biz.order.client.OrderPayMapper;
+import net.jeeshop.biz.order.client.OrderPayRequestMapper;
 import net.jeeshop.biz.order.model.*;
-import net.jeeshop.biz.order.service.OrderPayRequestService;
-import net.jeeshop.biz.order.service.OrderPayService;
-import net.jeeshop.biz.order.service.OrderService;
 import net.jeeshop.biz.product.bean.ProductInfoBean;
+import net.jeeshop.biz.product.client.PackageSpecInfoMapper;
 import net.jeeshop.biz.product.model.*;
-import net.jeeshop.biz.product.service.*;
+import net.jeeshop.biz.product.service.GoodsService;
+import net.jeeshop.biz.product.service.PackageService;
+import net.jeeshop.biz.product.service.ProcessInfoService;
+import net.jeeshop.biz.product.service.ProductInfoService;
 import net.jeeshop.core.util.BillNumberBuilder;
 import net.jeeshop.web.controller.common.AvoidDuplicateSubmission;
 import net.jeeshop.web.controller.manage.ManageBaseController;
@@ -41,19 +45,12 @@ import java.util.*;
 @RequestMapping("/product")
 public class ProductController extends ManageBaseController{
 
-    static final String STATUS_TODO = "04"; //待办理（已经支付，货到付款）
+    static final String STATUS_TODO = "04"; //待办理（已经支付）
     static final String STATUS_TOPAY = "03"; //待支付
-    static final String STATUS_CANCEL="02";
 
     static final String PAYTYPE_ALI = "22" ;
     static final String PAYTYPE_LL = "21" ;
-    static final String PAYTYPE_NO = "23" ; //货到付款，不需要支付
-
-    static final String PRODUCT_TYPE_NEW = "1";
-    static final String PRODUCT_TYPE_XF= "2";
-    static final String PRODUCT_TYPE_PHONE= "3";
-    static final String PRODUCT_TYPE_CARD= "4";
-    static final String PRODUCT_TYPE_QT= "5";
+    static final String PAYTYPE_NO = "23" ;
 
     @Autowired
     private ProductInfoService productInfoService;
@@ -61,9 +58,9 @@ public class ProductController extends ManageBaseController{
     private GoodsService goodsService;
 
     @Autowired
-    private OrderService orderService;
+    private OrderMapper orderMapper;
     @Autowired
-    private OrderItemService orderItemService;
+    private OrderItemMapper orderItemMapper;
 
     @Autowired
     private ProcessInfoService processInfoService;
@@ -71,12 +68,12 @@ public class ProductController extends ManageBaseController{
     @Autowired
     private PackageService packageService;
     @Autowired
-    private PackageSpecInfoService packageSpecInfoService;
+    private PackageSpecInfoMapper packageSpecInfoMapper;
 
     @Autowired
-    private OrderPayRequestService orderPayRequestService;
+    private OrderPayRequestMapper orderPayRequestMapper;
     @Autowired
-    private OrderPayService orderPayService;
+    private OrderPayMapper orderPayMapper;
 
     @Autowired
     NumSerivce numSerivce ;
@@ -166,11 +163,6 @@ public class ProductController extends ManageBaseController{
         }else {
             //存在流程，查询出对应流程
             ProcessInfo processInfo = processInfoService.selectById(productInfo.getProcessid());
-            if(processInfo==null){
-                logger.debug("没找对对应流程");
-                return "redirect:goodsPreSubmitSave";
-            }
-
             CookieUtil.addCookie(response,"processInfo",JSONObject.toJSONString(processInfo));
             model.addAttribute("processInfo", processInfo);
 
@@ -178,15 +170,13 @@ public class ProductController extends ManageBaseController{
                 PackageInfo packageInfo = packageService.selectById(processInfo.getPackageid());
                 PackageSpecInfoExample packageSpecInfoExample = new PackageSpecInfoExample();
                 packageSpecInfoExample.createCriteria().andPackageIdEqualTo(String.valueOf(processInfo.getPackageid()));
-                List<PackageSpecInfo> specInfos = packageSpecInfoService.selectByExampleWithBLOBs(packageSpecInfoExample);
+                List<PackageSpecInfo> specInfos = packageSpecInfoMapper.selectByExampleWithBLOBs(packageSpecInfoExample);
 
 //                model.addAttribute("packageInfo",packageInfo);
                 model.addAttribute("specInfos",specInfos);
                 model.addAttribute("packageName",packageInfo.getName());
-                model.addAttribute("note",packageInfo.getNote());
                 return "front/product/selPackage";
             }else if(processInfo.getNewnumId() >0){
-                model.addAttribute("nums",processInfo.getNewnums());
                 model.addAttribute("newnumId",processInfo.getNewnumId());
                 return "front/product/selNewNum";
             }else if(processInfo.getOldnumId()>0){
@@ -226,11 +216,10 @@ public class ProductController extends ManageBaseController{
         logger.debug("流程信息：{}",processInfo);
 
         model.addAttribute("nums", processInfo.getString("newnums"));
-        model.addAttribute("processID", processInfo.getLong("id"));
+        model.addAttribute("processID",processInfo.getLong("id"));
 
         if(processInfo.getIntValue("newnumId")>0){
             model.addAttribute("newnumId",processInfo.getIntValue("newnumId"));
-            model.addAttribute("nums",processInfo.getIntValue("newnums"));
             return "front/product/selNewNum";
         }else if(processInfo.getIntValue("oldnumId")>0){
             model.addAttribute("oldNumID",processInfo.getIntValue("oldnumId"));
@@ -402,28 +391,19 @@ public class ProductController extends ManageBaseController{
     @RequestMapping("savePrePayOrder")
     @ResponseBody
 //    @AvoidDuplicateSubmission(needRemoveToken = true)
-    public Object savePerPayOrder(Order order ,OrderItem orderItem,Long goodsid,Long productid,
-                                  @RequestParam(required = false)String orderid,@RequestParam(required = false)String salesId,RedirectAttributes attr){
+    public Object savePerPayOrder(Order order ,OrderItem orderItem,long goodsid,long productid,String orderid,String salesId,RedirectAttributes attr){
 
         logger.debug("提交订单={},id={}", order, orderid);
         logger.debug("产品信息：={},={}", productid, goodsid);
         logger.debug("订单信息：{}",order.toString());
-        logger.debug("订单详情：{}", orderItem.toString());
+        logger.debug("订单详情：{}",orderItem.toString());
 
-        JSONObject retResult = new JSONObject();
-
-        //是否重复提交
         try {
             if (StringUtils.isNotBlank(orderid)) {
-                retResult.put("msg","已经提交过！");
-                retResult.put("orderid",orderid);
-                retResult.put("code","1000");
-                return retResult;
+                return orderid;
             }
 
-
-            //检测商品是否都有库存,如果没有库存需要提醒用户
-
+            order.setCreateTime(new Date());
             ProductInfoExample productInfoExample = new ProductInfoExample();
             ProductInfoExample.Criteria criteria = productInfoExample.createCriteria();
             criteria.andIdEqualTo(productid);
@@ -431,126 +411,57 @@ public class ProductController extends ManageBaseController{
             ProductInfoBean productInfo = infoList.get(0);
 
             // 查询不到产品，返回错误页面
+
             GoodsInfo goodsInfo = goodsService.selectById(goodsid);
-//            ProcessInfo processInfo = processInfoService.selectById(productInfo.getProcessid());
 
-            if(!PRODUCT_TYPE_NEW.equals(productInfo.getType()) && !PRODUCT_TYPE_XF.equals(productInfo.getType())){
-                logger.info("购买量：{}",order.getQuantity());
-                if(order.getQuantity()>goodsInfo.getStoreNums()){
-                    retResult.put("msg","库存不足！");
-                    retResult.put("code","1111");
-                    return retResult;
-                }else{
-                    //非宽带类， 修改产品库存
-//                    goodsInfo.setStoreNums(goodsInfo.getStoreNums()-order.getQuantity());
-//
-//                    goodsService.update(goodsInfo);
-//
-//                    productInfo.setStoreNums(productInfo.getStoreNums()-order.getQuantity());
-//
-//                    productInfoService.update(productInfo);
-                }
-            }
+            ProcessInfo processInfo = processInfoService.selectById(productInfo.getProcessid());
 
-            order.setCreateTime(new Date());
+            // 修改产品库存
+
 
             //计算价格
             double total = 0;
-
+            // 各种运费+促销产品费用+产品费用
+            total = productInfo.getSellPrice();
+            order.setAmount(total);
+            //新装
+            if ("1".equals(productInfo.getType())) {
+                order.setOrderstatus(STATUS_TODO);
+            } else
+                order.setOrderstatus(STATUS_TOPAY);
             String orderno = BillNumberBuilder.getOrderNo();
             order.setOrderNum(orderno);
             order.setKhid(productInfo.getKhid());
             order.setProductAmount(productInfo.getSellPrice());
             order.setShipAmount(productInfo.getFreight());// 运费
+            order.setQuantity(1);
             order.setIsPaid("0");
 
-            // 各种运费+促销产品费用+产品费用
-            total = productInfo.getSellPrice()+productInfo.getSellPrice()*order.getQuantity()+order.getShipAmount();
 
-
-            //TODO 发票费用
-            if("1".equals(productInfo.getReceipt())){
-                //用户是否选择了发票
-                order.setInvoiceprice(0.00);
-            }
-
-            //TODO 计算卡费
-            JSONObject numInfo = JSONObject.parseObject(orderItem.getNewmob());
-            if(numInfo!=null) {
-                JSONArray nums = JSONArray.parseArray(numInfo.getString("num"));
-                // 计算卡费
-            }else {
-                orderItem.setCardprice(0.00);
-            }
-            logger.info("创建订单成功：{}", orderno);
-
-
-            order.setAmount(total);
-//            orderMapper.insert(order);
+            orderMapper.insert(order);
             //保存订单时，捕获异常进行跳转
 
-            orderItem.setGoodsid(goodsid);
-            orderItem.setPrice(productInfo.getSellPrice());
-            orderItem.setQuantity(order.getQuantity());
-            orderItem.setAmount(productInfo.getSellPrice() * orderItem.getQuantity());
-            orderItem.setCreateTime(new Date());
 
+            orderItem.setPrice(productInfo.getSellPrice());
+            orderItem.setQuantity(1);
+            orderItem.setAmount(productInfo.getSellPrice() * 1);
+            orderItem.setCreateTime(new Date());
+            orderItem.setOrderId(order.getId());
             orderItem.setProductId(productid);
             orderItem.setProductName(productInfo.getProductName());
+            orderItemMapper.insert(orderItem);
 
-
-            //保存预支付订单
-            orderService.createOrder(order,orderItem,productInfo,goodsInfo);
+            logger.info("创建订单成功：{}", orderno);
 
             attr.addFlashAttribute("orderno", orderno);
             attr.addFlashAttribute("payType", order.getPaytype());
 
-            retResult.put("msg","成功！");
-            retResult.put("orderid",order.getOrderNum());
-            retResult.put("code", "0000");
             logger.debug("去支付");
-            return retResult;
+            return order.getOrderNum();
         }catch (Exception e){
-            e.printStackTrace();
             logger.error("购买失败：{}",e.getMessage());
-
-            retResult.put("msg","系统异常，稍后再试！");
-            retResult.put("code","1111");
-            return retResult;
+            return 0;
         }
-
-    }
-
-    /**
-     * 选择支付方式
-     * @param orderno
-     * @return
-     */
-    @RequestMapping("selPayType/{orderno}")
-    public String selPayType(@PathVariable String orderno,Model model){
-        OrderExample orderExample = new OrderExample();
-        orderExample.createCriteria().andOrderNumEqualTo(orderno);
-        Order order = orderService.selectUniqueByExample(orderExample);
-        if(order == null){
-            model.addAttribute("order",0);
-            model.addAttribute("orderno","");
-        }else {
-            model.addAttribute("total", order.getAmount());
-            model.addAttribute("orderno", order.getOrderNum());
-        }
-        return "front/product/selPayType";
-    }
-
-    @RequestMapping("cancelOrder/{orderno}")
-    @ResponseBody
-    public int cancelOrder(@PathVariable String orderno){
-
-        OrderExample orderExample = new OrderExample();
-        orderExample.createCriteria().andOrderNumEqualTo(orderno);
-        OrderBean order = orderService.selectUniqueByExample(orderExample);
-        order.setOrderstatus(STATUS_CANCEL);
-
-       return orderService.update(order);
 
     }
 
@@ -559,22 +470,20 @@ public class ProductController extends ManageBaseController{
      * @return
      */
     @RequestMapping("toPay")
-    public String toPay(@ModelAttribute("payInfo") HashMap <String,String> payInfo, String orderno,String payType,RedirectAttributes attr){
+    public String toPay(@ModelAttribute("payInfo") HashMap <String,String>payInfo,String orderno,String payType,RedirectAttributes attr){
         logger.debug("支付类型 orderno={}：type={}",orderno, payType);
 
-        OrderExample orderExample = new OrderExample();
-        orderExample.createCriteria().andOrderNumEqualTo(orderno);
-        List orderList = orderService.selectByExample(orderExample);
 
-        OrderBean order = (OrderBean) orderList.get(0);
-        if(PAYTYPE_NO.equals(payType)) {
+        if(PAYTYPE_NO.equals(payType)){
             attr.addFlashAttribute("orderno", orderno);
-            order.setOrderstatus(STATUS_TODO);
-            orderService.update(order);
             return "redirect:submitSucc";
         }else {
             try {
+                OrderExample orderExample = new OrderExample();
+                orderExample.createCriteria().andOrderNumEqualTo(orderno);
+                List orderList = orderMapper.selectByExample(orderExample);
 
+                OrderBean order = (OrderBean) orderList.get(0);
 
                 payInfo.put("notify_url","http://61.135.193.158:8080/wkshop/product/notifyForLLPay");
 
@@ -586,35 +495,36 @@ public class ProductController extends ManageBaseController{
                 orderPayRequest.setOrderId(order.getId());
                 orderPayRequest.setOrderPayId(System.currentTimeMillis());
                 orderPayRequest.setOrderNum(order.getOrderNum());
-                orderPayRequest.setPayStatus("0");
 
-                payInfo.put("trade_no", System.currentTimeMillis() + "");
-                payInfo.put("return_url", "1");
-                payInfo.put("subject", "zhwjxf");
-                payInfo.put("total_fee", "0.01");
 
                 if (PAYTYPE_ALI.equals(payType)) {
+                    payInfo.put("trade_no", "23423432432423423");
+                    payInfo.put("return_url", "1");
+                    payInfo.put("subject", "zhwjxf");
+                    payInfo.put("total_fee", "0.01");
                     attr.addFlashAttribute("payInfo", payInfo);
                     orderPayRequest.setPaymentType(PAYTYPE_ALI);
-                    orderPayRequest.setRequestNum("ali" + order.getOrderNum());
-                    orderPayRequestService.insert(orderPayRequest);
+
+                    orderPayRequestMapper.insert(orderPayRequest);
 
                     return "redirect:alipayapi";
                 } else {
                     payInfo.put("adslaccount", System.currentTimeMillis()+"");
+                    payInfo.put("trade_no", System.currentTimeMillis()+"");
+                    payInfo.put("return_url", "1");
+                    payInfo.put("subject", "zhwjxf");
+                    payInfo.put("total_fee", "0.01");
                     payInfo.put("name_goods", "测试商品");
                     attr.addFlashAttribute("payInfo", payInfo);
-                    orderPayRequest.setPaymentType(PAYTYPE_LL);
-                    orderPayRequest.setRequestNum("ll" + order.getOrderNum());
 
-                    orderPayRequestService.insert(orderPayRequest);
+                    orderPayRequest.setPaymentType(PAYTYPE_LL);
+
+                    orderPayRequestMapper.insert(orderPayRequest);
                     return "redirect:llpayapi";
                 }
 
             }catch (Exception e){
-
                 logger.debug("支付失败{}",e.getMessage());
-                e.printStackTrace();
                 return "redirect:returnPre";
             }
         }
@@ -658,7 +568,7 @@ public class ProductController extends ManageBaseController{
         criteria.andOrderNumEqualTo(no_order);
 
 
-        List<OrderBean> orderList = orderService.selectByExample(orderExample);
+        List<OrderBean> orderList = orderMapper.selectByExample(orderExample);
 
         if(orderList.size()>0){
             Order order = orderList.get(0);
@@ -683,21 +593,18 @@ public class ProductController extends ManageBaseController{
                 orderPay.setPayStatus(STATUS_TODO); // 支付成功
                 orderPay.setRequestNum(oid_paybill);
 
+                orderPayMapper.insert(orderPay);
 
-
-                orderService.llPayReturn(orderPay,order);
-
+                order.setOrderstatus(STATUS_TODO); //已支付
+                orderMapper.updateByPrimaryKeySelective(order);
             }
-
-
-
         }
 
 
         //更新支付交易状态
         orderno = no_order;
 
-        attributes.addFlashAttribute("orderno", orderno);
+        attributes.addFlashAttribute("orderno",orderno);
 
         return "redirect:submitSucc";
 
@@ -736,7 +643,7 @@ public class ProductController extends ManageBaseController{
             OrderExample.Criteria criteria  = orderExample.createCriteria();
             criteria.andOrderNumEqualTo(no_order);
 
-            List<OrderBean> orderList = orderService.selectByExample(orderExample);
+            List<OrderBean> orderList = orderMapper.selectByExample(orderExample);
 
             if(orderList.size()>0){
                 Order order = orderList.get(0);
@@ -761,10 +668,10 @@ public class ProductController extends ManageBaseController{
                     orderPay.setPayStatus(STATUS_TODO); // 支付成功
                     orderPay.setRequestNum(oid_paybill);
 
+                    orderPayMapper.insert(orderPay);
 
-                    orderService.llPayReturn(orderPay,order);
-
-
+                    order.setOrderstatus(STATUS_TODO); //已支付
+                    orderMapper.updateByPrimaryKeySelective(order);
                 }
             }
 
@@ -801,7 +708,7 @@ public class ProductController extends ManageBaseController{
     @ResponseBody
     public String llpayapi(@ModelAttribute("payInfo") HashMap<String,String> payInfo)
             throws Exception {
-        logger.debug("连连支付：{}", payInfo.toString());
+        logger.debug("连连支付：{}",payInfo.toString());
         Map<String, String> sParaTemp = new HashMap<String, String>();
         sParaTemp.put("user_id",payInfo.get("adslaccount")); // userid
 //        sParaTemp.put("seller_id",PayConfig.seller_id);
@@ -861,11 +768,11 @@ public class ProductController extends ManageBaseController{
         }
         OrderExample orderExample = new OrderExample();
         orderExample.createCriteria().andOrderNumEqualTo(id);
-        OrderBean order =  orderService.selectByExample(orderExample).get(0);
+        OrderBean order =  orderMapper.selectByExample(orderExample).get(0);
 
-        model.addAttribute("orderid", id);
-        model.addAttribute("amount", order.getProductAmount());
-        model.addAttribute("khid", order.getKhid());
+        model.addAttribute("orderid",id);
+        model.addAttribute("amount",order.getProductAmount());
+        model.addAttribute("khid",order.getKhid());
         String payType = "货到付款";
         if(PAYTYPE_ALI.equals(order.getPaytype())){
             payType="支付宝支付";
@@ -1019,25 +926,6 @@ public class ProductController extends ManageBaseController{
         }
 
         return "no";
-    }
-
-    /**
-     * 根据商品id查询规格
-     * @param goodsID
-     * @return
-     */
-    @RequestMapping("querySpecByGoodsID/{goodsID}")
-    @ResponseBody
-    public Object querySpecByGoodsID(@PathVariable Long goodsID){
-        GoodsInfoExample goodsInfoExample = new GoodsInfoExample();
-        goodsInfoExample.createCriteria().andIdEqualTo(goodsID);
-        List<GoodsInfo> goodsInfos = goodsService.selectByExampleWithBLOBs(goodsInfoExample);
-        if(goodsInfos!=null && goodsInfos.size()>0){
-            return goodsInfos.get(0).getSpecArray();
-        }else{
-            return "";
-        }
-
     }
 }
 

@@ -128,7 +128,6 @@ public class LableController extends ManageBaseController<ProductLabel,ProductLa
      */
 
     @RequestMapping("insert")
-    @ResponseBody
     public String insert(@ModelAttribute("e") ProductLabel lable, RedirectAttributes flushAttrs) {
         logger.debug("插入标签{}",lable);
         return save0(lable, flushAttrs);

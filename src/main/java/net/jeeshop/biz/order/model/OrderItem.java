@@ -11,9 +11,6 @@ public class OrderItem extends BaseModel implements Serializable {
     /** 商品ID */
     private Long productId;
 
-    /** 货物编号 */
-    private Long goodsid;
-
     /** 单价 */
     private Double price;
 
@@ -25,6 +22,9 @@ public class OrderItem extends BaseModel implements Serializable {
 
     /** 订单ID */
     private Long orderId;
+
+    /** 新号码 */
+    private String newmob;
 
     /** 老号码 */
     private String oldmob;
@@ -40,9 +40,6 @@ public class OrderItem extends BaseModel implements Serializable {
 
     /** ord_order_item.product_name */
     private String productName;
-
-    /** 新号码 */
-    private String newmob;
 
     private static final long serialVersionUID = 1L;
 
@@ -60,14 +57,6 @@ public class OrderItem extends BaseModel implements Serializable {
 
     public void setProductId(Long productId) {
         this.productId = productId;
-    }
-
-    public Long getGoodsid() {
-        return goodsid;
-    }
-
-    public void setGoodsid(Long goodsid) {
-        this.goodsid = goodsid;
     }
 
     public Double getPrice() {
@@ -100,6 +89,14 @@ public class OrderItem extends BaseModel implements Serializable {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
+    }
+
+    public String getNewmob() {
+        return newmob;
+    }
+
+    public void setNewmob(String newmob) {
+        this.newmob = newmob == null ? null : newmob.trim();
     }
 
     public String getOldmob() {
@@ -142,11 +139,21 @@ public class OrderItem extends BaseModel implements Serializable {
         this.productName = productName == null ? null : productName.trim();
     }
 
-    public String getNewmob() {
-        return newmob;
-    }
-
-    public void setNewmob(String newmob) {
-        this.newmob = newmob == null ? null : newmob.trim();
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "memberId=" + memberId +
+                ", productId=" + productId +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", amount=" + amount +
+                ", orderId=" + orderId +
+                ", newmob='" + newmob + '\'' +
+                ", oldmob='" + oldmob + '\'' +
+                ", cardprice=" + cardprice +
+                ", firstfee=" + firstfee +
+                ", issales='" + issales + '\'' +
+                ", productName='" + productName + '\'' +
+                '}';
     }
 }

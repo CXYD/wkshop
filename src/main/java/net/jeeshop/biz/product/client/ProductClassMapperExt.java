@@ -1,7 +1,6 @@
 package net.jeeshop.biz.product.client;
 
 import net.jeeshop.biz.product.bean.ProductClassBean;
-import net.jeeshop.biz.product.model.ProductClassExample;
 
 import java.util.List;
 
@@ -13,9 +12,7 @@ import java.util.List;
  */
 public interface ProductClassMapperExt {
 
-    public List<ProductClassBean> selectByParams(ProductClassExample productClassBean);
+    public List<ProductClassBean> selectByParams(ProductClassBean params);
 
     ProductClassBean selectClassBeanById(long cid);
-
-
 }
